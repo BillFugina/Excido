@@ -1,0 +1,76 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BamApps.Excido.Data.Model", "BamApps.Excido.Data.Model\BamApps.Excido.Data.Model.csproj", "{CA9C930A-405B-42E6-84F7-C2F2FD734616}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BamApps.Excido.Data.Context", "BamApps.Excido.Data.Context\BamApps.Excido.Data.Context.csproj", "{FBD14C1B-415F-4C8D-B121-A5ED8B193411}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BamApps.Excido.Data.Map", "BamApps.Excido.Data.Map\BamApps.Excido.Data.Map.csproj", "{D63F6075-0BBC-4998-B4EE-2A1AEB1A1645}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BamApps.Excido.Data.Extensions", "BamApps.Excido.Data.Extensions\BamApps.Excido.Data.Extensions.csproj", "{0F646FCA-F90C-4B39-B386-3F2AFB9D9971}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BamApps.Excido.Interface", "BamApps.Excido.Interface\BamApps.Excido.Interface.csproj", "{23A2DDBE-8A4E-4424-A586-4DFD35B189F7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BamApps.Excido.Service", "BamApps.Excido.Service\BamApps.Excido.Service.csproj", "{32C40257-3DB8-451C-B3FE-FF57779B5CBC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CA9C930A-405B-42E6-84F7-C2F2FD734616}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA9C930A-405B-42E6-84F7-C2F2FD734616}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA9C930A-405B-42E6-84F7-C2F2FD734616}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA9C930A-405B-42E6-84F7-C2F2FD734616}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FBD14C1B-415F-4C8D-B121-A5ED8B193411}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FBD14C1B-415F-4C8D-B121-A5ED8B193411}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FBD14C1B-415F-4C8D-B121-A5ED8B193411}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FBD14C1B-415F-4C8D-B121-A5ED8B193411}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D63F6075-0BBC-4998-B4EE-2A1AEB1A1645}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D63F6075-0BBC-4998-B4EE-2A1AEB1A1645}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D63F6075-0BBC-4998-B4EE-2A1AEB1A1645}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D63F6075-0BBC-4998-B4EE-2A1AEB1A1645}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F646FCA-F90C-4B39-B386-3F2AFB9D9971}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F646FCA-F90C-4B39-B386-3F2AFB9D9971}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F646FCA-F90C-4B39-B386-3F2AFB9D9971}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F646FCA-F90C-4B39-B386-3F2AFB9D9971}.Release|Any CPU.Build.0 = Release|Any CPU
+		{23A2DDBE-8A4E-4424-A586-4DFD35B189F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23A2DDBE-8A4E-4424-A586-4DFD35B189F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23A2DDBE-8A4E-4424-A586-4DFD35B189F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23A2DDBE-8A4E-4424-A586-4DFD35B189F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{32C40257-3DB8-451C-B3FE-FF57779B5CBC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32C40257-3DB8-451C-B3FE-FF57779B5CBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{32C40257-3DB8-451C-B3FE-FF57779B5CBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{32C40257-3DB8-451C-B3FE-FF57779B5CBC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 7
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://bamapps.visualstudio.com/defaultcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = BamApps.Excido.Data.Model\\BamApps.Excido.Data.Model.csproj
+		SccProjectName1 = BamApps.Excido.Data.Model
+		SccLocalPath1 = BamApps.Excido.Data.Model
+		SccProjectUniqueName2 = BamApps.Excido.Data.Context\\BamApps.Excido.Data.Context.csproj
+		SccProjectName2 = BamApps.Excido.Data.Context
+		SccLocalPath2 = BamApps.Excido.Data.Context
+		SccProjectUniqueName3 = BamApps.Excido.Data.Map\\BamApps.Excido.Data.Map.csproj
+		SccProjectName3 = BamApps.Excido.Data.Map
+		SccLocalPath3 = BamApps.Excido.Data.Map
+		SccProjectUniqueName4 = BamApps.Excido.Data.Extensions\\BamApps.Excido.Data.Extensions.csproj
+		SccProjectName4 = BamApps.Excido.Data.Extensions
+		SccLocalPath4 = BamApps.Excido.Data.Extensions
+		SccProjectUniqueName5 = BamApps.Excido.Interface\\BamApps.Excido.Interface.csproj
+		SccProjectName5 = BamApps.Excido.Interface
+		SccLocalPath5 = BamApps.Excido.Interface
+		SccProjectUniqueName6 = BamApps.Excido.Service\\BamApps.Excido.Service.csproj
+		SccProjectName6 = BamApps.Excido.Service
+		SccLocalPath6 = BamApps.Excido.Service
+	EndGlobalSection
+EndGlobal
