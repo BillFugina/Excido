@@ -1,4 +1,5 @@
-﻿using BamApps.Excido.Interface.Data;
+﻿using BamApps.Excido.Data.Model;
+using BamApps.Excido.Interface.Data;
 using EntityFramework.Extensions;
 using System;
 using System.Data.Entity;
@@ -6,6 +7,14 @@ using System.Linq;
 
 namespace BamApps.Excido.Data.Context {
     public class ExcidoContext : DbContext, IDataContext {
+
+        public DbSet<SharedContentUnit> SharedContentUnits {
+            get {
+                return Set<SharedContentUnit>();
+            }
+        }
+
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder) {
             Map.Configuration.Configure(modelBuilder.Configurations);
         }
