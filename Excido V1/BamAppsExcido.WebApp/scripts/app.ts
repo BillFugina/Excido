@@ -4,7 +4,7 @@ export class App {
     router;
 
     configureRouter(config, router) {
-        config.title = 'Aurelia';
+        config.title = 'Excido';
         config.map([
             { route: ['', 'welcome'], name: 'welcome', moduleId: 'welcome', nav: true, title: 'Welcome' },
             { route: 'users', name: 'users', moduleId: 'users', nav: true, title: 'Github Users' },

@@ -6,5 +6,6 @@
     "target": "es5",
     "module": "commonjs",
     "outDir": "../wwwroot"
-  }
+  },
+  "compileOnSave":  true
 }
