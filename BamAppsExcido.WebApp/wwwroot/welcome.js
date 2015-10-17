@@ -1,7 +1,7 @@
 var Welcome = (function () {
     function Welcome() {
-        this.heading = 'Welcome to the Aurelia Navigation App!';
-        this.firstName = 'John';
+        this.heading = 'Welcome to Excido!';
+        this.firstName = 'Jo';
         this.lastName = 'Doe';
     }
     Object.defineProperty(Welcome.prototype, "fullName", {
