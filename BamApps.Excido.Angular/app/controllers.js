@@ -17,15 +17,29 @@ var Controllers;
         }
     ];
     var StoreController = (function () {
-        function StoreController($location) {
+        function StoreController($location, entityManagerFactory) {
+            var _this = this;
             this.$location = $location;
             this.title = "StoreController";
             this.products = gems;
-            this.activate();
+            debugger;
+            var entityManager = entityManagerFactory.newEntityManager();
+            entityManager.fetchMetadata().then(function () {
+                debugger;
+                var query = breeze.EntityQuery.from('SharedContentUnits');
+                entityManager.executeQuery(query).then(function () {
+                    debugger;
+                    _this.activate();
+                }).catch(function () {
+                    debugger;
+                });
+            }).catch(function () {
+                debugger;
+            });
         }
         StoreController.prototype.activate = function () {
         };
-        StoreController.$inject = ["$location"];
+        StoreController.$inject = ["$location", "entityManagerFactory"];
         return StoreController;
     })();
     Controllers.StoreController = StoreController;

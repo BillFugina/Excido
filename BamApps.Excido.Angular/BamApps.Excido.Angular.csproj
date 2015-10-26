@@ -32,6 +32,9 @@
     <Content Include="app\controllers.js">
       <DependentUpon>controllers.ts</DependentUpon>
     </Content>
+    <Content Include="app\entityManagerFactory.js">
+      <DependentUpon>entityManagerFactory.ts</DependentUpon>
+    </Content>
     <Content Include="Global.asax" />
     <Content Include="Content\angular-toastr.css" />
     <Content Include="Content\angular-toastr.min.css" />
@@ -80,7 +83,7 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\breeze.bridge.angular.js" />
-    <Content Include="Scripts\breeze.debug.js" />
+    <Content Include="Scripts\breeze.js" />
     <Content Include="Scripts\breeze.directives.js" />
     <Content Include="Scripts\breeze.min.js" />
     <Content Include="Scripts\i18n\angular-locale_aa-dj.js" />
@@ -846,6 +849,9 @@
     <Content Include="fonts\fontawesome-webfont.eot" />
     <Content Include="Content\toastr.scss" />
     <Content Include="Content\toastr.less" />
+    <Content Include="app\entityManagerFactory.js.map">
+      <DependentUpon>entityManagerFactory.ts</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.4.js" />
     <Content Include="Scripts\jquery-2.1.4.min.js" />
@@ -858,6 +864,7 @@
   <ItemGroup>
     <TypeScriptCompile Include="app\app.ts" />
     <TypeScriptCompile Include="app\controllers.ts" />
+    <TypeScriptCompile Include="app\entityManagerFactory.ts" />
     <TypeScriptCompile Include="Scripts\typings\angularjs\angular-animate.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\angularjs\angular-cookies.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\angularjs\angular-mocks.d.ts" />

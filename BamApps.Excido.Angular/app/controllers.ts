@@ -1,6 +1,6 @@
 ﻿module Controllers {
     "use strict";
-
+    
     var gems: App.Gem[] = [
         {
             name: 'Dodecahedron',
@@ -27,10 +27,23 @@
 
         products = gems;
 
-        static $inject: string[] = ["$location"];
+        static $inject: string[] = ["$location", "entityManagerFactory"];
 
-        constructor(private $location: ng.ILocationService) {
-            this.activate();
+        constructor(private $location: ng.ILocationService, entityManagerFactory: Breeze.IEntityManagerFactory) {
+            debugger;
+            var entityManager = entityManagerFactory.newEntityManager();
+            entityManager.fetchMetadata().then(() => {
+                debugger;
+                var query = breeze.EntityQuery.from('SharedContentUnits');
+                entityManager.executeQuery(query).then(() => {
+                    debugger;
+                    this.activate();
+                }).catch(() => {
+                    debugger;
+                });
+            }).catch(() => {
+                debugger;
+            });
         }
 
         activate() {
