@@ -23,6 +23,7 @@ namespace BamApps.Excido.Angular.App_Start {
                 .Include("~/Scripts/bootstrap.js")
                 .Include("~/Scripts/q.js")
                 .Include("~/Scripts/breeze.js")
+                .Include("~/Scripts/breeze.bridge.angular.js")
                 .Include("~/Scripts/toastr.js")
                 );
 
@@ -32,6 +33,7 @@ namespace BamApps.Excido.Angular.App_Start {
             bundles.Add(new ScriptBundle("~/bundles/app")
                 .Include("~/app/controllers.js")
                 .Include("~/app/app.js")
+                .Include("~/app/entityManagerFactory.js")
                 );
         }
 
