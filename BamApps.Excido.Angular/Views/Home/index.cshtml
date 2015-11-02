@@ -1,24 +1,24 @@
 ﻿<!DOCTYPE html>
-<html ng-app="store">
+<html ng-app="excido">
 <head>
     @Styles.Render("~/bundles/app-styles")
-    <meta name="viewport" content="width=device-width" />
-    <title>index</title>
-</head>
-<body ng-controller="StoreController as store">
-
-    <ul class="list-group">
-        <li class="list-group-item" ng-repeat="product in store.products">
-            <h3>
-                {{product.name}}
-                <em class="pull-right">{{product.price | currency}}</em>
-            </h3>
-        </li>
-    </ul>
-
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/angular")
     @Scripts.Render("~/bundles/base")
     @Scripts.Render("~/bundles/app")
+    <meta name="viewport" content="width=device-width" />
+    <title>index</title>
+</head>
+<body ng-controller="shared-units as sharedunits">
+
+    <ul class="list-group">
+        <li class="list-group-item" ng-repeat="unit in sharedunits.units">
+            <h3>
+                {{unit.Name}}
+                <em class="pull-right">{{unit.Content}}</em>
+            </h3>
+        </li>
+    </ul>
+
 </body>
 </html>
