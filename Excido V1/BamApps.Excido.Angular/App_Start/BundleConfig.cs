@@ -8,7 +8,6 @@ namespace BamApps.Excido.Angular.App_Start {
     public class BundleConfig {
         public static void RegisterBundles(BundleCollection bundles) {
             bundles.UseCdn = true;
-
             bundles.Add(new StyleBundle("~/bundles/app-styles")
                 .Include("~/Content/bootstrap.css")
                 .Include("~/Content/font-awesome.css")
@@ -31,9 +30,12 @@ namespace BamApps.Excido.Angular.App_Start {
                 .Include("~/Scripts/angular.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/app")
-                .Include("~/app/controllers.js")
-                .Include("~/app/app.js")
-                .Include("~/app/entityManagerFactory.js")
+                .IncludeDirectory("~/app/BamApps", "*.js", true)
+                .Include("~/app/BamApps.Excido/BamApps.Excido.Interface.js")
+                .Include("~/app/BamApps.Excido/BamApps.Excido.Model.js")
+                .Include("~/app/BamApps.Excido/BamApps.Excido.Service.js")
+                .Include("~/app/BamApps.Excido/BamApps.Excido.Controller.js")
+                .Include("~/app/BamApps.Excido/BamApps.Excido.js")
                 );
         }
 

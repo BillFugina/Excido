@@ -26,15 +26,6 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="app\app.js">
-      <DependentUpon>app.ts</DependentUpon>
-    </Content>
-    <Content Include="app\controllers.js">
-      <DependentUpon>controllers.ts</DependentUpon>
-    </Content>
-    <Content Include="app\entityManagerFactory.js">
-      <DependentUpon>entityManagerFactory.ts</DependentUpon>
-    </Content>
     <Content Include="Global.asax" />
     <Content Include="Content\angular-toastr.css" />
     <Content Include="Content\angular-toastr.min.css" />
@@ -836,12 +827,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
-    <Content Include="app\app.js.map">
-      <DependentUpon>app.ts</DependentUpon>
-    </Content>
-    <Content Include="app\controllers.js.map">
-      <DependentUpon>controllers.ts</DependentUpon>
-    </Content>
     <Content Include="fonts\FontAwesome.otf" />
     <Content Include="fonts\fontawesome-webfont.woff2" />
     <Content Include="fonts\fontawesome-webfont.woff" />
@@ -849,9 +834,6 @@
     <Content Include="fonts\fontawesome-webfont.eot" />
     <Content Include="Content\toastr.scss" />
     <Content Include="Content\toastr.less" />
-    <Content Include="app\entityManagerFactory.js.map">
-      <DependentUpon>entityManagerFactory.ts</DependentUpon>
-    </Content>
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.4.js" />
     <Content Include="Scripts\jquery-2.1.4.min.js" />
@@ -862,9 +844,16 @@
     <Content Include="web.config" />
   </ItemGroup>
   <ItemGroup>
-    <TypeScriptCompile Include="app\app.ts" />
-    <TypeScriptCompile Include="app\controllers.ts" />
-    <TypeScriptCompile Include="app\entityManagerFactory.ts" />
+    <TypeScriptCompile Include="app\BamApps.Excido\BamApps.Excido.Controller.ts" />
+    <TypeScriptCompile Include="app\BamApps.Excido\BamApps.Excido.Interface.ts" />
+    <TypeScriptCompile Include="app\BamApps.Excido\BamApps.Excido.Service.ts" />
+    <TypeScriptCompile Include="app\BamApps.Excido\BamApps.Excido.Model.ts" />
+    <TypeScriptCompile Include="app\BamApps.Excido\BamApps.Excido.ts" />
+    <TypeScriptCompile Include="app\BamApps\BamApps.Logger.ts" />
+    <TypeScriptCompile Include="app\BamApps\BamApps.Model.ts" />
+    <TypeScriptCompile Include="app\BamApps\BamApps.Service.ts" />
+    <TypeScriptCompile Include="app\BamApps\BamApps.Interface.ts" />
+    <TypeScriptCompile Include="app\BamApps\BamApps.Utils.ts" />
     <TypeScriptCompile Include="Scripts\typings\angularjs\angular-animate.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\angularjs\angular-cookies.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\angularjs\angular-mocks.d.ts" />
