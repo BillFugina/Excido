@@ -49,13 +49,17 @@
                     var promise = this._sharedContentUnitService.getAll();
 
                     promise.then(results => {
-                        debugger;
                         self.units = results;
                     });
 
                     return promise;
                 }
 
+                public addClick() {
+                    Logger.log("add click", this);
+                    var newUnit = this._sharedContentUnitService.create();
+                    this.units.push(newUnit);
+                }
 
             }
 

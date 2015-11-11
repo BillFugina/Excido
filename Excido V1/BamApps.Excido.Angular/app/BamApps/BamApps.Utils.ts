@@ -124,6 +124,19 @@
         }
 
         /**
+         * Creates a string that complies with RFC 4122 version 4 and can be used as a unique identifier.
+         * @returns a RFC 4122 v4 string that is exceedingly likely to be unique
+         */
+        export function newUuid(): string {
+            var result = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+                var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+                return v.toString(16);
+            });
+
+            return result;
+        }
+
+        /**
          * Tells if a given object is a string.
          * @param obj the object to check if it is a string.
          * @returns true if the object is a string.
