@@ -45,7 +45,7 @@
                     var self = this;
                     var deferred = this.$q.defer<Interface.Model.ISharedContentUnit[]>();
 
-                    var query = breeze.EntityQuery.from(Model.SharedContentUnit.source);
+                    var query = breeze.EntityQuery.from(Model.Info.SharedContentUnit.Source);
                     this._entityManager.executeQuery(query)
                         .then(data => {
                             Logger.log("Successfull getAll", this, data);
@@ -58,6 +58,11 @@
                     return deferred.promise;
                 }
 
+                create(): Interface.Model.ISharedContentUnit {
+                    var result = <Interface.Model.ISharedContentUnit>this._entityManager.createEntity(Model.Info.SharedContentUnit.Name, { Id: Utils.newUuid() });
+                    this._entityManager.addEntity(result);
+                    return result;
+                }
 
             }
 

@@ -1,7 +1,9 @@
 ﻿body {
-    font-family: 'Segoe UI', sans-serif;
-}
+  font-family: 'Segoe UI', sans-serif; }
 
 span {
-    font-style: italic;
-}
+  font-style: italic; }
+
+button.btn i.fa {
+  padding-right: 10px; }
+

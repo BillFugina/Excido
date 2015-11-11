@@ -2,6 +2,10 @@
     export module Excido {
         export module Model {
 
+            export class Info {
+                static SharedContentUnit = { Name: "SharedContentUnit", Source: "SharedContentUnits"};
+            }
+
             export class SharedContentUnit extends BamApps.Model.BreezeEntity implements Interface.Model.ISharedContentUnit {
                 private _id: string;
                 private _name: string;
