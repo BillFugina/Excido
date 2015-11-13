@@ -59,7 +59,7 @@
          * or if the given is a number and it is NaN or Infinite    
          */
         export function isNullOrEmpty(s: string | number): boolean {
-            var result = s === null;
+            var result = s == null;
             if (typeof s === 'string') {
                 result = s == null || s === '';
             }

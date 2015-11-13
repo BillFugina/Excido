@@ -7,34 +7,30 @@
             }
 
             export class SharedContentUnit extends BamApps.Model.BreezeEntity implements Interface.Model.ISharedContentUnit {
-                private _id: string;
-                private _name: string;
-                private _content: string;
+                id: string;
+                name: string;
+                content: string;
 
-                static source: string = "SharedContentUnits";
+                isEditingName: boolean = false;
+                isEditingContent: boolean = false;
 
-
-                get id(): string {
-                    return this._id;
+                public editName() {
+                    this.isEditingName = true;
+                    this.isEditingContent = false;
                 }
 
-                get name(): string {
-                    return this._name;
+                public stopEditingName() {
+                    this.isEditingName = false;
                 }
 
-                set name(value : string) {
-                    this._name = value;
+                public editContent() {
+                    this.isEditingContent = true;
+                    this.isEditingName = false;
                 }
 
-                get content(): string {
-                    return this.content;
+                public stopEditingContent() {
+                    this.isEditingContent = false;
                 }
-
-                set content(value: string) {
-                    this._content = value;
-                }
-
-
             }
 
         }

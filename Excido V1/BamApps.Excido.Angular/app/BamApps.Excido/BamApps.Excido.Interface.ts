@@ -14,6 +14,12 @@
                     id: string;
                     name: string;
                     content: string;
+                    isEditingName: boolean;
+                    isEditingContent: boolean;
+                    editName() : void;
+                    editContent() : void;
+                    stopEditingName() : void;
+                    stopEditingContent() : void;
                 }
             }
 

@@ -138,6 +138,21 @@
             return sourceString;
         }
 
+        function getToastrDisplayMethod(showToast?: boolean | ToastrDisplayMethod, defaultMethod?: ToastrDisplayMethod): ToastrDisplayMethod {
+            showToast = showToast || false;
+            defaultMethod = defaultMethod || toastr.info;
+            var typeofShowToast = typeof showToast;
+            var toastMethod: ToastrDisplayMethod = null;
+
+            if (typeofShowToast == 'boolean') {
+                toastMethod = showToast ? toastr.error : null;
+            }
+            else if (typeofShowToast == 'function') {
+                toastMethod = <ToastrDisplayMethod>showToast;
+            }
+            return toastMethod;
+        }
+
         /**
          * Calls the javascript `console.error()` method if the [verbosity](#verbosity) is set to [error](#error) or higher.
          * @param message The message to send to the console.
@@ -145,11 +160,11 @@
          * @param data Any object
          * @param showToast If set to true, a [Toastr](http://codeseven.github.io/toastr/) pop-up will be shown in the error style.
          */
-        export function error(message: string, source?: BamApps.Interface.ITitle, data?: any, showToast?: boolean);
-        export function error(message: string, source?: string, data?: any, showToast?: boolean);
-        export function error(message: string, source?: any, data?: any, showToast?: boolean) {
+        export function error(message: string, source?: BamApps.Interface.ITitle, data?: any, showToast?: boolean | ToastrDisplayMethod, title? : string);
+        export function error(message: string, source?: string, data?: any, showToast?: boolean | ToastrDisplayMethod, title?: string);
+        export function error(message: string, source?: any, data?: any, showToast?: boolean | ToastrDisplayMethod, title?: string) {
             var sourceString = getSourceString(source);
-            _processMessage(message, sourceString, Level.Errors, console.error, data, showToast ? toastr.error : null);
+            _processMessage(message, sourceString, Level.Errors, console.error, data, getToastrDisplayMethod(showToast, toastr.error), title);
         }
 
 
@@ -161,11 +176,11 @@
          * @param data Any object
          * @param showToast If set to true, a [Toastr](http://codeseven.github.io/toastr/) pop-up will be shown in the warning style.
          */
-        export function warning(message: string, source?: BamApps.Interface.ITitle, data?: any, showToast?: boolean);
-        export function warning(message: string, source?: string, data?: any, showToast?: boolean);
-        export function warning(message: string, source?: any, data?: any, showToast?: boolean) {
+        export function warning(message: string, source?: BamApps.Interface.ITitle, data?: any, showToast?: boolean | ToastrDisplayMethod, title?: string);
+        export function warning(message: string, source?: string, data?: any, showToast?: boolean | ToastrDisplayMethod, title?: string);
+        export function warning(message: string, source?: any, data?: any, showToast?: boolean | ToastrDisplayMethod, title?: string) {
             var sourceString = getSourceString(source);
-            _processMessage(message, sourceString, Level.Warnings, console.warn, data, showToast ? toastr.warning : null);
+            _processMessage(message, sourceString, Level.Warnings, console.warn, data, getToastrDisplayMethod(showToast, toastr.warning), title);
         }
 
         /**
@@ -175,11 +190,11 @@
          * @param data Any object
          * @param showToast If set to true, a [Toastr](http://codeseven.github.io/toastr/) pop-up will be shown in the info style.
          */
-        export function info(message: string, source?: BamApps.Interface.ITitle, data?: any, showToast?: boolean);
-        export function info(message: string, source?: string, data?: any, showToast?: boolean);
-        export function info(message: string, source?: any, data?: any, showToast?: boolean) {
+        export function info(message: string, source?: BamApps.Interface.ITitle, data?: any, showToast?: boolean | ToastrDisplayMethod, title?: string);
+        export function info(message: string, source?: string, data?: any, showToast?: boolean | ToastrDisplayMethod, title?: string);
+        export function info(message: string, source?: any, data?: any, showToast?: boolean | ToastrDisplayMethod, title?: string) {
             var sourceString = getSourceString(source);
-            _processMessage(message, sourceString, Level.Info, console.info, data, showToast ? toastr.info : null);
+            _processMessage(message, sourceString, Level.Info, console.info, data, getToastrDisplayMethod(showToast, toastr.info), title);
         }
 
         /**
@@ -189,11 +204,11 @@
          * @param data Any object
          * @param showToast If set to true, a [Toastr](http://codeseven.github.io/toastr/) pop-up will be shown in the info style.
          */
-        export function debug(message: string, source?: BamApps.Interface.ITitle, data?: any, showToast?: boolean);
-        export function debug(message: string, source?: string, data?: any, showToast?: boolean);
-        export function debug(message: string, source?: any, data?: any, showToast?: boolean) {
+        export function debug(message: string, source?: BamApps.Interface.ITitle, data?: any, showToast?: boolean | ToastrDisplayMethod, title?: string);
+        export function debug(message: string, source?: string, data?: any, showToast?: boolean | ToastrDisplayMethod, title?: string);
+        export function debug(message: string, source?: any, data?: any, showToast?: boolean | ToastrDisplayMethod, title?: string) {
             var sourceString = getSourceString(source);
-            _processMessage(message, sourceString, Level.Log, console.debug, data, showToast ? toastr.info : null);
+            _processMessage(message, sourceString, Level.Log, console.debug, data, getToastrDisplayMethod(showToast, toastr.info), title);
         }
 
         /**
@@ -203,11 +218,11 @@
          * @param data Any object
          * @param showToast If set to true, a [Toastr](http://codeseven.github.io/toastr/) pop-up will be shown in the info style.
          */
-        export function log(message: string, source?: BamApps.Interface.ITitle, data?: any, showToast?: boolean);
-        export function log(message: string, source?: string, data?: any, showToast?: boolean);
-        export function log(message: string, source?: any, data?: any, showToast?: boolean) {
+        export function log(message: string, source?: BamApps.Interface.ITitle, data?: any, showToast?: boolean | ToastrDisplayMethod, title?: string);
+        export function log(message: string, source?: string, data?: any, showToast?: boolean | ToastrDisplayMethod, title?: string);
+        export function log(message: string, source?: any, data?: any, showToast?: boolean | ToastrDisplayMethod, title?: string) {
             var sourceString = getSourceString(source);
-            _processMessage(message, sourceString, Level.Log, console.log, data, showToast ? toastr.info : null);
+            _processMessage(message, sourceString, Level.Log, console.log, data, getToastrDisplayMethod(showToast, toastr.info), title);
         }
 
         /**
@@ -218,20 +233,20 @@
          * @param data Any object
          * @param toastrDisplayMethod The [Toastr](http://codeseven.github.io/toastr/) to be used to show the toast. If not specified, 'toastr.info' will be used.
          */
-        export function toast(message: string, source?: BamApps.Interface.ITitle, data?: any, toastrDisplayMethod?: ToastrDisplayMethod);
-        export function toast(message: string, source?: string, data?: any, toastrDisplayMethod?: ToastrDisplayMethod);
-        export function toast(message: string, source?: any, data?: any, toastrDisplayMethod?: ToastrDisplayMethod) {
+        export function toast(message: string, source?: BamApps.Interface.ITitle, data?: any, toastrDisplayMethod?: ToastrDisplayMethod, title?: string);
+        export function toast(message: string, source?: string, data?: any, toastrDisplayMethod?: ToastrDisplayMethod, title?: string);
+        export function toast(message: string, source?: any, data?: any, toastrDisplayMethod?: ToastrDisplayMethod, title?: string) {
             var sourceString = getSourceString(source);
             if (toastrDisplayMethod == null) {
                 toastrDisplayMethod = toastr.info;
             }
-            _processMessage(message, sourceString, Level.Toast, console.log, data, toastrDisplayMethod);
+            _processMessage(message, sourceString, Level.Toast, console.log, data, toastrDisplayMethod, title);
         }
 
         /**
          * A 'private' method used by the module to send messages to the console.
          */
-        function _processMessage(message: string, source: string, threshold: Level, consoleMethod: (message?: any, ...optionalParams: any[]) => void, data?, toast?: ToastrDisplayMethod) {
+        function _processMessage(message: string, source: string, threshold: Level, consoleMethod: (message?: any, ...optionalParams: any[]) => void, data?, toast?: ToastrDisplayMethod, title?: string) {
             source = source ? '[' + source + '] ' : '';
             var consoleMessage = source + '\t' + message;
             if (toast || _verbosity >= threshold) {
@@ -243,7 +258,12 @@
                     }
 
                     if (toast) {
-                        toast(message);
+                        if (title) {
+                            toast(message, title);
+                        }
+                        else {
+                            toast(message);
+                        }
                     }
                 }
             }
