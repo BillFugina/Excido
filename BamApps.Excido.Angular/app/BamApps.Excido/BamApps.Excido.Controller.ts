@@ -2,29 +2,14 @@
     export module Excido {
         export module Controller {
 
-            var gems = [
-                {
-                    name: 'Dodecahedron',
-                    price: 2,
-                    description: '. . .',
-                    canPurchase: true,
-                    soldOut: false
-                },
-                {
-                    name: 'Pentagonal Gem',
-                    description: '. . . ',
-                    price: 5.95,
-                    canPurchase: true
-                }
-            ];
-
             export class SharedUnitsController extends BamApps.Model.BamAppsBase {
                 static $inject: string[] = ["$q", "sharedContentUnitServiceFactory"];
 
-                products = gems;
                 units: Interface.Model.ISharedContentUnit[];
 
                 private _sharedContentUnitService: BamApps.Excido.Interface.ISharedContentUnitService;
+
+                private _editingSharedContentUnit: Interface.Model.ISharedContentUnit = null;
 
                 constructor(private $q: ng.IQService, private _sharedContentUnitServiceFactory: BamApps.Excido.Interface.ISharedContentUnitServiceFactory) {
                     super();
@@ -44,6 +29,10 @@
 
                 }
 
+                get hasChanges(): boolean {
+                    return this._sharedContentUnitService.hasChanges;
+                }
+
                 loadSharedContentUnits(): ng.IPromise<Interface.Model.ISharedContentUnit[]> {
                     var self = this;
                     var promise = this._sharedContentUnitService.getAll();
@@ -55,12 +44,35 @@
                     return promise;
                 }
 
+                public saveClick() {
+                    Logger.log("save click", this);
+                    this._sharedContentUnitService.save()
+                        .then((r) => {
+                            Logger.info("Changes Saved", this, r, toastr.success, "Success");
+                        });
+                }
+
                 public addClick() {
                     Logger.log("add click", this);
                     var newUnit = this._sharedContentUnitService.create();
                     this.units.push(newUnit);
+                    this._editingSharedContentUnit = newUnit;
+                    newUnit.isEditingName = true;
                 }
 
+                public isEditing(unit: Interface.Model.ISharedContentUnit): boolean {
+                    return unit === this._editingSharedContentUnit;
+                }
+
+                public deleteUnit(unit: Interface.Model.ISharedContentUnit) {
+                    var index = this.units.indexOf(unit);
+                    if (index >= 0) {
+                        this.units.splice(index, 1);
+                    }
+                    this._sharedContentUnitService.delete(unit);
+                }
+
+                
             }
 
         }

@@ -1,5 +1,10 @@
 ﻿body {
     font-family: 'Segoe UI', sans-serif;
+    width: 83%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 22px;
+
 }
 
 span {
@@ -10,4 +15,22 @@ button.btn {
     i.fa {
         padding-right: 10px;
     }
+}
+
+.placeholder{
+    color: lightgray;
+}
+
+.text-danger {
+  color: #d30000;
+}
+
+.text-danger:hover,
+.text-danger:focus {
+  color: #843534;
+}
+
+.jumbotron{
+    padding-left: 20px;
+    padding-right: 20px;
 }

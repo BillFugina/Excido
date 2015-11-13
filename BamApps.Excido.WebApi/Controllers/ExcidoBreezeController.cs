@@ -10,8 +10,10 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace BamApps.Excido.WebApi.Controllers {
+    [EnableCors(origins: "http://excido.azurewebsites.net, http://localhost:59424/", headers: "*", methods: "*")]
     [BreezeController]
     public class ExcidoBreezeController : ApiController {
         readonly EFContextProvider<ExcidoContext> _contextProvider = new EFContextProvider<ExcidoContext>();

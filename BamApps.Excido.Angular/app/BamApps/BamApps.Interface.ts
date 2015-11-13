@@ -14,7 +14,10 @@
         }
 
         export interface IWriteRepository<T> {
+            hasChanges: boolean;
             create(): T;
+            save(T?): ng.IPromise<T>;
+            delete(T): ng.IPromise<void>;
         }
 
         export interface IRepository<T> extends IReadRepository<T>, IWriteRepository<T> {

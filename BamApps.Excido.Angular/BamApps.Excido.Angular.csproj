@@ -46,6 +46,8 @@
     <Content Include="Content\toastr.min.css" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Images\BAM-Apps-Logo-Rounded-Square-200x200.png" />
+    <Content Include="Images\BAM-Apps-Logo-Rounded-Square-300x300.png" />
     <Content Include="index.html" />
     <Content Include="Scripts\angular-animate.js" />
     <Content Include="Scripts\angular-animate.min.js" />
