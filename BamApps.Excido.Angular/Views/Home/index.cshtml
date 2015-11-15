@@ -14,36 +14,49 @@
     <div class="jumbotron">
         <a id="bamapps-logo"  target="_blank" href="http://bamapps.com/"><img class="pull-right" src="~/Images/BAM-Apps-Logo-Rounded-Square-200x200.png" /></a>
         <h1>Excido</h1>
-        <p>Excido is a sample, full-stack, Single Page Application made using <a id="angular"  target="_blank" href="https://angular.io/">Angular</a> by <a id="bamapps"  target="_blank" href="http://bamapps.com/">BAM Apps</a></p>
+        <p>Excido is a sample, full-stack, Single Page Application made by <a id="bamapps"  target="_blank" href="http://bamapps.com/">BAM Apps</a> using <a id="angular" target="_blank" href="https://angular.io/">Angular</a></p>
         <p><a class="btn btn-primary btn-lg" target="_blank" href="http://www.bamapps.com" role="button">Learn more</a></p>
     </div>
 
-    <ul class="list-group">
-        <li class="list-group-item" ng-repeat="unit in sharedunits.units">
-            <div class="row">
-                <div class="col-xs-3" ng-click="unit.editName()">
-                    <div ng-show="(unit.Name == null || unit.Name == '') && !unit.isEditingName" ng-click="unit.editName()">
-                        <span class="placeholder">Name</span>
-                        <i class="fa fa-pencil-square-o placeholder"></i>
-                    </div>
-                    <span ng-hide="unit.isEditingName" ng-click="unit.editName()">{{unit.Name}}</span>
-                    <input ng-show="unit.isEditingName" ng-model="unit.Name" sync-focus-with="unit.isEditingName" ng-blur="unit.stopEditingName()" />
-                </div>
-                <div class="col-xs-3" ng-click="unit.editContent()">
-                    <div ng-show="(unit.Content == null || unit.Content == '') && !unit.isEditingContent" ng-click="unit.editContent()">
-                        <span class="placeholder">Content</span>
-                        <i class="fa fa-pencil-square-o placeholder"></i>
-                    </div>
-                    <span ng-hide="unit.isEditingContent" ng-click="unit.editContent()">{{unit.Content}}</span>
-                    <input ng-show="unit.isEditingContent" ng-model="unit.Content" sync-focus-with="unit.isEditingContent" ng-blur="unit.stopEditingContent()" />
-                </div>
-                <div class="col-xs-offset-5 col-xs-1">
-                    @*<button class="btn btn-danger badge pull-right" ng-click="sharedunits.deleteUnit(unit)"><i class="glyphicon glyphicon-remove"></i></button>*@
-                    <i class="fa fa-2x fa-times-circle text-danger" ng-click="sharedunits.deleteUnit(unit)"></i>
-                </div>
+    <div class="wait">
+        <div class='mask' ng-hide="sharedunits.ready">
+        </div>
+        <div class='inner' ng-hide="sharedunits.ready">
+            <div class='message'>
+                <span>Please Wait</span><br />
+                <i class='fa fa-spinner fa-spin fa-2x'></i>
             </div>
-        </li>
-    </ul>
+        </div>
+
+        <ul class="list-group">
+            <li class="list-group-item" ng-repeat="unit in sharedunits.units">
+                <div class="row">
+                    <div class="col-xs-3 click-to-edit" ng-click="unit.editName()">
+                        <div ng-show="(unit.Name == null || unit.Name == '') && !unit.isEditingName" ng-click="unit.editName()">
+                            <span class="placeholder">Name</span>
+                            <i class="fa fa-pencil placeholder"></i>
+                        </div>
+                        <span ng-hide="unit.isEditingName" ng-click="unit.editName()">{{unit.Name}}</span>
+                        <input ng-show="unit.isEditingName" ng-model="unit.Name" sync-focus-with="unit.isEditingName" ng-blur="unit.stopEditingName()" />
+                        <i class="fa fa-pencil fa-2x placeholder pull-right"></i>
+                    </div>
+                    <div class="col-xs-3 click-to-edit" ng-click="unit.editContent()">
+                        <div ng-show="(unit.Content == null || unit.Content == '') && !unit.isEditingContent" ng-click="unit.editContent()">
+                            <span class="placeholder">Content</span>
+                            <i class="fa fa-pencil-square-o placeholder"></i>
+                        </div>
+                        <span ng-hide="unit.isEditingContent" ng-click="unit.editContent()">{{unit.Content}}</span>
+                        <input ng-show="unit.isEditingContent" ng-model="unit.Content" sync-focus-with="unit.isEditingContent" ng-blur="unit.stopEditingContent()" />
+                        <i class="fa fa-pencil fa-2x placeholder pull-right"></i>
+                    </div>
+                    <div class="col-xs-offset-5 col-xs-1">
+                        @*<button class="btn btn-danger badge pull-right" ng-click="sharedunits.deleteUnit(unit)"><i class="glyphicon glyphicon-remove"></i></button>*@
+                        <i class="fa fa-2x fa-times-circle text-danger" ng-click="sharedunits.deleteUnit(unit)"></i>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
     <button class="btn btn-default" ng-click="sharedunits.addClick()"><i class="fa fa-plus"></i>Add</button>
     <button class="btn btn-success" ng-click="sharedunits.saveClick()" ng-disabled="!sharedunits.hasChanges"><i class="fa fa-check"></i>Save</button>
 </body>

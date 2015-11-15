@@ -11,6 +11,8 @@
 
                 private _editingSharedContentUnit: Interface.Model.ISharedContentUnit = null;
 
+                public ready: boolean = false;
+
                 constructor(private $q: ng.IQService, private _sharedContentUnitServiceFactory: BamApps.Excido.Interface.ISharedContentUnitServiceFactory) {
                     super();
                     this.title = "BamApps.Excido.Controller.SharedUnitsController";
@@ -30,7 +32,11 @@
                 }
 
                 get hasChanges(): boolean {
-                    return this._sharedContentUnitService.hasChanges;
+                    var result = false;
+                    if (this._sharedContentUnitService != null) {
+                        result = this._sharedContentUnitService.hasChanges;
+                    }
+                    return result;
                 }
 
                 loadSharedContentUnits(): ng.IPromise<Interface.Model.ISharedContentUnit[]> {
@@ -39,6 +45,7 @@
 
                     promise.then(results => {
                         self.units = results;
+                        self.ready = true;
                     });
 
                     return promise;
