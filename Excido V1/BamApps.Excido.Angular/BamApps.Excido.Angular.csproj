@@ -854,9 +854,13 @@
     <Content Include="Scripts\q.min.js" />
     <Content Include="Scripts\toastr.js" />
     <Content Include="Scripts\toastr.min.js" />
-    <Content Include="web.config" />
+    <Content Include="web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="app\BamApps.Excido\BamApps.Excido.Config.Debug.ts" />
+    <TypeScriptCompile Include="app\BamApps.Excido\BamApps.Excido.Config.Release.ts" />
     <TypeScriptCompile Include="app\BamApps.Excido\BamApps.Excido.Controller.ts" />
     <TypeScriptCompile Include="app\BamApps.Excido\BamApps.Excido.Interface.ts" />
     <TypeScriptCompile Include="app\BamApps.Excido\BamApps.Excido.Service.ts" />
@@ -1003,6 +1007,7 @@
     <TypeScriptRemoveComments>false</TypeScriptRemoveComments>
     <TypeScriptSourceMap>true</TypeScriptSourceMap>
     <ExcludeGeneratedDebugSymbol>false</ExcludeGeneratedDebugSymbol>
+    <DefineConstants>DEBUG</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)' == 'Release'">
     <TypeScriptRemoveComments>true</TypeScriptRemoveComments>

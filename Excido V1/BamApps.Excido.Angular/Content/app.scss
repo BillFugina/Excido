@@ -34,3 +34,72 @@ button.btn {
     padding-left: 20px;
     padding-right: 20px;
 }
+
+.wait {
+    width: 100%;
+    min-height: 200px;
+    max-height: 300px;
+    margin-left: auto;
+    margin-right: auto;
+    position:relative;
+    overflow-y:auto;
+}
+
+.mask {
+  background-color:black;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  margin: auto;
+  opacity: .33;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index:98;
+  border-radius: 10px;
+}
+
+.inner {
+  background-color: white;
+  text-align: center;
+  width: 200px;
+  height: 100px;
+  margin: auto;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  border-radius: 10px;
+  z-index: 99;
+}
+.message{
+  height: 50px;
+  width: 100px;
+  margin: auto;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 100;
+}
+
+.click-to-edit{
+    border: 1px solid rgba(211, 211, 211, 0.00);
+    i{
+        color:transparent;
+    }
+}
+
+.click-to-edit:hover{
+    border: 1px solid lightgray;
+    border-radius: 5px;
+
+    i{
+        color:lightgray;
+    }
+}
+

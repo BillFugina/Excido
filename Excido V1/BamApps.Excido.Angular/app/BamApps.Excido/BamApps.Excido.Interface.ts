@@ -2,6 +2,12 @@
     export module Excido {
         export module Interface {
 
+            export interface ISettings {
+                ApiServer: string;
+                ApiServicePath: string;
+            }
+
+
             export interface ISharedContentUnitServiceFactory {
                 newSharedContentUnitService: () => ng.IPromise<ISharedContentUnitService>;
             }

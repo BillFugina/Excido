@@ -8,8 +8,9 @@
 
                 function newSharedContentUnitService(): ng.IPromise<Interface.ISharedContentUnitService> {
                     var deferred = $q.defer<Interface.ISharedContentUnitService>();
-
-                    entityManagerFactory.newEntityManager('excidowebapi.azurewebsites.net', 'breeze/ExcidoBreeze')
+                    var settings = Config.Settings();
+                    //entityManagerFactory.newEntityManager('excidowebapi.azurewebsites.net', 'breeze/ExcidoBreeze')
+                    entityManagerFactory.newEntityManager(settings.ApiServer, settings.ApiServicePath)
                         .then(em => {
                             Logger.log("Successfully created new entity manager", title, em);
                             var entityManager = em;
@@ -46,7 +47,11 @@
                 }
 
                 get hasChanges(): boolean {
-                    return this._entityManager.hasChanges();
+                    var result = false;
+                    if (this._entityManager != null) {
+                        return this._entityManager.hasChanges();
+                    }
+                    return result;
                 }
 
                 getAll(): ng.IPromise<Interface.Model.ISharedContentUnit[]> {
