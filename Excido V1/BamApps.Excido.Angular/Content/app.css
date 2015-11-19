@@ -78,10 +78,60 @@ button.btn i.fa {
   border: 1px solid rgba(211, 211, 211, 0); }
   .click-to-edit i {
     color: transparent; }
+  .click-to-edit input {
+    outline: none;
+    border: none; }
 
 .click-to-edit:hover {
   border: 1px solid lightgray;
   border-radius: 5px; }
   .click-to-edit:hover i {
     color: lightgray; }
+
+div.is-editing:hover,
+div.is-editing {
+  border: 1px solid #00456d;
+  border-radius: 5px; }
+
+.is-editing i,
+.is-editing:hover i {
+  color: #00456d; }
+
+.vertical-align {
+  display: flex;
+  flex-direction: row; }
+
+.vertical-align > [class^="col-"],
+.vertical-align > [class*=" col-"] {
+  display: flex;
+  align-items: center; }
+
+.relative {
+  position: relative; }
+
+div.absolute-horizontal-right {
+  margin-right: 10px; }
+
+.absolute-horizontal-right {
+  position: absolute;
+  right: 0; }
+
+.absolute-vertical-middle {
+  position: absolute;
+  top: 0;
+  bottom: 0; }
+
+.absolute-vertical-middle-nudge {
+  position: inherit;
+  top: 50%;
+  left: 0;
+  right: 0;
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%); }
+
+ul.list-group {
+  overflow-x: hidden; }
 

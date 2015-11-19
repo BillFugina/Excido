@@ -4,7 +4,6 @@
     margin-left: auto;
     margin-right: auto;
     margin-top: 22px;
-
 }
 
 span {
@@ -17,20 +16,20 @@ button.btn {
     }
 }
 
-.placeholder{
+.placeholder {
     color: lightgray;
 }
 
 .text-danger {
-  color: #d30000;
+    color: #d30000;
 }
 
 .text-danger:hover,
 .text-danger:focus {
-  color: #843534;
+    color: #843534;
 }
 
-.jumbotron{
+.jumbotron {
     padding-left: 20px;
     padding-right: 20px;
 }
@@ -41,56 +40,62 @@ button.btn {
     max-height: 300px;
     margin-left: auto;
     margin-right: auto;
-    position:relative;
-    overflow-y:auto;
+    position: relative;
+    overflow-y: auto;
 }
 
 .mask {
-  background-color:black;
-  text-align: center;
-  width: 100%;
-  height: 100%;
-  margin: auto;
-  opacity: .33;
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  z-index:98;
-  border-radius: 10px;
+    background-color: black;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    margin: auto;
+    opacity: .33;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 98;
+    border-radius: 10px;
 }
 
 .inner {
-  background-color: white;
-  text-align: center;
-  width: 200px;
-  height: 100px;
-  margin: auto;
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  border-radius: 10px;
-  z-index: 99;
-}
-.message{
-  height: 50px;
-  width: 100px;
-  margin: auto;
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  z-index: 100;
+    background-color: white;
+    text-align: center;
+    width: 200px;
+    height: 100px;
+    margin: auto;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    border-radius: 10px;
+    z-index: 99;
 }
 
-.click-to-edit{
+.message {
+    height: 50px;
+    width: 100px;
+    margin: auto;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 100;
+}
+
+.click-to-edit {
     border: 1px solid rgba(211, 211, 211, 0.00);
-    i{
-        color:transparent;
+
+    i {
+        color: transparent;
+    }
+    input{
+        outline: none;
+        border: none;
     }
 }
 
@@ -98,8 +103,69 @@ button.btn {
     border: 1px solid lightgray;
     border-radius: 5px;
 
-    i{
-        color:lightgray;
+    i {
+        color: lightgray;
     }
 }
 
+div.is-editing:hover,
+div.is-editing {
+    border: 1px solid #00456d;
+    border-radius: 5px;
+}
+
+
+.is-editing,
+.is-editing:hover {
+    i {
+        color: #00456d;
+    }
+}
+
+
+.vertical-align {
+    display: flex;
+    flex-direction: row;
+}
+
+.vertical-align > [class^="col-"],
+.vertical-align > [class*=" col-"] {
+    display: flex;
+    align-items: center;
+}
+
+.relative {
+    position: relative;
+}
+
+
+div.absolute-horizontal-right{
+    margin-right:10px;
+}
+
+.absolute-horizontal-right {
+    position: absolute;
+    right: 0;
+}
+
+.absolute-vertical-middle {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+}
+
+.absolute-vertical-middle-nudge {
+    position: inherit;
+    top: 50%;
+    left: 0;
+    right: 0;
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+ul.list-group{
+    overflow-x: hidden;
+}
