@@ -53,9 +53,11 @@
 
                 public saveClick() {
                     Logger.log("save click", this);
+                    this.ready = false;
                     this._sharedContentUnitService.save()
                         .then((r) => {
                             Logger.info("Changes Saved", this, r, toastr.success, "Success");
+                            this.ready = true;
                         });
                 }
 

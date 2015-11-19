@@ -10,12 +10,24 @@
     <title>index</title>
     <meta name="description" content="Excido Shared Content Units" />
 </head>
-<body ng-controller="shared-units as sharedunits">
+<body class="container" ng-controller="shared-units as sharedunits">
     <div class="jumbotron">
-        <a id="bamapps-logo"  target="_blank" href="http://bamapps.com/"><img class="pull-right" src="~/Images/BAM-Apps-Logo-Rounded-Square-200x200.png" /></a>
-        <h1>Excido</h1>
-        <p>Excido is a sample, full-stack, Single Page Application made by <a id="bamapps"  target="_blank" href="http://bamapps.com/">BAM Apps</a> using <a id="angular" target="_blank" href="https://angular.io/">Angular</a></p>
-        <p><a class="btn btn-primary btn-lg" target="_blank" href="http://www.bamapps.com" role="button">Learn more</a></p>
+        <div class="row">
+            <div class="col-xs-12 col-sm-3 text-center">
+                <h1>Excido</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-3 pull-right">
+                <a id="bamapps-logo" target="_blank" href="http://bamapps.com/">
+                    <img class="img-responsive center-block" src="~/Images/BAM-Apps-Logo-Rounded-Square-200x200.png" />
+                </a>
+            </div>
+            <div class="col-xs-12 col-sm-9">
+                <p>Excido is a sample, full-stack, Single Page Application made by <a id="bamapps" target="_blank" href="http://bamapps.com/">BAM Apps</a> using <a id="angular" target="_blank" href="https://angular.io/">Angular</a></p>
+                <p><a class="btn btn-primary btn-lg" target="_blank" href="http://www.bamapps.com" role="button">Learn more</a></p>
+            </div>
+        </div>
     </div>
 
     <div class="wait">
@@ -30,28 +42,35 @@
 
         <ul class="list-group">
             <li class="list-group-item" ng-repeat="unit in sharedunits.units">
-                <div class="row">
-                    <div class="col-xs-3 click-to-edit" ng-click="unit.editName()">
-                        <div ng-show="(unit.Name == null || unit.Name == '') && !unit.isEditingName" ng-click="unit.editName()">
-                            <span class="placeholder">Name</span>
-                            <i class="fa fa-pencil placeholder"></i>
+                <div class="row relative">
+                    <div class="col-xs-10">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-6 click-to-edit" ng-click="unit.editName()" ng-class="{'is-editing': unit.isEditingName}">
+                                <div ng-show="(unit.Name == null || unit.Name == '') && !unit.isEditingName" ng-click="unit.editName()">
+                                    <span class="placeholder">Name</span>
+                                    <i class="fa fa-pencil placeholder"></i>
+                                </div>
+                                <span ng-hide="unit.isEditingName" ng-click="unit.editName()">{{unit.Name}}</span>
+                                <input ng-show="unit.isEditingName" ng-model="unit.Name" sync-focus-with="unit.isEditingName" ng-blur="unit.stopEditingName()" />
+                                <i class="fa fa-pencil fa-2x placeholder pull-right"></i>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 click-to-edit" ng-click="unit.editContent()"  ng-class="{'is-editing': unit.isEditingContent}">
+                                <div ng-show="(unit.Content == null || unit.Content == '') && !unit.isEditingContent" ng-click="unit.editContent()">
+                                    <span class="placeholder">Content</span>
+                                    <i class="fa fa-pencil-square-o placeholder"></i>
+                                </div>
+                                <span ng-hide="unit.isEditingContent" ng-click="unit.editContent()">{{unit.Content}}</span>
+                                <input ng-show="unit.isEditingContent" ng-model="unit.Content" sync-focus-with="unit.isEditingContent" ng-blur="unit.stopEditingContent()" />
+                                <i class="fa fa-pencil fa-2x placeholder pull-right"></i>
+                            </div>
                         </div>
-                        <span ng-hide="unit.isEditingName" ng-click="unit.editName()">{{unit.Name}}</span>
-                        <input ng-show="unit.isEditingName" ng-model="unit.Name" sync-focus-with="unit.isEditingName" ng-blur="unit.stopEditingName()" />
-                        <i class="fa fa-pencil fa-2x placeholder pull-right"></i>
                     </div>
-                    <div class="col-xs-3 click-to-edit" ng-click="unit.editContent()">
-                        <div ng-show="(unit.Content == null || unit.Content == '') && !unit.isEditingContent" ng-click="unit.editContent()">
-                            <span class="placeholder">Content</span>
-                            <i class="fa fa-pencil-square-o placeholder"></i>
+                    <div class="col-xs-1 absolute-vertical-middle absolute-horizontal-right" >
+                        <div class="row absolute-vertical-middle">
+                            <div class="col-xs-4 col-md-12 absolute-vertical-middle-nudge">
+                                <i class="fa fa-2x fa-times-circle text-danger" ng-click="sharedunits.deleteUnit(unit)"></i>
+                            </div>
                         </div>
-                        <span ng-hide="unit.isEditingContent" ng-click="unit.editContent()">{{unit.Content}}</span>
-                        <input ng-show="unit.isEditingContent" ng-model="unit.Content" sync-focus-with="unit.isEditingContent" ng-blur="unit.stopEditingContent()" />
-                        <i class="fa fa-pencil fa-2x placeholder pull-right"></i>
-                    </div>
-                    <div class="col-xs-offset-5 col-xs-1">
-                        @*<button class="btn btn-danger badge pull-right" ng-click="sharedunits.deleteUnit(unit)"><i class="glyphicon glyphicon-remove"></i></button>*@
-                        <i class="fa fa-2x fa-times-circle text-danger" ng-click="sharedunits.deleteUnit(unit)"></i>
                     </div>
                 </div>
             </li>
