@@ -16,7 +16,16 @@ namespace BamApps.Excido.Data.Map {
             Property(x => x.Name)
                 .HasMaxLength(255)
                 .IsRequired()
-                .HasColumnAnnotation(IndexAnnotation.AnnotationName, new IndexAnnotation(new IndexAttribute() {IsUnique = true}));
+                .HasColumnAnnotation(IndexAnnotation.AnnotationName, new IndexAnnotation(new IndexAttribute() { IsUnique = true }));
+
+            Property(x => x.Slug)
+                .HasMaxLength(255)
+                .IsRequired()
+                .HasColumnAnnotation(IndexAnnotation.AnnotationName, new IndexAnnotation(new IndexAttribute() { IsUnique = true }));
+
+            Property(x => x.Created)
+                .IsRequired()
+                .HasColumnAnnotation("DefaultValue", "GETUTCDATE()");
         }
     }
 }
