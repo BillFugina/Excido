@@ -35,7 +35,6 @@ namespace BamApps.Excido.Data.Context.Migrations {
         /// Initializes a new instance of the <see cref="CustomSqlServerMigrationSqlGenerator"/> class.
         /// </summary>
         public CustomSqlServerMigrationSqlGenerator() : base() {
-            Debugger.Launch();
         }
 
         protected override void Generate(AddColumnOperation addColumnOperation) {
