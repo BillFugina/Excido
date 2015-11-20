@@ -9,7 +9,14 @@ namespace BamApps.Excido.Data.Context.Migrations
     {
         public override void Up()
         {
-            AddColumn("dbo.SharedContentUnit", "Slug", c => c.String(nullable: false, maxLength: 255));
+            AddColumn("dbo.SharedContentUnit", "Slug", c => c.String(nullable: false, maxLength: 255,
+                annotations: new Dictionary<string, AnnotationValues>
+                {
+                    { 
+                        "DefaultValue",
+                        new AnnotationValues(oldValue: null, newValue: "NEWID()")
+                    },
+                }));
             AddColumn("dbo.SharedContentUnit", "Created", c => c.DateTime(nullable: false,
                 annotations: new Dictionary<string, AnnotationValues>
                 {
@@ -33,7 +40,11 @@ namespace BamApps.Excido.Data.Context.Migrations
                 {
                     { "DefaultValue", "GETUTCDATE()" },
                 });
-            DropColumn("dbo.SharedContentUnit", "Slug");
+            DropColumn("dbo.SharedContentUnit", "Slug",
+                removedAnnotations: new Dictionary<string, object>
+                {
+                    { "DefaultValue", "NEWID()" },
+                });
         }
     }
 }
