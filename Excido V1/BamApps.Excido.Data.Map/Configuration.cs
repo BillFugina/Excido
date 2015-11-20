@@ -8,4 +8,5 @@ namespace BamApps.Excido.Data.Map {
             registrar.AddFromAssembly(Assembly.GetExecutingAssembly(), "BamApps.Excido.Data.Map");
         }
     }
+
 }
