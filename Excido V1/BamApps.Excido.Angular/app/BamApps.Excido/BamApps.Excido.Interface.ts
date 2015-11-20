@@ -17,11 +17,17 @@
 
             export module Model {
                 export interface ISharedContentUnit extends breeze.Entity {
-                    id: string;
-                    name: string;
-                    content: string;
+                    Id: string;
+                    Name: string;
+                    Content: string;
+                    Slug: string;
+                    Created: Date;
+                    ExpireDate: Date;
+                    ExpireCount: number;
+
                     isEditingName: boolean;
                     isEditingContent: boolean;
+
                     editName() : void;
                     editContent() : void;
                     stopEditingName() : void;

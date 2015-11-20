@@ -57,6 +57,11 @@
                     this._sharedContentUnitService.save()
                         .then((r) => {
                             Logger.info("Changes Saved", this, r, toastr.success, "Success");
+                        })
+                        .catch((reason) => {
+                            Logger.error("Changes not saved!", this, reason, toastr.error, "Error");
+                        })
+                        .finally(() => {
                             this.ready = true;
                         });
                 }
