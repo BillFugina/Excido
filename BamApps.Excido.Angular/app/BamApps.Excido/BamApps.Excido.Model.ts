@@ -7,9 +7,23 @@
             }
 
             export class SharedContentUnit extends BamApps.Model.BreezeEntity implements Interface.Model.ISharedContentUnit {
-                id: string;
-                name: string;
-                content: string;
+                Id: string;
+                Name: string;
+                Content: string;
+                Slug: string;
+                Created: Date;
+                ExpireDate: Date;
+                ExpireCount: number;
+
+                constructor() {
+                    super();
+                }
+
+                static initialize(item : SharedContentUnit) {
+                    item.Created = new Date();
+                    var newSlug = Utils.newId();
+                    item.Slug = newSlug;
+                }
 
                 isEditingName: boolean = false;
                 isEditingContent: boolean = false;

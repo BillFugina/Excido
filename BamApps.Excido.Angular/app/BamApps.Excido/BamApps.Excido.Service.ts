@@ -16,7 +16,7 @@
                             var entityManager = em;
 
                             var store = entityManager.metadataStore;
-                            store.registerEntityTypeCtor(BamApps.Excido.Model.Info.SharedContentUnit.Name, BamApps.Excido.Model.SharedContentUnit);
+                            store.registerEntityTypeCtor(BamApps.Excido.Model.Info.SharedContentUnit.Name, BamApps.Excido.Model.SharedContentUnit, BamApps.Excido.Model.SharedContentUnit.initialize);
 
                             var sharedContentUnitService: Interface.ISharedContentUnitService = new SharedContentUnitService($q, entityManager);
                             deferred.resolve(sharedContentUnitService);
