@@ -35,5 +35,25 @@
 
         export interface ISyncFocusAttributes extends ng.IAttributes {
         }
+
+        export interface IEnterKeyDirective extends ng.IDirective {
+        }
+
+        export interface IEnterKeyScope extends ng.IScope {
+        }
+
+        export interface IEnterKeyAttributes extends ng.IAttributes {
+            onEnterKey: string;
+        }
+
+        export interface ITabKeyDirective extends ng.IDirective {
+        }
+
+        export interface ITabKeyScope extends ng.IScope {
+        }
+
+        export interface ITabKeyAttributes extends ng.IAttributes {
+            onTabKey: string;
+        }
     }
 }
