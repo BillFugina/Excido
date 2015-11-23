@@ -2,8 +2,8 @@
     "use strict"
     export module Excido {
         Logger.verbosity(Logger.Level.Log);
-        export var app = angular.module('excido', ['breeze.angular']);
-        app.directive("syncFocusWith", ["$timeout", "$rootScope", BamApps.Directive.SyncFocusDirective]);
+        export var app = angular.module('excido', ['breeze.angular', 'ui.bootstrap']);
+        app.directive("syncFocusWith", ["$timeout", "$rootScope", "$parse", BamApps.Directive.SyncFocusDirective]);
         app.directive("onEnterKey", ["$timeout", "$rootScope", BamApps.Directive.OnEnterKeyDirective]);
         app.directive("onTabKey", ["$timeout", "$rootScope", BamApps.Directive.OnTabKeyDirective]);
         app.factory("entityManagerFactory", ["$q", BamApps.Service.breezeEntityManagerFactory]);

@@ -11,7 +11,7 @@
     <meta name="description" content="Excido Shared Content Units" />
 </head>
 <body class="container" ng-controller="shared-units as sharedunits">
-    <div class="jumbotron">
+    @*<div class="jumbotron">
         <div class="row">
             <div class="col-xs-12 col-sm-3 text-center">
                 <h1>Excido</h1>
@@ -28,7 +28,7 @@
                 <p><a class="btn btn-primary btn-lg" target="_blank" href="http://www.bamapps.com" role="button">Learn more</a></p>
             </div>
         </div>
-    </div>
+    </div>*@
 
     <div class="wait">
         <div class='mask' ng-hide="sharedunits.ready">
@@ -45,34 +45,60 @@
                 <div class="row relative">
                     <div class="col-xs-10">
                         <div class="row">
-                            <div class="col-xs-12 col-sm-6 click-to-edit" ng-click="unit.editName()" ng-class="{'is-editing': unit.isEditingName}">
+                            <div class="col-xs-6 col-sm-3 click-to-edit" ng-click="unit.editName()" ng-class="{'is-editing': unit.isEditingName}">
                                 <div ng-show="(unit.Name == null || unit.Name == '') && !unit.isEditingName" ng-click="unit.editName()" class="pull-left">
                                     <span class="placeholder">Name</span>
                                 </div>
                                 <span ng-hide="unit.isEditingName" ng-click="unit.editName()">{{unit.Name}}</span>
-                                <input ng-show="unit.isEditingName" 
-                                       ng-model="unit.Name" 
-                                       sync-focus-with="unit.isEditingName" 
+                                <input ng-show="unit.isEditingName"
+                                       ng-model="unit.Name"
+                                       sync-focus-with="unit.isEditingName"
                                        on-enter-key="unit.stopEditingName()"
                                        on-tab-key="unit.editContent()"
                                        ng-blur="unit.stopEditingName()" />
                                 <i class="fa fa-pencil fa-2x placeholder pull-right"></i>
                             </div>
-                            <div class="col-xs-12 col-sm-6 click-to-edit" ng-click="unit.editContent()"  ng-class="{'is-editing': unit.isEditingContent}">
+                            <div class="col-xs-6 col-sm-3 click-to-edit" ng-click="unit.editContent()" ng-class="{'is-editing': unit.isEditingContent}">
                                 <div ng-show="(unit.Content == null || unit.Content == '') && !unit.isEditingContent" ng-click="unit.editContent()" class="pull-left">
                                     <span class="placeholder">Content</span>
                                 </div>
                                 <span ng-hide="unit.isEditingContent" ng-click="unit.editContent()">{{unit.Content}}</span>
-                                <input ng-show="unit.isEditingContent" 
-                                       ng-model="unit.Content" 
-                                       sync-focus-with="unit.isEditingContent" 
+                                <input ng-show="unit.isEditingContent"
+                                       ng-model="unit.Content"
+                                       sync-focus-with="unit.isEditingContent"
                                        on-enter-key="unit.stopEditingContent()"
+                                       on-tab-key="unit.editSlug()"
                                        ng-blur="unit.stopEditingContent()" />
                                 <i class="fa fa-pencil fa-2x placeholder pull-right"></i>
                             </div>
+                            <div class="col-xs-6 col-sm-3 click-to-edit" ng-click="unit.editSlug()" ng-class="{'is-editing': unit.isEditingSlug}">
+                                <div ng-show="(unit.Slug == null || unit.Slug == '') && !unit.isEditingSlug" ng-click="unit.editSlug()" class="pull-left">
+                                    <span class="placeholder">Slug</span>
+                                </div>
+                                <span ng-hide="unit.isEditingSlug" ng-click="unit.editSlug()">{{unit.Slug}}</span>
+                                <input ng-show="unit.isEditingSlug"
+                                       ng-model="unit.Slug"
+                                       sync-focus-with="unit.isEditingSlug"
+                                       on-enter-key="unit.stopEditingSlug()"
+                                       ng-blur="unit.stopEditingSlug()" />
+                                <i class="fa fa-pencil fa-2x placeholder pull-right"></i>
+                            </div>
+                            <div class="col-xs-6 col-sm-3 click-to-edit" ng-click="unit.editExpireDate()" ng-class="{'is-editing': unit.isEditingExpireDate || unit.isPickingExpireDate}">
+                                <input type="text"
+                                       uib-datepicker-popup ="MM-dd-yyyy"
+                                       sync-focus-with="unit.isEditingExpireDate"
+                                       is-open="unit.isPickingExpireDate"
+                                       datepicker-append-to-body="true"
+                                       ng-blur="unit.stopPickingExpireDate()"
+                                       ng-model=" unit.ExpireDate" 
+                                       ng-model-options="{ updateOn: 'blur' }"
+                                       on-enter-key="unit.stopEditingExpireDate()"
+                                       />
+                                <i ng-click="unit.pickExpireDate()" class="fa fa-calendar fa-2x placeholder pull-right"></i>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-xs-1 absolute-vertical-middle absolute-horizontal-right" >
+                    <div class="col-xs-1 absolute-vertical-middle absolute-horizontal-right">
                         <div class="row absolute-vertical-middle">
                             <div class="col-xs-4 col-md-12 absolute-vertical-middle-nudge">
                                 <i class="fa fa-2x fa-times-circle text-danger" ng-click="sharedunits.deleteUnit(unit)"></i>
