@@ -34,6 +34,7 @@
         }
 
         export interface ISyncFocusAttributes extends ng.IAttributes {
+            syncFocusWith: string;
         }
 
         export interface IEnterKeyDirective extends ng.IDirective {

@@ -93,9 +93,11 @@ button.btn {
     i {
         color: transparent;
     }
+    button,
     input{
         outline: none;
         border: none;
+        box-shadow:none;
     }
 }
 

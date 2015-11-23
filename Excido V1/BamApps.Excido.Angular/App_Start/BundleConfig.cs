@@ -24,10 +24,13 @@ namespace BamApps.Excido.Angular.App_Start {
                 .Include("~/Scripts/breeze.js")
                 .Include("~/Scripts/breeze.bridge.angular.js")
                 .Include("~/Scripts/toastr.js")
+                .Include("~/Scripts/moment.js")
                 );
 
-            bundles.Add(new ScriptBundle("~/bundles/angular", "https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js")
-                .Include("~/Scripts/angular.js"));
+            bundles.Add(new ScriptBundle("~/bundles/angular")
+                .Include("~/Scripts/angular.js")
+                .Include("~/Scripts/angular-ui/ui-bootstrap-tpls.js")
+                );
 
             bundles.Add(new ScriptBundle("~/bundles/app")
 
