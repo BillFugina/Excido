@@ -1,5 +1,14 @@
-﻿body {
+﻿$screen-xs-max: 767px;
+
+$screen-sm-min: 768px;
+$screen-md-min: 992px;
+$screen-lg-min: 1200px;
+
+$footer-height: 50px;
+
+body {
     font-family: 'Segoe UI', sans-serif;
+    height: 100%;
     width: 83%;
     margin-left: auto;
     margin-right: auto;
@@ -32,16 +41,6 @@ button.btn {
 .jumbotron {
     padding-left: 20px;
     padding-right: 20px;
-}
-
-.wait {
-    width: 100%;
-    min-height: 200px;
-    max-height: 300px;
-    margin-left: auto;
-    margin-right: auto;
-    position: relative;
-    overflow-y: auto;
 }
 
 .mask {
@@ -93,15 +92,16 @@ button.btn {
     i {
         color: transparent;
     }
+
     button,
-    input{
+    input {
         outline: none;
         border: none;
-        box-shadow:none;
+        box-shadow: none;
     }
 }
 
-.click-to-edit:hover{
+.click-to-edit:hover {
     border: 1px solid lightgray;
     border-radius: 5px;
 
@@ -141,8 +141,8 @@ div.is-editing {
 }
 
 
-div.absolute-horizontal-right{
-    margin-right:10px;
+div.absolute-horizontal-right {
+    margin-right: 10px;
 }
 
 .absolute-horizontal-right {
@@ -168,6 +168,105 @@ div.absolute-horizontal-right{
     transform: translateY(-50%);
 }
 
-ul.list-group{
+ul.list-group {
     overflow-x: hidden;
 }
+
+.small.light {
+    color: GrayText;
+    font-size: 70%;
+}
+
+.row.label-head {
+    margin-bottom: -5px;
+    margin-top: 5px;
+}
+
+div.bottom-line {
+    border-bottom-color: #efefef;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    background: -moz-linear-gradient(-45deg, rgba(255,255,255,0) 0%, rgba(240,240,240,0) 93%, rgba(239,239,239,0.65) 100%);
+    background: -webkit-linear-gradient(-45deg, rgba(255,255,255,0) 0%,rgba(240,240,240,0) 93%,rgba(239,239,239,0.65) 100%);
+    background: linear-gradient(135deg, rgba(255,255,255,0) 0%,rgba(240,240,240,0) 93%,rgba(239,239,239,0.65) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#a6efefef',GradientType=1 );
+}
+
+input[uib-datepicker-popup] {
+    width: 75%;
+}
+
+/*Extra Small*/
+@media (max-width: $screen-xs-max) {
+    body {
+        font-family: 'Segoe UI', sans-serif;
+        height: 100vh;
+        width: 99%;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 22px;
+    }
+
+    .footer {
+        background-color: white;
+        padding: 10px;
+        position: fixed;
+        height: $footer-height;
+        bottom: 0;
+        width: 100%;
+    }
+
+    .wait {
+        width: 100%;
+        min-height: 200px;
+        max-height: none;
+        margin-left: auto;
+        margin-right: auto;
+        position: relative;
+        overflow-y: auto;
+    }
+
+}
+
+/*Small*/
+@media (min-width: $screen-sm-min) {
+     .container .jumbotron {
+        padding: 20px;
+    }
+
+    .wait {
+        width: 100%;
+        min-height: 200px;
+        max-height: 300px;
+        margin-left: auto;
+        margin-right: auto;
+        position: relative;
+        overflow-y: auto;
+    }
+}
+
+/*Medium*/
+@media (min-width: $screen-md-min) {
+    div.bottom-line {
+        border-bottom-color: none;
+        border-bottom-style: none;
+        border-bottom-width: 0;
+        background: none;
+        filter: none;
+    }
+}
+
+/*Large*/
+@media (max-width: $screen-lg-min){
+    .jumbotron{
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+}
+
+@media screen and (min-width: $screen-sm-min){
+
+}
+
+
