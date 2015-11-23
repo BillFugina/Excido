@@ -11,7 +11,7 @@
     <meta name="description" content="Excido Shared Content Units" />
 </head>
 <body class="container" ng-controller="shared-units as sharedunits">
-    @*<div class="jumbotron">
+    <div class="jumbotron">
         <div class="row">
             <div class="col-xs-12 col-sm-3 text-center">
                 <h1>Excido</h1>
@@ -28,7 +28,7 @@
                 <p><a class="btn btn-primary btn-lg" target="_blank" href="http://www.bamapps.com" role="button">Learn more</a></p>
             </div>
         </div>
-    </div>*@
+    </div>
 
     <div class="wait">
         <div class='mask' ng-hide="sharedunits.ready">
@@ -94,7 +94,7 @@
                                        ng-model-options="{ updateOn: 'blur' }"
                                        on-enter-key="unit.stopEditingExpireDate()"
                                        />
-                                <i ng-click="unit.pickExpireDate()" class="fa fa-calendar fa-2x placeholder pull-right"></i>
+                                <i ng-click="unit.pickExpireDate($event)" class="fa fa-calendar fa-2x placeholder pull-right"></i>
                             </div>
                         </div>
                     </div>

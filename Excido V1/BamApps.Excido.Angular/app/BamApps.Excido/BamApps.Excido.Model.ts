@@ -119,7 +119,7 @@
                     this.isEditingExpireCount = false;
                 }
 
-                public pickExpireDate() {
+                public pickExpireDate($event : JQueryInputEventObject) {
                     Logger.log("pickExpireDate", "SharedContentUnit");
                     this.isEditingName = false;
                     this.isEditingContent = false;
@@ -127,6 +127,7 @@
                     this.isEditingExpireDate = false;
                     this.isEditingExpireCount = false;
                     this.isPickingExpireDate = true;
+                    $event.stopPropagation();
                 }
 
                 public stopPickingExpireDate() {
