@@ -165,6 +165,8 @@ input[uib-datepicker-popup] {
     height: 50px;
     bottom: 0;
     width: 100%; }
+  #main {
+    margin-bottom: 50px; }
   .wait {
     width: 100%;
     min-height: 200px;
