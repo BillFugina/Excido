@@ -49,6 +49,7 @@
     <Compile Include="Data\IEntity.cs" />
     <Compile Include="Data\Model\ISharedContentUnit.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\ISharedContentService.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

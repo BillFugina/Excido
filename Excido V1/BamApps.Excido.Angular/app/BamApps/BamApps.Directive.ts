@@ -12,17 +12,32 @@
             }
 
             function link(scope: Interface.ISyncFocusScope, element: ng.IAugmentedJQuery, attrs: Interface.ISyncFocusAttributes) {
+                var thisScope: any = scope;
+
+                thisScope.safeApply = function (fn) {
+                    var phase = this.$root.$$phase;
+                    if (phase == '$apply' || phase == '$digest') {
+                        if (fn && (typeof (fn) === 'function')) {
+                            fn();
+                        }
+                    } else {
+                        this.$apply(fn);
+                    }
+                };
+
                 var watchExpression: string = attrs.syncFocusWith;
                 var watchExpressionAssigner = $parse(watchExpression).assign;
 
                 element[0].onfocus = () => {
                     watchExpressionAssigner(scope, true);
-                    scope.$apply();
+                    thisScope.safeApply();
+                    //scope.$apply();
                 };
 
                 element[0].onblur = () => {
                     watchExpressionAssigner(scope, false);
-                    scope.$apply();
+                    thisScope.safeApply();
+                    //scope.$apply();
                 };
 
                 scope.$watch(watchExpression, (currentValue, previousValue) => {
