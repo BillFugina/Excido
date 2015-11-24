@@ -19,10 +19,14 @@
                     super();
                 }
 
-                static initialize(item : SharedContentUnit) {
-                    item.Created = new Date();
-                    var newSlug = Utils.newId();
-                    item.Slug = newSlug;
+                static initialize(item: SharedContentUnit) {
+                    if (moment(item.Created).isSame('1900-01-01', 'day')) {
+                        item.Created = new Date();
+                    }
+                    if (Utils.isNullOrEmpty(item.Slug)) {
+                        var newSlug = Utils.newId();
+                        item.Slug = newSlug;
+                    }
                 }
 
                 get ExpireDateFormatted(): string {

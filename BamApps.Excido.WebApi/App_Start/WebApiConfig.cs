@@ -21,11 +21,22 @@ namespace BamApps.Excido.WebApi {
             // Web API routes
             config.MapHttpAttributeRoutes();
 
-            config.Routes.MapHttpRoute(
-                name: "DefaultApi",
-                routeTemplate: "api/{controller}/{id}",
-                defaults: new { id = RouteParameter.Optional }
+            config.Routes.MapHttpRoute(name: "DefaultApi", 
+                routeTemplate: "api/{controller}/{action}", 
+                defaults: new { id = RouteParameter.Optional
+                }
             );
+
+            config.Routes.MapHttpRoute(
+                name: "SlugRouterApi",
+                routeTemplate: "{slug}",
+                defaults: new {
+                    controller = "SlugRouter",
+                    action = "GetSlug"
+                }
+            );
+
+
         }
     }
 }

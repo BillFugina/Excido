@@ -2,10 +2,11 @@
 using System.Linq;
 using BamApps.Excido.Data.Model;
 using BamApps.Excido.Interface.Data;
+using BamApps.Excido.Interface.Service;
 
 namespace BamApps.Excido.Service {
 
-    public class SharedContentService {
+    public class SharedContentService : ISharedContentService {
         readonly IDataContext _dataContext;
 
         /// <summary>
@@ -16,24 +17,16 @@ namespace BamApps.Excido.Service {
             _dataContext = dataContext;
         }
 
-        public Guid AddSharedContent(SharedContentUnit sharedContent) {
-            Guid result = Guid.Empty;
-            using (var transaction = _dataContext.BeginTransaction()) {
-                try {
-                    result = _dataContext.AddEntity(sharedContent);
-                    _dataContext.SaveChanges();
-                    transaction.Commit();
-                }
-                catch (Exception) {
-                    transaction.Rollback();
-                    throw;
+        public string GetSlugContent(string slug) {
+            var result = "";
+            var sharedContentUnit = _dataContext.QueryAllWhere<SharedContentUnit>(s => s.Slug == slug).SingleOrDefault();
+            if (sharedContentUnit != null) {
+                var expireDate = sharedContentUnit.ExpireDate?.Date ?? DateTime.MaxValue;
+                if (DateTime.Now.Date <= expireDate) {
+                    result = sharedContentUnit.Content;
                 }
             }
             return result;
-        }
-
-        public IQueryable<SharedContentUnit> GetSharedContent() {
-            return _dataContext.QueryAll<SharedContentUnit>();
         }
 
     }
