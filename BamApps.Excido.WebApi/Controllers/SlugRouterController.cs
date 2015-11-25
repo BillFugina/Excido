@@ -25,8 +25,9 @@ namespace BamApps.Excido.WebApi.Controllers {
                 var content = _sharedContentService.GetSlugContent(slug);
 
                 if (!string.IsNullOrEmpty(content)) {
-                    response = Request.CreateResponse(HttpStatusCode.Redirect);
+                    response = Request.CreateResponse(HttpStatusCode.Found);
                     response.Headers.Location = new Uri(content);
+                    //return Redirect(new Uri(content));
                 }
                 else {
                     response = Request.CreateResponse(HttpStatusCode.NoContent);
