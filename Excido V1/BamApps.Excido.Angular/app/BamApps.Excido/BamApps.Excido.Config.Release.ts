@@ -17,7 +17,7 @@
 
             export module Release {
                 export class Settings implements Interface.ISettings {
-                    _ApiServer: string = 'excidowebapi.azurewebsites.net';
+                    _ApiServer: string = 'api.excido.net';
                     _ApiServicePath: string = 'breeze/ExcidoBreeze';
 
                     get ApiServer() {

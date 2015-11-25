@@ -1,0 +1,12 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="BamApps.Excido.WebApi.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="LoopbackRootRedirect" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://localhost:59424/</Value>
+    </Setting>
+    <Setting Name="RootRedirect" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://www.excido.net</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
