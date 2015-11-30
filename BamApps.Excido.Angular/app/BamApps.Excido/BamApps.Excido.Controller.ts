@@ -86,7 +86,25 @@
                     this._sharedContentUnitService.delete(unit);
                 }
 
-                
+                public get slugPrefix() {
+                    return Config.Settings().SlugPrefix;
+                }
+
+                public getLinkUrl(unit: Interface.Model.ISharedContentUnit) {
+                    var url = Config.Settings().SlugPrefix + unit.Slug;
+                    return url;
+                }
+
+                public clipboardSuccess(unit: Interface.Model.ISharedContentUnit) {
+                    var url = Config.Settings().SlugPrefix + unit.Slug;
+                    Logger.log(url, this, url, toastr.success, "Copied to Clipboard");
+                }
+
+                public clipboardError(unit: Interface.Model.ISharedContentUnit) {
+                    var url = Config.Settings().SlugPrefix + unit.Slug;
+                    Logger.log(url, this, url, toastr.error, "Could not copy to Clipboard");
+                }
+
             }
 
         }

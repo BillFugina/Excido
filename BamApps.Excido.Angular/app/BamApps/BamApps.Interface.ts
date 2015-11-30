@@ -30,6 +30,9 @@
         export interface ISyncFocusDirective extends ng.IDirective {
         }
 
+        export interface IClipboardDirective extends ng.IDirective {
+        }
+
         export interface ISyncFocusScope extends ng.IScope {
         }
 
@@ -55,6 +58,12 @@
 
         export interface ITabKeyAttributes extends ng.IAttributes {
             onTabKey: string;
+        }
+
+        export interface IClipboardAttributes extends ng.IAttributes {
+            clipboardText: string;
+            clipboardSuccess: string;
+            clipboardError: string;
         }
     }
 }

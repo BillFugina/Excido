@@ -25,6 +25,8 @@ namespace BamApps.Excido.Angular.App_Start {
                 .Include("~/Scripts/breeze.bridge.angular.js")
                 .Include("~/Scripts/toastr.js")
                 .Include("~/Scripts/moment.js")
+                .Include("~/Scripts/clipboard.js")
+                .Include("~/Scripts/ngclipboard.js")
                 );
 
             bundles.Add(new ScriptBundle("~/bundles/angular")

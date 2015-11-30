@@ -6,8 +6,18 @@
   margin-right: auto;
   margin-top: 22px; }
 
+div[class^=col-].buttons {
+  padding: 0;
+  text-align: right; }
+  div[class^=col-].buttons .btn-default {
+    border: none;
+    padding: 2px; }
+
 span {
   font-style: italic; }
+
+button.btn i.fa.fa-btn {
+  padding-right: 0; }
 
 button.btn i.fa {
   padding-right: 10px; }
@@ -85,7 +95,10 @@ button.btn i.fa {
 div.is-editing:hover,
 div.is-editing {
   border: 1px solid #00456d;
-  border-radius: 5px; }
+  border-radius: 5px;
+  /*i{
+        display: none;
+    }*/ }
 
 .is-editing i,
 .is-editing:hover i {
@@ -129,9 +142,14 @@ div.absolute-horizontal-right {
 ul.list-group {
   overflow-x: hidden; }
 
-.small.light {
-  color: GrayText;
+.small {
   font-size: 70%; }
+
+.light {
+  color: GrayText; }
+
+.clickable:hover {
+  text-shadow: 1px 1px 5px #000000; }
 
 .row.label-head {
   margin-bottom: -5px;
@@ -148,6 +166,12 @@ div.bottom-line {
 
 input[uib-datepicker-popup] {
   width: 75%; }
+
+.top-pad-10 {
+  padding-top: 10px; }
+
+.left-margin-neg-25 {
+  margin-left: -25px; }
 
 /*Extra Small*/
 @media (max-width: 767px) {
