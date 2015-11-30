@@ -99,5 +99,49 @@
             }
         }
 
+
+        ClipboardDirective.$inject = ["$timeout", "$rootScope", "$parse"];
+        export function ClipboardDirective($timeout: ng.ITimeoutService, $rootScope: ng.IRootScopeService, $parse: ng.IParseService): Interface.IClipboardDirective {
+            return {
+                restrict: "A",
+                link: link
+            }
+
+            function link(scope: Interface.ISyncFocusScope, elements: ng.IAugmentedJQuery, attrs: Interface.IClipboardAttributes) {
+                var thisScope: any = scope;
+
+                var trigger = elements[0];
+
+                var _id = trigger.id;
+                if (!_id) {
+                    trigger.id = 'ngclipboard' + Date.now());
+                    _id = trigger.id;
+                }
+
+                var triggerId = '#' + _id;
+
+                var clipboard = new Clipboard(triggerId, {
+                    text: (e) => {
+                        var result = scope.$eval(attrs.clipboardText);
+                        return result;
+                    }
+                });
+
+                if (!Utils.isNullOrEmpty(attrs.clipboardSuccess)) {
+                    clipboard.on('success', e => {
+                        scope.$eval(attrs.clipboardSuccess);
+                    });
+                }
+
+                if (!Utils.isNullOrEmpty(attrs.clipboardError)) {
+                    clipboard.on('error', e => {
+                        scope.$eval(attrs.clipboardError);
+                    });
+                }
+
+            }
+        }
+
+
     }
 }

@@ -14,30 +14,29 @@
     <div id="wrap">
         <div id="main">
             <div class="jumbotron">
-                <div class="row">
-                    <div class="col-xs-12 col-sm-3 visible-lg-block">
-                        <h1>Excido</h1>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-3 visible-lg-block">
+                            <h1>Excido</h1>
+                        </div>
+                        <div class="col-xs-12 col-sm-3 visible-md-block visible-sm-block">
+                            <h2 >Excido</h2>
+                        </div>
+                        <div class="col-xs-12 col-sm-3 visible-xs-block text-center">
+                            <h2>Excido</h2>
+                        </div>
                     </div>
-                    <div class="col-xs-12 col-sm-3 visible-md-block visible-sm-block">
-                        <h2 >Excido</h2>
-                    </div>
-                    <div class="col-xs-12 col-sm-3 visible-xs-block text-center">
-                        <h2>Excido</h2>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-3 pull-right">
+                            <a id="bamapps-logo" target="_blank" href="http://bamapps.com/">
+                                <img class="img-responsive center-block" src="~/Images/BAM-Apps-Logo-Rounded-Square-200x200.png" />
+                            </a>
+                        </div>
+                        <div class="col-xs-12 col-sm-9">
+                            <p>Excido is a sample, full-stack, Single Page Application made by <a id="bamapps" target="_blank" href="http://bamapps.com/">BAM Apps</a> using <a id="angular" target="_blank" href="https://angular.io/">Angular</a></p>
+                            <p><a class="btn btn-primary btn-lg" target="_blank" href="http://www.bamapps.com" role="button">Learn more</a></p>
+                        </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-xs-12 col-sm-3 pull-right">
-                        <a id="bamapps-logo" target="_blank" href="http://bamapps.com/">
-                            <img class="img-responsive center-block" src="~/Images/BAM-Apps-Logo-Rounded-Square-200x200.png" />
-                        </a>
-                    </div>
-                    <div class="col-xs-12 col-sm-9">
-                        <p>Excido is a sample, full-stack, Single Page Application made by <a id="bamapps" target="_blank" href="http://bamapps.com/">BAM Apps</a> using <a id="angular" target="_blank" href="https://angular.io/">Angular</a></p>
-                        <p><a class="btn btn-primary btn-lg" target="_blank" href="http://www.bamapps.com" role="button">Learn more</a></p>
-                    </div>
-                </div>
-            </div>
-
             <div class="wait">
                 <div class='mask' ng-hide="sharedunits.ready">
                 </div>
@@ -51,7 +50,7 @@
                 <ul class="list-group">
                     <li class="list-group-item" ng-repeat="unit in sharedunits.units">
                         <div class="row relative">
-                            <div class="col-xs-10">
+                            <div class="col-xs-10 col-sm-11 col-md-10">
                                 <div class="row">
                                     <div class="col-xs-12 col-sm-6 col-md-3 bottom-line">
                                         <div class="row label-head hidden-md hidden-lg">
@@ -104,11 +103,12 @@
                                                 <span class="small light">Slug</span>
                                             </div>
                                         </div>
-                                        <div class="row click-to-edit" ng-click="unit.editSlug()" ng-class="{'is-editing': unit.isEditingSlug}">
-                                            <div class="col-xs-12">
+                                        <div class="row" @*ng-click="unit.editSlug()"*@>
+                                            <div class="col-xs-12  click-to-edit" ng-class="{'is-editing': unit.isEditingSlug}" ng-click="unit.editSlug()">
                                                 <div ng-show="(unit.Slug == null || unit.Slug == '') && !unit.isEditingSlug" ng-click="unit.editSlug()" class="pull-left">
                                                     <span class="placeholder">Slug</span>
                                                 </div>
+                                                <span class="small light" ng-hide="unit.isEditingSlug">{{sharedunits.slugPrefix}}</span>
                                                 <span ng-hide="unit.isEditingSlug" ng-click="unit.editSlug()">{{unit.Slug}}</span>
                                                 <input ng-show="unit.isEditingSlug"
                                                        ng-model="unit.Slug"
@@ -142,10 +142,22 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-xs-1 absolute-vertical-middle absolute-horizontal-right">
-                                <div class="row absolute-vertical-middle">
-                                    <div class="col-xs-4 col-md-12 absolute-vertical-middle-nudge">
-                                        <i class="fa fa-2x fa-times-circle text-danger" ng-click="sharedunits.deleteUnit(unit)"></i>
+                            <div class="col-xs-2 col-sm-1 col-md-2 buttons">
+                                <div class="row">
+                                    <div class="col-xs-2 col-sm-3 col-md-12 col-lg-12">
+                                        <button class="btn btn-default"  uib-tooltip="Copy permalink" tooltip-append-to-body="true">
+                                            <i class="fa fa-2x fa-btn fa-copy text-muted"
+                                               clipboard
+                                               clipboard-text="sharedunits.getLinkUrl(unit)"
+                                               clipboard-success="sharedunits.clipboardSuccess(unit)"
+                                               clipboard-error="sharedunits.clipboardError(unit)"></i>
+                                        </button>
+                                        <a class="btn btn-default" ng-href="{{sharedunits.getLinkUrl(unit)}}" uib-tooltip="Go to permalink" tooltip-append-to-body="true">
+                                            <i class="fa fa-2x fa-btn fa-link"></i>
+                                        </a>
+                                        <button class="btn btn-default" uib-tooltip="Delete content" tooltip-append-to-body="true">
+                                            <i class="fa fa-2x fa-btn fa-times-circle text-danger" ng-click="sharedunits.deleteUnit(unit)"></i>
+                                        </button>
                                     </div>
                                 </div>
                             </div>

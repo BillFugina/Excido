@@ -5,6 +5,7 @@
             export interface ISettings {
                 ApiServer: string;
                 ApiServicePath: string;
+                SlugPrefix: string;
             }
 
 
