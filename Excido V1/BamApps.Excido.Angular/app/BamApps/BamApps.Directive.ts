@@ -114,7 +114,7 @@
 
                 var _id = trigger.id;
                 if (!_id) {
-                    trigger.id = 'ngclipboard' + Date.now());
+                    trigger.id = 'ngclipboard' + Date.now();
                     _id = trigger.id;
                 }
 
