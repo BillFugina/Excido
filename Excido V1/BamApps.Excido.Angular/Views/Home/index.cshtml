@@ -14,29 +14,41 @@
     <div id="wrap">
         <div id="main">
             <div class="jumbotron">
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-3 visible-lg-block">
-                            <h1>Excido</h1>
-                        </div>
-                        <div class="col-xs-12 col-sm-3 visible-md-block visible-sm-block">
-                            <h2 >Excido</h2>
-                        </div>
-                        <div class="col-xs-12 col-sm-3 visible-xs-block text-center">
-                            <h2>Excido</h2>
-                        </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-3 visible-lg-block">
+                        <h1>Excido</h1>
                     </div>
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-3 pull-right">
-                            <a id="bamapps-logo" target="_blank" href="http://bamapps.com/">
-                                <img class="img-responsive center-block" src="~/Images/BAM-Apps-Logo-Rounded-Square-200x200.png" />
-                            </a>
-                        </div>
-                        <div class="col-xs-12 col-sm-9">
-                            <p>Excido is a sample, full-stack, Single Page Application made by <a id="bamapps" target="_blank" href="http://bamapps.com/">BAM Apps</a> using <a id="angular" target="_blank" href="https://angular.io/">Angular</a></p>
-                            <p><a class="btn btn-primary btn-lg" target="_blank" href="http://www.bamapps.com" role="button">Learn more</a></p>
-                        </div>
+                    <div class="col-xs-12 col-sm-3 visible-md-block visible-sm-block">
+                        <h2>Excido</h2>
+                    </div>
+                    <div class="col-xs-12 col-sm-3 visible-xs-block text-center">
+                        <h2>Excido</h2>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-3 pull-right">
+                        <a id="bamapps-logo" target="_blank" href="http://bamapps.com/">
+                            <img class="img-responsive center-block" src="~/Images/BAM-Apps-Logo-Rounded-Square-200x200.png" />
+                        </a>
+                    </div>
+                    <div class="col-xs-12 col-sm-9">
+                        <p>
+                            Excido is a sample, full-stack, Single Page Application made by <a id="bamapps" target="_blank" href="http://bamapps.com/">BAM Apps</a> using <a id="angular" target="_blank" href="https://angular.io/">Angular</a>
+                        </p>
+                        <p>
+                            The plan is for Excido to become a content sharing service where content can be set to expire and disappear.
+                            At the moment, it is simply a short-link service.
+                            You may create a short link in the {{sharedunits.slugPrefix}} namespace that redirects to any other valid link.
+                        </p>
+                        <p>
+                            Your short link must end in a unique slug and must form a valid HTML URL.
+                            There is currently no error checking, so invalid URLs will probably crash the software.
+                            Use at your own risk.
+                        </p>
+                        @*<p><a class="btn btn-primary btn-lg" target="_blank" href="http://www.bamapps.com" role="button">Learn more</a></p>*@
+                    </div>
+                </div>
+            </div>
             <div class="wait">
                 <div class='mask' ng-hide="sharedunits.ready">
                 </div>
@@ -48,6 +60,28 @@
                 </div>
 
                 <ul class="list-group">
+                    <li class="list-group-item list-group-item-info visible-md-block visible-lg-block">
+                        <div class="row relative">
+                            <div class="col-xs-10 col-sm-11 col-md-10">
+                                <div class="row">
+                                    <div class="col-xs12 col-sm6 col-md-3">
+                                        <strong>Name</strong>
+                                    </div>
+                                    <div class="col-xs12 col-sm6 col-md-3">
+                                        <strong>Content</strong>
+                                    </div>
+                                    <div class="col-xs12 col-sm6 col-md-3">
+                                        <strong>Short Link</strong>
+                                    </div>
+                                    <div class="col-xs12 col-sm6 col-md-3">
+                                        <strong>Expiration</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-2 col-sm-1 col-md-2 buttons">
+                            </div>
+                        </div>
+                    </li>
                     <li class="list-group-item" ng-repeat="unit in sharedunits.units">
                         <div class="row relative">
                             <div class="col-xs-10 col-sm-11 col-md-10">
@@ -143,23 +177,21 @@
                                 </div>
                             </div>
                             <div class="col-xs-2 col-sm-1 col-md-2 buttons">
-                                <div class="row">
-                                    <div class="col-xs-2 col-sm-3 col-md-12 col-lg-12">
-                                        <button class="btn btn-default"  uib-tooltip="Copy permalink" tooltip-append-to-body="true">
-                                            <i class="fa fa-2x fa-btn fa-copy text-muted"
-                                               clipboard
-                                               clipboard-text="sharedunits.getLinkUrl(unit)"
-                                               clipboard-success="sharedunits.clipboardSuccess(unit)"
-                                               clipboard-error="sharedunits.clipboardError(unit)"></i>
-                                        </button>
-                                        <a class="btn btn-default" ng-href="{{sharedunits.getLinkUrl(unit)}}" uib-tooltip="Go to permalink" tooltip-append-to-body="true">
-                                            <i class="fa fa-2x fa-btn fa-link"></i>
-                                        </a>
-                                        <button class="btn btn-default" uib-tooltip="Delete content" tooltip-append-to-body="true">
-                                            <i class="fa fa-2x fa-btn fa-times-circle text-danger" ng-click="sharedunits.deleteUnit(unit)"></i>
-                                        </button>
-                                    </div>
-                                </div>
+                                <button class="btn btn-default" uib-tooltip="Copy shortlink" tooltip-append-to-body="true">
+                                    <i class="fa fa-2x fa-btn fa-copy text-muted"
+                                       clipboard
+                                       clipboard-text="sharedunits.getLinkUrl(unit)"
+                                       clipboard-success="sharedunits.clipboardSuccess(unit)"
+                                       clipboard-error="sharedunits.clipboardError(unit)"></i>
+                                </button>
+                                <br class="visible-xs-block hidden-md hidden-lg" />
+                                <a class="btn btn-default" ng-href="{{sharedunits.getLinkUrl(unit)}}" uib-tooltip="Go to shortlink" tooltip-append-to-body="true">
+                                    <i class="fa fa-2x fa-btn fa-link"></i>
+                                </a>
+                                <br class="visible-xs-block hidden-md hidden-lg" />
+                                <button class="btn btn-default" uib-tooltip="Delete content" tooltip-append-to-body="true">
+                                    <i class="fa fa-2x fa-btn fa-times-circle text-danger" ng-click="sharedunits.deleteUnit(unit)"></i>
+                                </button>
                             </div>
                         </div>
                     </li>
@@ -170,6 +202,7 @@
     <div class="footer">
         <button class="btn btn-default" ng-click="sharedunits.addClick()"><i class="fa fa-plus"></i>Add</button>
         <button class="btn btn-success" ng-click="sharedunits.saveClick()" ng-disabled="!sharedunits.hasChanges"><i class="fa fa-check"></i>Save</button>
+        <button class="btn btn-danger" ng-click="sharedunits.cancelClick()" ng-disabled="!sharedunits.hasChanges"><i class="fa fa-remove"></i>Cancel</button>
     </div>
 </body>
 </html>

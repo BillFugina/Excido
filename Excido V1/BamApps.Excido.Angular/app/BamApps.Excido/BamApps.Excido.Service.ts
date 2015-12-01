@@ -78,6 +78,10 @@
                     return result;
                 }
 
+                cancel() {
+                    this._entityManager.rejectChanges();
+                }
+
                 save(unit: Interface.Model.ISharedContentUnit): ng.IPromise<Interface.Model.ISharedContentUnit> {
                     var deferred = this.$q.defer<Interface.Model.ISharedContentUnit>();
 

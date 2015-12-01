@@ -8,7 +8,7 @@
 
 div[class^=col-].buttons {
   padding: 0;
-  text-align: right; }
+  text-align: center; }
   div[class^=col-].buttons .btn-default {
     border: none;
     padding: 2px; }

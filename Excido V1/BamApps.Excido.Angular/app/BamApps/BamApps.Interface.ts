@@ -18,6 +18,7 @@
             create(): T;
             save(T?): ng.IPromise<T>;
             delete(T): ng.IPromise<void>;
+            cancel(): void;
         }
 
         export interface IRepository<T> extends IReadRepository<T>, IWriteRepository<T> {
