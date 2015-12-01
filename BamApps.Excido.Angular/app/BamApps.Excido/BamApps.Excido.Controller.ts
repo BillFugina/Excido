@@ -66,6 +66,11 @@
                         });
                 }
 
+                public cancelClick() {
+                    Logger.log("cancel click", this);
+                    this._sharedContentUnitService.cancel();
+                }
+
                 public addClick() {
                     Logger.log("add click", this);
                     var newUnit = this._sharedContentUnitService.create();
