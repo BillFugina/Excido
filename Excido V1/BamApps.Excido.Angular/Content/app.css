@@ -6,6 +6,20 @@
   margin-right: auto;
   margin-top: 22px; }
 
+.logo {
+  width: 100%;
+  height: 100px;
+  background-image: url("/Images/Excido Logo 340 x 130.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center; }
+
+.superscript {
+  position: relative;
+  top: -10px;
+  left: -3px;
+  margin-right: -5px; }
+
 div[class^=col-].buttons {
   padding: 0;
   text-align: center; }
@@ -35,6 +49,8 @@ button.btn i.fa {
 .jumbotron {
   padding-left: 20px;
   padding-right: 20px; }
+  .jumbotron p {
+    font-size: 14pt; }
 
 .mask {
   background-color: black;
@@ -182,6 +198,10 @@ input[uib-datepicker-popup] {
     margin-left: auto;
     margin-right: auto;
     margin-top: 22px; }
+  .logo {
+    background-position: center; }
+  .container {
+    margin-bottom: 20px; }
   .footer {
     background-color: white;
     padding: 10px;
@@ -204,6 +224,8 @@ input[uib-datepicker-popup] {
 @media (min-width: 768px) {
   .container .jumbotron {
     padding: 20px; }
+  .logo {
+    background-position: center; }
   .wait {
     width: 100%;
     min-height: 200px;
@@ -215,6 +237,8 @@ input[uib-datepicker-popup] {
 
 /*Medium*/
 @media (min-width: 992px) {
+  .logo {
+    background-position: left; }
   div.bottom-line {
     border-bottom-color: none;
     border-bottom-style: none;
@@ -223,7 +247,9 @@ input[uib-datepicker-popup] {
     filter: none; } }
 
 /*Large*/
-@media (max-width: 1200px) {
+@media (min-width: 1200px) {
+  .logo {
+    background-position: left; }
   .jumbotron {
     padding-left: 20px;
     padding-right: 20px; } }

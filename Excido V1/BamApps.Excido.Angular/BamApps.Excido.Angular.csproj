@@ -26,6 +26,24 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="android-chrome-144x144.png" />
+    <Content Include="android-chrome-192x192.png" />
+    <Content Include="android-chrome-36x36.png" />
+    <Content Include="android-chrome-48x48.png" />
+    <Content Include="android-chrome-72x72.png" />
+    <Content Include="android-chrome-96x96.png" />
+    <Content Include="apple-touch-icon-114x114.png" />
+    <Content Include="apple-touch-icon-120x120.png" />
+    <Content Include="apple-touch-icon-144x144.png" />
+    <Content Include="apple-touch-icon-152x152.png" />
+    <Content Include="apple-touch-icon-180x180.png" />
+    <Content Include="apple-touch-icon-57x57.png" />
+    <Content Include="apple-touch-icon-60x60.png" />
+    <Content Include="apple-touch-icon-72x72.png" />
+    <Content Include="apple-touch-icon-76x76.png" />
+    <Content Include="apple-touch-icon-precomposed.png" />
+    <Content Include="apple-touch-icon.png" />
+    <Content Include="browserconfig.xml" />
     <Content Include="Content\app.css">
       <DependentUpon>app.scss</DependentUpon>
     </Content>
@@ -33,6 +51,12 @@
       <DependentUpon>app.css</DependentUpon>
     </Content>
     <Content Include="Content\ui-bootstrap-csp.css" />
+    <Content Include="Excido.pubxml.user" />
+    <Content Include="favicon-16x16.png" />
+    <Content Include="favicon-194x194.png" />
+    <Content Include="favicon-32x32.png" />
+    <Content Include="favicon-96x96.png" />
+    <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\angular-toastr.css" />
     <Content Include="Content\angular-toastr.min.css" />
@@ -49,8 +73,19 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Images\BAM-Apps-Logo-Rounded-Square-200x200.png" />
     <Content Include="Images\BAM-Apps-Logo-Rounded-Square-300x300.png" />
+    <Content Include="Images\EX Logo 260 x 260.png" />
+    <Content Include="Images\Excido Logo 180 x 180.png" />
+    <Content Include="Images\Excido Logo 340 x 130.png" />
+    <Content Include="Images\Excido Logo 340 x 340.png" />
+    <Content Include="Images\Excido Logo 400 x 400.png" />
     <Content Include="Images\Logo Choices.PNG" />
     <Content Include="index.html" />
+    <Content Include="mstile-144x144.png" />
+    <Content Include="mstile-150x150.png" />
+    <Content Include="mstile-310x150.png" />
+    <Content Include="mstile-310x310.png" />
+    <Content Include="mstile-70x70.png" />
+    <Content Include="safari-pinned-tab.svg" />
     <Content Include="Scripts\angular-animate.js" />
     <Content Include="Scripts\angular-animate.min.js" />
     <Content Include="Scripts\angular-aria.js" />
@@ -858,6 +893,7 @@
     </Content>
     <None Include="Excido.pubxml" />
     <Content Include="Scripts\angular-moment.min.js.map" />
+    <Content Include="manifest.json" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.4.js" />
     <Content Include="Scripts\jquery-2.1.4.min.js" />
@@ -926,6 +962,9 @@
     </Content>
     <Content Include="Views\Home\index.cshtml" />
     <Content Include="Views\Logos\index.cshtml" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\shared\_Layout.cshtml" />
+    <Content Include="Views\shared\Error.cshtml" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>
