@@ -49,6 +49,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Images\BAM-Apps-Logo-Rounded-Square-200x200.png" />
     <Content Include="Images\BAM-Apps-Logo-Rounded-Square-300x300.png" />
+    <Content Include="Images\Logo Choices.PNG" />
     <Content Include="index.html" />
     <Content Include="Scripts\angular-animate.js" />
     <Content Include="Scripts\angular-animate.min.js" />
@@ -924,6 +925,7 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Views\Home\index.cshtml" />
+    <Content Include="Views\Logos\index.cshtml" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>
@@ -989,6 +991,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\FontAwesomeBundleConfig.cs" />
+    <Compile Include="Controllers\LogosController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
