@@ -196,11 +196,10 @@
                 </ul>
             </div>
         </div>
+        <div class="footer">
+            <button class="btn btn-default" ng-click="sharedunits.addClick()"><i class="fa fa-plus"></i>Add</button>
+            <button class="btn btn-success" ng-click="sharedunits.saveClick()" ng-disabled="!sharedunits.hasChanges"><i class="fa fa-check"></i>Save</button>
+            <button class="btn btn-danger" ng-click="sharedunits.cancelClick()" ng-disabled="!sharedunits.hasChanges"><i class="fa fa-remove"></i>Cancel</button>
+        </div>
     </div>
-    <div class="footer">
-        <button class="btn btn-default" ng-click="sharedunits.addClick()"><i class="fa fa-plus"></i>Add</button>
-        <button class="btn btn-success" ng-click="sharedunits.saveClick()" ng-disabled="!sharedunits.hasChanges"><i class="fa fa-check"></i>Save</button>
-        <button class="btn btn-danger" ng-click="sharedunits.cancelClick()" ng-disabled="!sharedunits.hasChanges"><i class="fa fa-remove"></i>Cancel</button>
-    </div>
-</div>
 </div>
