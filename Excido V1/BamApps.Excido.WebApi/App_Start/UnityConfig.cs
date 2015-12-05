@@ -5,6 +5,7 @@ using BamApps.Excido.Service;
 using BamApps.Excido.Interface.Service;
 using BamApps.Excido.Interface.Data;
 using BamApps.Excido.Data.Context;
+using BamApps.Excido.Data.Model;
 
 namespace BamApps.Excido.WebApi.App_Start
 {
@@ -42,8 +43,11 @@ namespace BamApps.Excido.WebApi.App_Start
             // TODO: Register your types here
             // container.RegisterType<IProductRepository, ProductRepository>();
 
-            container.RegisterType<ISharedContentService, SharedContentService>();
             container.RegisterType<IDataContext, ExcidoContext>();
+            container.RegisterType<ISharedContentService, SharedContentService>();
+            container.RegisterType<IBreezeContextProvider, BreezeContextProvider>();
+            container.RegisterType<IReadRepository<SharedContentUnit>, SharedContentService>();
+            container.RegisterType<IWriteRepository<SharedContentUnit>, SharedContentService>();
         }
     }
 }
