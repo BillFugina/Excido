@@ -1,9 +1,9 @@
-﻿using BamApps.Excido.Interface.Data.Model;
+﻿using BamApps.Excido.Interface.Data;
 using System;
 namespace BamApps.Excido.Data.Model {
 
-    public class SharedContentUnit : ISharedContentUnit {
-        public Guid Id { get; set; } = Guid.NewGuid();
+    public class SharedContentUnit : IEntity {
+        public Guid Id { get; set; }
         public string Name { get; set; }
         public string Content { get; set; }
         public string Slug { get; set; }

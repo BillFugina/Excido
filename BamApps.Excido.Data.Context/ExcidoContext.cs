@@ -19,7 +19,7 @@ namespace BamApps.Excido.Data.Context {
             Map.Configuration.Configure(modelBuilder.Configurations);
         }
 
-        public T GetById<T>(int id) where T : class, IEntity {
+        public T GetById<T>(Guid id) where T : class, IEntity {
             return Set<T>().Find(id);
         }
 
@@ -48,7 +48,10 @@ namespace BamApps.Excido.Data.Context {
         }
 
         public void DeleteEntity<T>(T entity) where T : class, IEntity {
-            Set<T>().Remove(entity);
+            var found = Set<T>().Find(entity.Id);
+            if (found != null) {
+                Set<T>().Remove(found);
+            }
         }
 
         public int Delete<T>(System.Linq.Expressions.Expression<Func<T, bool>> predicate) where T : class, IEntity {
@@ -59,5 +62,13 @@ namespace BamApps.Excido.Data.Context {
             return new ContextTransaction(Database.BeginTransaction());
         }
 
+        void IDataContext.UpdateEntity<T>(T entity) {
+            Set<T>().Attach(entity);
+
+            var entry = ChangeTracker.Entries<T>().FirstOrDefault(e => e.Entity == entity);
+            if (entry != null) {
+                entry.State = EntityState.Modified;
+            }
+        }
     }
 }
