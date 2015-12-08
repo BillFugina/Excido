@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BamApps.Excido.WebApi", "Ba
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BamApps.Excido.Angular", "BamApps.Excido.Angular\BamApps.Excido.Angular.csproj", "{FB6AADAB-5A36-4B91-8087-0399ADBEF4A4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BamApps.Excido.Service.Tests", "BamApps.Excido.Service.Tests\BamApps.Excido.Service.Tests.csproj", "{5D1B2440-B75F-4847-A80D-E1FB45B04FDB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,12 +59,16 @@ Global
 		{FB6AADAB-5A36-4B91-8087-0399ADBEF4A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FB6AADAB-5A36-4B91-8087-0399ADBEF4A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FB6AADAB-5A36-4B91-8087-0399ADBEF4A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D1B2440-B75F-4847-A80D-E1FB45B04FDB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D1B2440-B75F-4847-A80D-E1FB45B04FDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D1B2440-B75F-4847-A80D-E1FB45B04FDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D1B2440-B75F-4847-A80D-E1FB45B04FDB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 9
+		SccNumberOfProjects = 10
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://bamapps.visualstudio.com/defaultcollection
 		SccLocalPath0 = .
@@ -90,5 +96,8 @@ Global
 		SccProjectUniqueName8 = BamApps.Excido.Angular\\BamApps.Excido.Angular.csproj
 		SccProjectName8 = BamApps.Excido.Angular
 		SccLocalPath8 = BamApps.Excido.Angular
+		SccProjectUniqueName9 = BamApps.Excido.Service.Tests\\BamApps.Excido.Service.Tests.csproj
+		SccProjectName9 = BamApps.Excido.Service.Tests
+		SccLocalPath9 = BamApps.Excido.Service.Tests
 	EndGlobalSection
 EndGlobal

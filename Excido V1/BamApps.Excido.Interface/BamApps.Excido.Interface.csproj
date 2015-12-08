@@ -47,8 +47,14 @@
     <Compile Include="Data\IContextTransaction.cs" />
     <Compile Include="Data\IDataContext.cs" />
     <Compile Include="Data\IEntity.cs" />
+    <Compile Include="Data\IReadRepository.cs" />
+    <Compile Include="Data\IReadWhereRepository.cs" />
+    <Compile Include="Data\IRepository.cs" />
+    <Compile Include="Data\IWriteRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\IPredicate.cs" />
     <Compile Include="Service\ISharedContentService.cs" />
+    <Compile Include="Service\ISpecification.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Data\Model\" />

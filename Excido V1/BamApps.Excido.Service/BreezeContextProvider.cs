@@ -79,7 +79,7 @@ namespace BamApps.Excido.Service {
         }
 
         public IQueryable<SharedContentUnit> SharedContentUnits() {
-            return _readRepository.QueryAll();
+            return _readRepository.GetAll();
         }
 
         #region unimplemented

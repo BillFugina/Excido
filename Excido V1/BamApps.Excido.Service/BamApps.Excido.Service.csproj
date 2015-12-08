@@ -57,6 +57,12 @@
     <Compile Include="IBreezeContextProvider.cs" />
     <Compile Include="SharedContentService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Validation\FalsePredicate.cs" />
+    <Compile Include="Validation\FalseSpecification.cs" />
+    <Compile Include="Validation\Predicate.cs" />
+    <Compile Include="Validation\Specification.cs" />
+    <Compile Include="Validation\TruePredicate.cs" />
+    <Compile Include="Validation\TrueSpecification.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BamApps.Excido.Data.Model\BamApps.Excido.Data.Model.csproj">
