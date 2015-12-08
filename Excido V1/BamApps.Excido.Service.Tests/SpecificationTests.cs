@@ -4,13 +4,12 @@ using BamApps.Excido.Service.Validation;
 using Moq;
 using BamApps.Excido.Interface.Data;
 using BamApps.Excido.Interface.Service;
+using MSTestExtensions;
+using System.Diagnostics.CodeAnalysis;
 
 namespace BamApps.Excido.Service.Tests {
-    using System.Diagnostics.CodeAnalysis;
-    using static Utils;
-
     [TestClass]
-    public class SpecificationTests {
+    public class SpecificationTests : BaseTest {
         [TestMethod]
         public void TrueSpecificationTest() {
             var mock = Mock.Of<IEntity>();
@@ -60,9 +59,7 @@ namespace BamApps.Excido.Service.Tests {
             var mock = Mock.Of<IEntity>();
             var trueSpecification = new TrueSpecification<IEntity>();
 
-            ExpectException<ArgumentNullException>(() => {
-                trueSpecification.And(null);
-            });
+            Assert.Throws<ArgumentNullException>(() => trueSpecification.And(null).IsSatisfiedBy(mock));
         }
 
         [TestMethod]
@@ -70,9 +67,7 @@ namespace BamApps.Excido.Service.Tests {
             var mock = Mock.Of<IEntity>();
             var trueSpecification = new TrueSpecification<IEntity>();
 
-            ExpectException<ArgumentNullException>(() => {
-                new BamApps.Excido.Service.Validation.AndSpecification<IEntity>(null, trueSpecification);
-            });
+            Assert.Throws<ArgumentNullException>(() => new AndSpecification<IEntity>(null, trueSpecification).IsSatisfiedBy(mock));
         }
 
         [TestMethod]
@@ -129,9 +124,7 @@ namespace BamApps.Excido.Service.Tests {
             var trueSpecification = new TrueSpecification<IEntity>();
             FalseSpecification<IEntity> nullSpecification = null;
 
-            ExpectException<ArgumentNullException>(() => {
-                trueSpecification.Or(nullSpecification);
-            });
+            Assert.Throws<ArgumentNullException>(() => trueSpecification.Or(nullSpecification).IsSatisfiedBy(mock));
         }
 
         [TestMethod]
@@ -140,9 +133,7 @@ namespace BamApps.Excido.Service.Tests {
             var trueSpecification = new TrueSpecification<IEntity>();
             ISpecification<IEntity> nullSpecification = null;
 
-            ExpectException<ArgumentNullException>(() => {
-                new OrSpecification<IEntity>(nullSpecification, trueSpecification);
-            });
+            Assert.Throws<ArgumentNullException>(() => new OrSpecification<IEntity>(nullSpecification, trueSpecification).IsSatisfiedBy(mock));
         }
 
         [TestMethod]
@@ -169,16 +160,11 @@ namespace BamApps.Excido.Service.Tests {
 
 
         [TestMethod]
-        [ExcludeFromCodeCoverage]
         public void NullNotSpecificationTest() {
             var mock = Mock.Of<IEntity>();
             ISpecification<IEntity> nullSpecification = null;
 
-            var argumentNullException = ExpectException<ArgumentNullException>(() => {
-                new NotSpecification<IEntity>(nullSpecification);
-            });
-
-            Assert.IsNotNull(argumentNullException);
+            Assert.Throws<ArgumentNullException>(() => new NotSpecification<IEntity>(nullSpecification).IsSatisfiedBy(mock));
         }
 
 
