@@ -63,11 +63,17 @@ namespace BamApps.Excido.Data.Context {
         }
 
         void IDataContext.UpdateEntity<T>(T entity) {
-            Set<T>().Attach(entity);
-
-            var entry = ChangeTracker.Entries<T>().FirstOrDefault(e => e.Entity == entity);
+            var entry = ChangeTracker.Entries<T>().FirstOrDefault(e => e.Entity.Id == entity.Id);
             if (entry != null) {
-                entry.State = EntityState.Modified;
+                entry.CurrentValues.SetValues(entity);
+            }
+            else {
+                Set<T>().Attach(entity);
+
+                entry = ChangeTracker.Entries<T>().FirstOrDefault(e => e.Entity == entity);
+                if (entry != null) {
+                    entry.State = EntityState.Modified;
+                }
             }
         }
     }

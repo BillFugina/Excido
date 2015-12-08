@@ -40,8 +40,6 @@ namespace BamApps.Excido.Service {
 
     }
 
-
-
     class SharedContentCreateStampValidator : ISpecification<SharedContentUnit> {
         private readonly IReadRepository<SharedContentUnit> _readRepository;
 
@@ -52,15 +50,8 @@ namespace BamApps.Excido.Service {
 
         public bool IsSatisfiedBy(SharedContentUnit entity) {
             var existing = _readRepository.GetById(entity.Id);
-
-            if (existing != null) {
-                entity.Created = existing.Created;
-            }
-            else {
-                entity.Created = DateTime.Now;
-            }
-
-            return true;
+            var result = existing == null || entity.Created == existing.Created;
+            return result;
         }
     }
 
@@ -69,7 +60,6 @@ namespace BamApps.Excido.Service {
 
         public SharedContentExpireDataValidator(IReadRepository<SharedContentUnit> _readRepository) {
             Contract.Requires(_readRepository != null);
-
             this._readRepository = _readRepository;
         }
 
