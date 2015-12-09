@@ -1,10 +1,13 @@
-﻿namespace BamApps.Excido.Interface.Data.Model {
-    public interface ISharedContentUnit : IEntity {
-        string Name { get; set; }
+﻿using System;
+
+namespace BamApps.Excido.Interface.Data.Model {
+    public interface ISharedContentUnit {
         string Content { get; set; }
-        string Slug { get; set; }
-        System.DateTime Created { get; set; }
-        System.DateTime? ExpireDate { get; set; }
+        DateTime Created { get; set; }
         int ExpireCount { get; set; }
+        DateTime? ExpireDate { get; set; }
+        Guid Id { get; set; }
+        string Name { get; set; }
+        string Slug { get; set; }
     }
 }

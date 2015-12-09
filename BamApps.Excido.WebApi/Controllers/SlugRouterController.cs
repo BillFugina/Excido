@@ -1,4 +1,5 @@
-﻿using BamApps.Excido.Interface.Service;
+﻿using BamApps.Excido.Data.Model;
+using BamApps.Excido.Interface.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,12 +10,12 @@ using System.Web.Http;
 namespace BamApps.Excido.WebApi.Controllers {
     public class SlugRouterController : ApiController {
 
-        private readonly ISharedContentService _sharedContentService;
+        private readonly ISharedContentService<SharedContentUnit> _sharedContentService;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SlugRouterController"/> class.
         /// </summary>
-        public SlugRouterController(ISharedContentService sharedContentService) {
+        public SlugRouterController(ISharedContentService<SharedContentUnit> sharedContentService) {
             _sharedContentService = sharedContentService;
         }
 
