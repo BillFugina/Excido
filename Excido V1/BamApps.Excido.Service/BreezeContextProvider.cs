@@ -8,18 +8,24 @@ using Breeze.ContextProvider;
 using BamApps.Excido.Interface.Service;
 using BamApps.Excido.Interface.Data;
 using BamApps.Excido.Data.Model;
+using System.Diagnostics.Contracts;
+using System.Diagnostics.CodeAnalysis;
 
 namespace BamApps.Excido.Service {
     public class BreezeContextProvider : ContextProvider, IBreezeContextProvider {
         private static readonly object __lock = new object();
 
-        ISharedContentService _sharedContentService;
+        ISharedContentService<SharedContentUnit> _sharedContentService;
         IReadRepository<SharedContentUnit> _readRepository;
         IWriteRepository<SharedContentUnit> _writeRepository;
 
         private readonly List<KeyMapping> _keyMappings = new List<KeyMapping>();
 
-        public BreezeContextProvider(ISharedContentService sharedContentService, IReadRepository<SharedContentUnit> readRepository, IWriteRepository<SharedContentUnit> writeRepository) {
+        public BreezeContextProvider(ISharedContentService<SharedContentUnit> sharedContentService, IReadRepository<SharedContentUnit> readRepository, IWriteRepository<SharedContentUnit> writeRepository) {
+            Contract.Requires<ArgumentNullException>(sharedContentService != null, "sharedContentService is null.");
+            Contract.Requires<ArgumentNullException>(readRepository != null, "readRepository is null.");
+            Contract.Requires<ArgumentNullException>(writeRepository != null, "writeRepository is null.");
+
             _sharedContentService = sharedContentService;
             _readRepository = readRepository;
             _writeRepository = writeRepository;
@@ -83,16 +89,20 @@ namespace BamApps.Excido.Service {
         }
 
         #region unimplemented
+        [ExcludeFromCodeCoverage]
         protected override string BuildJsonMetadata() {
             return null;
         }
 
+        [ExcludeFromCodeCoverage]
         protected override void CloseDbConnection() {
         }
 
+        [ExcludeFromCodeCoverage]
         protected override void OpenDbConnection() {
         }
 
+        [ExcludeFromCodeCoverage]
         public override IDbConnection GetDbConnection() {
             return null;
         }

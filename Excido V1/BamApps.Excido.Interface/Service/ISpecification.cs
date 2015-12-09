@@ -10,4 +10,8 @@ namespace BamApps.Excido.Interface.Service {
         bool IsSatisfiedBy(T entity);
     }
 
+    public interface ICheckOriginal<T> where T : IEntity {
+        bool ChecksWith(T entity, T original);
+    }
+
 }

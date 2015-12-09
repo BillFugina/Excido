@@ -21,6 +21,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BamApps.Excido.Angular", "B
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BamApps.Excido.Service.Tests", "BamApps.Excido.Service.Tests\BamApps.Excido.Service.Tests.csproj", "{5D1B2440-B75F-4847-A80D-E1FB45B04FDB}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D3AB63F4-2EBA-465E-877C-D5AA7ACCF9AF}"
+	ProjectSection(SolutionItems) = preProject
+		.runsettings = .runsettings
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

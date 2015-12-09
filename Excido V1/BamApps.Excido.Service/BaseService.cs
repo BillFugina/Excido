@@ -12,31 +12,18 @@ using BamApps.Excido.Service.Validation;
 namespace BamApps.Excido.Service {
     public class BaseService<T> : IRepository<T> where T : class, IEntity {
 
-        protected IPredicate _readValidation = Predicate.True;
-        protected IPredicate _writeValidation = Predicate.True;
-        protected ISpecification<T> _addValidation = Specification<T>.True;
-        protected ISpecification<T> _updateValidation = Specification<T>.True;
-        protected ISpecification<T> _deleteValidation = Specification<T>.True;
-
         protected readonly IDataContext _dataContext;
-        public BaseService(IDataContext dataContext) {
-            Contract.Requires(dataContext != null, "dataContext is null.");
+        protected readonly IServiceValidator<T> _validator;
+
+
+        public BaseService(IDataContext dataContext, IServiceValidator<T> validator) {
+            Contract.Requires<ArgumentNullException>(dataContext != null, "dataContext is null.");
+            Contract.Requires<ArgumentNullException>(validator != null, "validator is null.");
+
             _dataContext = dataContext;
+            _validator = validator;
         }
 
-        public BaseService(IDataContext dataContext, IPredicate readValidation, IPredicate writeValidation, ISpecification<T> addValidation, ISpecification<T> updateValidation, ISpecification<T> deleteValidation) : this(dataContext) {
-            Contract.Requires(readValidation != null);
-            Contract.Requires(writeValidation != null);
-            Contract.Requires(addValidation != null);
-            Contract.Requires(updateValidation != null);
-            Contract.Requires(deleteValidation != null);
-
-            _readValidation = readValidation;
-            _writeValidation = writeValidation;
-            _addValidation = addValidation;
-            _updateValidation = updateValidation;
-            _deleteValidation = deleteValidation;
-        }
 
 
         public virtual IContextTransaction BeginTransaction() {
@@ -45,21 +32,21 @@ namespace BamApps.Excido.Service {
 
         public virtual IQueryable<T> GetAll() {
             IQueryable<T> result = null;
-            if (_readValidation.Test()) {
+            if (_validator.ValidateRead()) {
                 result = _dataContext.GetAll<T>();
             }
             return result;
         }
 
         public virtual IQueryable<T> GetAllWhere(Expression<Func<T, bool>> expression) {
-            if (_readValidation.Test()) {
+            if (_validator.ValidateWrite()) {
                 return _dataContext.GetAllWhere<T>(expression);
             }
             return null;
         }
 
         public virtual T GetById(Guid id) {
-            if (_readValidation.Test()) {
+            if (_validator.ValidateRead()) {
                 return _dataContext.GetById<T>(id);
             }
             return null;
@@ -68,25 +55,25 @@ namespace BamApps.Excido.Service {
         public virtual Guid AddEntity(T entity) {
             var result = Guid.Empty;
 
-            if (_writeValidation.Test() && _addValidation.IsSatisfiedBy(entity)) {
+            if (_validator.ValidateWrite() && _validator.ValidateAdd(entity)) {
                 result = _dataContext.AddEntity(entity);
             }
             return result;
         }
 
         public void UpdateEntity(T entity) {
-            if (_writeValidation.Test() && _updateValidation.IsSatisfiedBy(entity)) {
+            if (_validator.ValidateWrite() && _validator.ValidateUpdate(entity)) {
                 _dataContext.UpdateEntity(entity);
             }
         }
         public virtual void DeleteEntity(T entity) {
-            if (_writeValidation.Test() && _deleteValidation.IsSatisfiedBy(entity)) {
+            if (_validator.ValidateWrite() && _validator.ValidateDelete(entity)) {
                 _dataContext.DeleteEntity(entity);
             }
         }
 
         public virtual int SaveChanges() {
-            if (_writeValidation.Test()) {
+            if (_validator.ValidateWrite()) {
                 return _dataContext.SaveChanges();
             }
             return -1;

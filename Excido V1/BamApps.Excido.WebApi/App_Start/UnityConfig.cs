@@ -6,6 +6,7 @@ using BamApps.Excido.Interface.Service;
 using BamApps.Excido.Interface.Data;
 using BamApps.Excido.Data.Context;
 using BamApps.Excido.Data.Model;
+using BamApps.Excido.Service.Validation;
 
 namespace BamApps.Excido.WebApi.App_Start
 {
@@ -44,10 +45,23 @@ namespace BamApps.Excido.WebApi.App_Start
             // container.RegisterType<IProductRepository, ProductRepository>();
 
             container.RegisterType<IDataContext, ExcidoContext>();
-            container.RegisterType<ISharedContentService, SharedContentService>();
+            container.RegisterType<ISharedContentService<SharedContentUnit>, SharedContentService>();
             container.RegisterType<IBreezeContextProvider, BreezeContextProvider>();
-            container.RegisterType<IReadRepository<SharedContentUnit>, SharedContentService>();
-            container.RegisterType<IWriteRepository<SharedContentUnit>, SharedContentService>();
+
+            container.RegisterType<IReadRepository<SharedContentUnit>, SharedContentRepository>();
+            container.RegisterType<IWriteRepository<SharedContentUnit>, SharedContentRepository>();
+
+            container.RegisterType<ICreateStampValidator<SharedContentUnit>, SharedContentCreateStampValidator>();
+            container.RegisterType<IServiceValidator<SharedContentUnit>, SharedContentServiceValidator > ();
+            container.RegisterType<ISharedContentServiceValidator<SharedContentUnit>, SharedContentServiceValidator>();
+            container.RegisterType<IGetSharedContentValidator<SharedContentUnit>, GetSharedContentValidator>();
+
+            container.RegisterType<IReadSharedContentPredicate<SharedContentUnit>, ReadSharedContentPredicate>();
+            container.RegisterType<IWriteSharedContentPredicate<SharedContentUnit>, WriteSharedContentPredicate>();
+            container.RegisterType<IGetSharedContentValidator<SharedContentUnit>, GetSharedContentValidator>();
+            container.RegisterType<IAddSharedContentValidator<SharedContentUnit>, AddSharedContentValidator>();
+            container.RegisterType<IUpdateSharedContentValidator<SharedContentUnit>, UpdateSharedContentValidator>();
+            container.RegisterType<IDeleteSharedContentValidator<SharedContentUnit>, DeleteSharedContentValidator>();
         }
     }
 }
