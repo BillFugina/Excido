@@ -17,8 +17,10 @@ namespace BamApps.Excido.Service {
 
 
         public BaseService(IDataContext dataContext, IServiceValidator<T> validator) {
-            Contract.Requires<ArgumentNullException>(dataContext != null, "dataContext is null.");
-            Contract.Requires<ArgumentNullException>(validator != null, "validator is null.");
+            if (dataContext == null)
+                throw new ArgumentNullException(nameof(dataContext), $"{nameof(dataContext)} is null.");
+            if (validator == null)
+                throw new ArgumentNullException(nameof(validator), $"{nameof(validator)} is null.");
 
             _dataContext = dataContext;
             _validator = validator;
