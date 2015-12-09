@@ -16,7 +16,10 @@ namespace BamApps.Excido.Service {
             IServiceValidator<SharedContentUnit> validator, 
             ISharedContentServiceValidator<SharedContentUnit> sharedContentServiceValidator) 
             : base(dataContext, validator) {
-            Contract.Requires<ArgumentNullException>(sharedContentServiceValidator != null, "sharedContentServiceValidator is null.");
+
+            if (sharedContentServiceValidator == null)
+                throw new ArgumentNullException(nameof(sharedContentServiceValidator), $"{nameof(sharedContentServiceValidator)} is null.");
+
             _sharedConentServiceValidator = sharedContentServiceValidator;
         }
 

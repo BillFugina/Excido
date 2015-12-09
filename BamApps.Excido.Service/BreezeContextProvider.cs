@@ -22,9 +22,12 @@ namespace BamApps.Excido.Service {
         private readonly List<KeyMapping> _keyMappings = new List<KeyMapping>();
 
         public BreezeContextProvider(ISharedContentService<SharedContentUnit> sharedContentService, IReadRepository<SharedContentUnit> readRepository, IWriteRepository<SharedContentUnit> writeRepository) {
-            Contract.Requires<ArgumentNullException>(sharedContentService != null, "sharedContentService is null.");
-            Contract.Requires<ArgumentNullException>(readRepository != null, "readRepository is null.");
-            Contract.Requires<ArgumentNullException>(writeRepository != null, "writeRepository is null.");
+            if (sharedContentService == null)
+                throw new ArgumentNullException(nameof(sharedContentService), $"{nameof(sharedContentService)} is null.");
+            if (readRepository == null)
+                throw new ArgumentNullException(nameof(readRepository), $"{nameof(readRepository)} is null.");
+            if (writeRepository == null)
+                throw new ArgumentNullException(nameof(writeRepository), $"{nameof(writeRepository)} is null.");
 
             _sharedContentService = sharedContentService;
             _readRepository = readRepository;
