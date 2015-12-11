@@ -17,9 +17,9 @@ namespace BamApps.Excido.Service.Validation {
         public SharedContentServiceValidator(
                 IReadSharedContentPredicate<SharedContentUnit> readSharedContentPredicate,
                 IWriteSharedContentPredicate<SharedContentUnit> writeSharedContentPredicate,
-                IGetSharedContentValidator<SharedContentUnit> getSharedContentValidator, 
-                IAddSharedContentValidator<SharedContentUnit> addSharedContentValidator, 
-                IUpdateSharedContentValidator<SharedContentUnit> updateSharedContentValidator, 
+                IGetSharedContentValidator<SharedContentUnit> getSharedContentValidator,
+                IAddSharedContentValidator<SharedContentUnit> addSharedContentValidator,
+                IUpdateSharedContentValidator<SharedContentUnit> updateSharedContentValidator,
                 IDeleteSharedContentValidator<SharedContentUnit> deleteSharedContentValidator) {
 
             this._readSharedContentPredicate = readSharedContentPredicate;
@@ -75,16 +75,13 @@ namespace BamApps.Excido.Service.Validation {
     }
 
     public class GetSharedContentValidator : IGetSharedContentValidator<SharedContentUnit> {
-        public GetSharedContentValidator() {
+        IExpireStampValidator<SharedContentUnit> _expireStampValidator;
+        public GetSharedContentValidator(IExpireStampValidator<SharedContentUnit> _expireStampValidator) {
+            this._expireStampValidator = _expireStampValidator;
         }
 
         public bool IsSatisfiedBy(SharedContentUnit entity) {
-            var result = false;
-            if (entity != null) {
-                var expireDate = entity.ExpireDate?.Date ?? DateTime.MaxValue;
-                result = DateTime.Now.Date <= expireDate;
-            }
-            return result;
+            return _expireStampValidator.IsSatisfiedBy(entity);
         }
     }
 

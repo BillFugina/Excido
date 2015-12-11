@@ -43,6 +43,24 @@ namespace BamApps.Excido.Service.Validation {
         }
     }
 
+    internal class AndPredicate : IPredicate {
+        private readonly IPredicate _predicate1;
+        private readonly IPredicate _predicate2;
+        public AndPredicate(IPredicate predicate1, IPredicate predicate2) {
+            if (predicate2 == null)
+                throw new ArgumentNullException(nameof(predicate2), $"{nameof(predicate2)} is null.");
+            if (predicate1 == null)
+                throw new ArgumentNullException(nameof(predicate1), $"{nameof(predicate1)} is null.");
+
+            this._predicate1 = predicate1;
+            this._predicate2 = predicate2;
+        }
+
+        public bool Test() {
+            return _predicate1.Test() && _predicate2.Test();
+        }
+    }
+
     internal class OrSpecification<T> : ISpecification<T> where T : IEntity {
         private readonly ISpecification<T> _spec1;
         private readonly ISpecification<T> _spec2;
@@ -76,6 +94,24 @@ namespace BamApps.Excido.Service.Validation {
         }
     }
 
+    internal class OrPredicate : IPredicate {
+        private readonly IPredicate _predicate1;
+        private readonly IPredicate _predicate2;
+        public OrPredicate(IPredicate predicate1, IPredicate predicate2) {
+            if (predicate2 == null)
+                throw new ArgumentNullException(nameof(predicate2), $"{nameof(predicate2)} is null.");
+            if (predicate1 == null)
+                throw new ArgumentNullException(nameof(predicate1), $"{nameof(predicate1)} is null.");
+
+            this._predicate1 = predicate1;
+            this._predicate2 = predicate2;
+        }
+
+        public bool Test() {
+            return _predicate1.Test() || _predicate2.Test();
+        }
+    }
+
     internal class NotSpecification<T> : ISpecification<T> where T : IEntity {
         private readonly ISpecification<T> _wrapped;
 
@@ -98,6 +134,20 @@ namespace BamApps.Excido.Service.Validation {
         }
     }
 
+    internal class NotPredicate : IPredicate {
+        private readonly IPredicate _predicate;
+        public NotPredicate(IPredicate predicate) {
+            if (predicate == null)
+                throw new ArgumentNullException(nameof(predicate), $"{nameof(predicate)} is null.");
+
+            this._predicate = predicate;
+        }
+
+        public bool Test() {
+            return !_predicate.Test();
+        }
+    }
+
     public static class ExtensionMethods {
         public static ISpecification<T> And<T>(this ISpecification<T> spec1, ISpecification<T> spec2) where T : IEntity {
             return new AndSpecification<T>(spec1, spec2);
@@ -109,6 +159,16 @@ namespace BamApps.Excido.Service.Validation {
 
         public static ISpecification<T> Not<T>(this ISpecification<T> spec) where T : IEntity {
             return new NotSpecification<T>(spec);
+        }
+
+        public static IPredicate And(this IPredicate predicate1, IPredicate predicate2) {
+            return new AndPredicate(predicate1, predicate2);
+        }
+        public static IPredicate Or(this IPredicate predicate1, IPredicate predicate2) {
+            return new OrPredicate(predicate1, predicate2);
+        }
+        public static IPredicate Not(this IPredicate predicate) {
+            return new NotPredicate(predicate);
         }
     }
     public static class Specification<T> where T : IEntity {

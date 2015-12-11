@@ -126,8 +126,11 @@
     <Compile Include="Validation\AddSharedContentValidatorTests.cs" />
     <Compile Include="Validation\CreateStampValidatorTests.cs" />
     <Compile Include="Validation\DeleteSharedContentValidatorTests.cs" />
+    <Compile Include="Validation\ExpireStampValidatorTests.cs" />
     <Compile Include="Validation\GetSharedContentValidatorTests.cs" />
+    <Compile Include="Validation\ReadSharedContentPredicateTests.cs" />
     <Compile Include="Validation\SharedContentCreateStampValidatorTests.cs" />
+    <Compile Include="Validation\SharedContentExpireStampValidatorTests.cs" />
     <Compile Include="Validation\SharedContentServiceValidatorTests.cs" />
   </ItemGroup>
   <ItemGroup>
