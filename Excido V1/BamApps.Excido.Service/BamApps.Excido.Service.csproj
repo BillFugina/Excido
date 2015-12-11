@@ -99,7 +99,7 @@
     <Compile Include="BaseService.cs" />
     <Compile Include="BreezeContextProvider.cs" />
     <Compile Include="NullServiceValidator.cs" />
-    <Compile Include="SharedContentServiceValidator.cs" />
+    <Compile Include="Validation\SharedContentServiceValidator.cs" />
     <Compile Include="Validation\CreateStampValidator.cs" />
     <Compile Include="IBreezeContextProvider.cs" />
     <Compile Include="SharedContentService.cs" />
