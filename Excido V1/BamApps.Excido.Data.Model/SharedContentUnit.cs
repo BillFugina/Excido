@@ -3,7 +3,7 @@ using BamApps.Excido.Interface.Data.Model;
 using System;
 namespace BamApps.Excido.Data.Model {
 
-    public class SharedContentUnit : IEntity, ICreateStamp, ISharedContentUnit {
+    public class SharedContentUnit : IEntity, ICreateStamp, ISharedContentUnit, IExpireStamp {
         public Guid Id { get; set; }
         public string Name { get; set; }
         public string Content { get; set; }

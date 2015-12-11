@@ -5,7 +5,7 @@ using BamApps.Excido.Interface.Service;
 using BamApps.Excido.Data.Model;
 
 namespace BamApps.Excido.Service.Validation {
-    public class CreateStampValidator<T> : ICreateStampValidator<T>, ICheckOriginal<T> where T : IEntity, ICreateStamp {
+    public class CreateStampValidator<T> : ICreateStampValidator<T>, ICheckOriginal<T> where T : class, IEntity, ICreateStamp {
 
         private readonly IReadRepository<T> _readRepository;
         public CreateStampValidator(IReadRepository<T> readRepository) {

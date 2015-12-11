@@ -12,8 +12,4 @@ namespace BamApps.Excido.Interface.Service {
         bool ValidateUpdate(T entity);
         bool ValidateDelete(T entity);
     }
-
-    public interface ICreateStampValidator<T> : ISpecification<T> where T : IEntity, ICreateStamp {
-    }
-
 }

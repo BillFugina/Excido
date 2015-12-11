@@ -5,7 +5,4 @@ namespace BamApps.Excido.Interface.Data {
         Guid Id { get; set; }
     }
 
-    public interface ICreateStamp {
-        DateTime Created { get; set; }
-    }
 }
