@@ -5,7 +5,7 @@ using BamApps.Excido.Interface.Data.Model;
 using BamApps.Excido.Interface.Service;
 using BamApps.Excido.Interface.Data;
 
-namespace BamApps.Excido.Service {
+namespace BamApps.Excido.Service.Validation {
     public class SharedContentServiceValidator : IServiceValidator<SharedContentUnit>, ISharedContentServiceValidator<SharedContentUnit> {
 
         private readonly IReadSharedContentPredicate<SharedContentUnit> _readSharedContentPredicate;
@@ -75,6 +75,9 @@ namespace BamApps.Excido.Service {
     }
 
     public class GetSharedContentValidator : IGetSharedContentValidator<SharedContentUnit> {
+        public GetSharedContentValidator() {
+        }
+
         public bool IsSatisfiedBy(SharedContentUnit entity) {
             var result = false;
             if (entity != null) {
