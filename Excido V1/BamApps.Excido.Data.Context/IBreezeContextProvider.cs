@@ -3,7 +3,7 @@ using BamApps.Excido.Data.Model;
 using Breeze.ContextProvider;
 using Newtonsoft.Json.Linq;
 
-namespace BamApps.Excido.Service {
+namespace BamApps.Excido.Data.Context {
     public interface IBreezeContextProvider {
         IQueryable<SharedContentUnit> SharedContentUnits();
 

@@ -43,9 +43,4 @@ namespace BamApps.Excido.Service {
         }
     }
 
-    public class SharedContentRepository : BaseService<SharedContentUnit> {
-        public SharedContentRepository(IDataContext dataContext) : base(dataContext, NullServiceValidator<SharedContentUnit>.Instance()) {
-        }
-    }
-
 }

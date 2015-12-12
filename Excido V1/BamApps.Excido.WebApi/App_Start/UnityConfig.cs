@@ -52,6 +52,7 @@ namespace BamApps.Excido.WebApi.App_Start
             container.RegisterType<IWriteRepository<SharedContentUnit>, SharedContentRepository>();
 
             container.RegisterType<ICreateStampValidator<SharedContentUnit>, SharedContentCreateStampValidator>();
+            container.RegisterType<IExpireStampValidator<SharedContentUnit>, SharedContentExpireStampValidator>();
             container.RegisterType<IServiceValidator<SharedContentUnit>, SharedContentServiceValidator > ();
             container.RegisterType<ISharedContentServiceValidator<SharedContentUnit>, SharedContentServiceValidator>();
             container.RegisterType<IGetSharedContentValidator<SharedContentUnit>, GetSharedContentValidator>();

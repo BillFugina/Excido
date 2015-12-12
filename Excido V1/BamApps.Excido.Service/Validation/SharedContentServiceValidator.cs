@@ -99,6 +99,9 @@ namespace BamApps.Excido.Service.Validation {
     public class UpdateSharedContentValidator : IUpdateSharedContentValidator<SharedContentUnit> {
         ICreateStampValidator<SharedContentUnit> _createStampValidator;
         public UpdateSharedContentValidator(ICreateStampValidator<SharedContentUnit> createStampValidator) {
+            if (createStampValidator == null)
+                throw new ArgumentNullException(nameof(createStampValidator), $"{nameof(createStampValidator)} is null.");
+
             this._createStampValidator = createStampValidator;
         }
 

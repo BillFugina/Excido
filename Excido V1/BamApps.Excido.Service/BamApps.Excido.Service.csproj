@@ -97,14 +97,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseService.cs" />
-    <Compile Include="BreezeContextProvider.cs" />
     <Compile Include="NullServiceValidator.cs" />
+    <Compile Include="SharedContentRepository.cs" />
     <Compile Include="Validation\ExpireStampValidator.cs" />
     <Compile Include="Validation\IExpireStampValidator.cs" />
     <Compile Include="Validation\SharedContentExpireStampValidator.cs" />
     <Compile Include="Validation\SharedContentServiceValidator.cs" />
     <Compile Include="Validation\CreateStampValidator.cs" />
-    <Compile Include="IBreezeContextProvider.cs" />
     <Compile Include="SharedContentService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Validation\FalsePredicate.cs" />
