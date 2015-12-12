@@ -41,10 +41,10 @@ namespace BamApps.Excido.Service {
         }
 
         public virtual IQueryable<T> GetAllWhere(Expression<Func<T, bool>> expression) {
-            if (_validator.ValidateWrite()) {
+            if (_validator.ValidateRead()) {
                 return _dataContext.GetAllWhere<T>(expression);
             }
-            return null;
+            return new List<T>().AsQueryable();
         }
 
         public virtual T GetById(Guid id) {

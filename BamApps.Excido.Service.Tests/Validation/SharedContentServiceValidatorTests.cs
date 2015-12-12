@@ -22,11 +22,11 @@ namespace BamApps.Excido.Service.Validation.Tests {
             IDeleteSharedContentValidator<SharedContentUnit> deleteSharedContentValidator = Mock.Of<IDeleteSharedContentValidator<SharedContentUnit>>();
 
             SharedContentServiceValidator target = new SharedContentServiceValidator(
-                readSharedContentPredicate, 
-                writeSharedContentPredicate, 
-                getSharedContentValidator, 
-                addSharedContentValidator, 
-                updateSharedContentValidator, 
+                readSharedContentPredicate,
+                writeSharedContentPredicate,
+                getSharedContentValidator,
+                addSharedContentValidator,
+                updateSharedContentValidator,
                 deleteSharedContentValidator);
 
             Assert.IsNotNull(target);
@@ -171,7 +171,7 @@ namespace BamApps.Excido.Service.Validation.Tests {
             DateTime now = DateTime.Now;
             SharedContentUnit sharedContentUnit = new SharedContentUnit() { Slug = slug, Content = content, Created = now };
 
-            var target = validator.ValidateGet(sharedContentUnit);
+            var target = validator.ValidateGetSlug(sharedContentUnit);
 
             Assert.IsTrue(target);
         }
@@ -199,7 +199,7 @@ namespace BamApps.Excido.Service.Validation.Tests {
             DateTime now = DateTime.Now;
             SharedContentUnit sharedContentUnit = new SharedContentUnit() { Slug = slug, Content = content, Created = now };
 
-            var target = validator.ValidateGet(sharedContentUnit);
+            var target = validator.ValidateGetSlug(sharedContentUnit);
 
             Assert.IsFalse(target);
         }
@@ -403,5 +403,6 @@ namespace BamApps.Excido.Service.Validation.Tests {
 
             Assert.IsFalse(target);
         }
+        
     }
 }

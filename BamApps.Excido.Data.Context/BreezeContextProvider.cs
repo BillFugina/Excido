@@ -11,7 +11,7 @@ using BamApps.Excido.Data.Model;
 using System.Diagnostics.Contracts;
 using System.Diagnostics.CodeAnalysis;
 
-namespace BamApps.Excido.Service {
+namespace BamApps.Excido.Data.Context {
     public class BreezeContextProvider : ContextProvider, IBreezeContextProvider {
         private static readonly object __lock = new object();
 
