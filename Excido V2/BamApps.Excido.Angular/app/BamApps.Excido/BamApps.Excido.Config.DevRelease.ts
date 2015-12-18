@@ -2,25 +2,9 @@
     export module Excido {
         export module Config {
 
-            export function Settings(): Interface.ISettings {
-                var result: Interface.ISettings;
-
-                if (BamApps.Excido.Config.Debug) {
-                    result = new BamApps.Excido.Config.Debug.Settings();
-                }
-                else if (BamApps.Excido.Config.DevRelease) {
-                    result = new BamApps.Excido.Config.DevRelease.Settings();
-                }
-                else {
-                    result = new BamApps.Excido.Config.Release.Settings();
-                }
-
-                return result;
-            }
-
-            export module Release {
+            export module DevRelease {
                 export class Settings implements Interface.ISettings {
-                    _ApiServer: string = 'api.excido.net';
+                    _ApiServer: string = 'api.dev.excido.net';
                     _ApiServicePath: string = 'breeze/ExcidoBreeze';
                     _SlugPrefix: string = 'http://exci.do/';
 

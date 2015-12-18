@@ -39,6 +39,10 @@ namespace BamApps.Excido.Angular.App_Start {
 #if DEBUG
                 .Include("~/app/BamApps.Excido/BamApps.Excido.Config.Debug.js")
 #endif
+
+#if DEV
+                .Include("~/app/BamApps.Excido/BamApps.Excido.Config.DevRelease.js")
+#endif
                 .Include("~/app/BamApps.Excido/BamApps.Excido.Config.Release.js")
 
                 .Include("~/app/BamApps/BamApps.Utils.js")
