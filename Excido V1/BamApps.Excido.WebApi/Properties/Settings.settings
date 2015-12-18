@@ -3,10 +3,10 @@
   <Profiles />
   <Settings>
     <Setting Name="LoopbackRootRedirect" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">http://localhost:59424/</Value>
+      <Value Profile="(Default)">https://localhost:44301/</Value>
     </Setting>
     <Setting Name="RootRedirect" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">http://www.excido.net</Value>
+      <Value Profile="(Default)">https://www.excido.net</Value>
     </Setting>
   </Settings>
 </SettingsFile>

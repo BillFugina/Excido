@@ -15,7 +15,8 @@ namespace BamApps.Excido.WebApi {
             config.SuppressDefaultHostAuthentication();
             config.Filters.Add(new HostAuthenticationFilter(OAuthDefaults.AuthenticationType));
 
-            var cors = new EnableCorsAttribute("http://www.excido.net, http://www.excido.info, http://excido.net, http://excido.info, http://excido.azurewebsites.net, http://localhost:59424", "*", "*");
+            var cors = new EnableCorsAttribute("http://www.excido.net, https://www.excido.net, http://www.excido.info, http://excido.net, https://excido.net, http://excido.info, http://excido.azurewebsites.net, http://localhost:59424, https://localhost:44301", "*", "*");
+
             config.EnableCors(cors);
 
             // Web API routes

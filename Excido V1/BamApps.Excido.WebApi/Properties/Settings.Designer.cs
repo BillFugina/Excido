@@ -25,7 +25,7 @@ namespace BamApps.Excido.WebApi.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost:59424/")]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://localhost:44301/")]
         public string LoopbackRootRedirect {
             get {
                 return ((string)(this["LoopbackRootRedirect"]));
@@ -34,7 +34,7 @@ namespace BamApps.Excido.WebApi.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://www.excido.net")]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://www.excido.net")]
         public string RootRedirect {
             get {
                 return ((string)(this["RootRedirect"]));
