@@ -1,0 +1,185 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{5D1B2440-B75F-4847-A80D-E1FB45B04FDB}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BamApps.Excido.Service.Tests</RootNamespace>
+    <AssemblyName>BamApps.Excido.Service.Tests</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <ReferencePath>$(ProgramFiles)\Common Files\microsoft shared\VSTT\$(VisualStudioVersion)\UITestExtensionPackages</ReferencePath>
+    <IsCodedUITest>False</IsCodedUITest>
+    <TestProjectType>UnitTest</TestProjectType>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+    <CodeContractsAssemblyMode>1</CodeContractsAssemblyMode>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeContractsEnableRuntimeChecking>False</CodeContractsEnableRuntimeChecking>
+    <CodeContractsRuntimeOnlyPublicSurface>False</CodeContractsRuntimeOnlyPublicSurface>
+    <CodeContractsRuntimeThrowOnFailure>True</CodeContractsRuntimeThrowOnFailure>
+    <CodeContractsRuntimeCallSiteRequires>False</CodeContractsRuntimeCallSiteRequires>
+    <CodeContractsRuntimeSkipQuantifiers>False</CodeContractsRuntimeSkipQuantifiers>
+    <CodeContractsRunCodeAnalysis>False</CodeContractsRunCodeAnalysis>
+    <CodeContractsNonNullObligations>True</CodeContractsNonNullObligations>
+    <CodeContractsBoundsObligations>True</CodeContractsBoundsObligations>
+    <CodeContractsArithmeticObligations>True</CodeContractsArithmeticObligations>
+    <CodeContractsEnumObligations>True</CodeContractsEnumObligations>
+    <CodeContractsRedundantAssumptions>True</CodeContractsRedundantAssumptions>
+    <CodeContractsAssertsToContractsCheckBox>True</CodeContractsAssertsToContractsCheckBox>
+    <CodeContractsRedundantTests>True</CodeContractsRedundantTests>
+    <CodeContractsMissingPublicRequiresAsWarnings>True</CodeContractsMissingPublicRequiresAsWarnings>
+    <CodeContractsMissingPublicEnsuresAsWarnings>False</CodeContractsMissingPublicEnsuresAsWarnings>
+    <CodeContractsInferRequires>True</CodeContractsInferRequires>
+    <CodeContractsInferEnsures>False</CodeContractsInferEnsures>
+    <CodeContractsInferEnsuresAutoProperties>True</CodeContractsInferEnsuresAutoProperties>
+    <CodeContractsInferObjectInvariants>False</CodeContractsInferObjectInvariants>
+    <CodeContractsSuggestAssumptions>False</CodeContractsSuggestAssumptions>
+    <CodeContractsSuggestAssumptionsForCallees>False</CodeContractsSuggestAssumptionsForCallees>
+    <CodeContractsSuggestRequires>False</CodeContractsSuggestRequires>
+    <CodeContractsNecessaryEnsures>True</CodeContractsNecessaryEnsures>
+    <CodeContractsSuggestObjectInvariants>False</CodeContractsSuggestObjectInvariants>
+    <CodeContractsSuggestReadonly>True</CodeContractsSuggestReadonly>
+    <CodeContractsRunInBackground>True</CodeContractsRunInBackground>
+    <CodeContractsShowSquigglies>True</CodeContractsShowSquigglies>
+    <CodeContractsUseBaseLine>False</CodeContractsUseBaseLine>
+    <CodeContractsEmitXMLDocs>False</CodeContractsEmitXMLDocs>
+    <CodeContractsCustomRewriterAssembly />
+    <CodeContractsCustomRewriterClass />
+    <CodeContractsLibPaths />
+    <CodeContractsExtraRewriteOptions />
+    <CodeContractsExtraAnalysisOptions />
+    <CodeContractsSQLServerOption />
+    <CodeContractsBaseLineFile />
+    <CodeContractsCacheAnalysisResults>True</CodeContractsCacheAnalysisResults>
+    <CodeContractsSkipAnalysisIfCannotConnectToCache>False</CodeContractsSkipAnalysisIfCannotConnectToCache>
+    <CodeContractsFailBuildOnWarnings>False</CodeContractsFailBuildOnWarnings>
+    <CodeContractsBeingOptimisticOnExternal>True</CodeContractsBeingOptimisticOnExternal>
+    <CodeContractsRuntimeCheckingLevel>Full</CodeContractsRuntimeCheckingLevel>
+    <CodeContractsReferenceAssembly>%28none%29</CodeContractsReferenceAssembly>
+    <CodeContractsAnalysisWarningLevel>0</CodeContractsAnalysisWarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;CONTRACTS_FULL</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Breeze.ContextProvider, Version=1.5.0.0, Culture=neutral, PublicKeyToken=f6085f1a45e2ac59, processorArchitecture=MSIL">
+      <HintPath>..\packages\Breeze.Server.ContextProvider.1.5.4\lib\Breeze.ContextProvider.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Moq, Version=4.2.1510.2205, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
+      <HintPath>..\packages\Moq.4.2.1510.2205\lib\net40\Moq.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MSTestExtensions, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MSTestExtensions.4.0.0\lib\MSTestExtensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+  </ItemGroup>
+  <Choose>
+    <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+      </ItemGroup>
+    </When>
+    <Otherwise>
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework">
+          <Private>False</Private>
+        </Reference>
+      </ItemGroup>
+    </Otherwise>
+  </Choose>
+  <ItemGroup>
+    <Compile Include="BaseServiceTests.cs" />
+    <Compile Include="NullServiceValidatorTests.cs" />
+    <Compile Include="PredicateTests.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SharedContentRepositoryTests.cs" />
+    <Compile Include="SharedContentServiceTests.cs" />
+    <Compile Include="SpecificationTests.cs" />
+    <Compile Include="Validation\AddSharedContentValidatorTests.cs" />
+    <Compile Include="Validation\CreateStampValidatorTests.cs" />
+    <Compile Include="Validation\DeleteSharedContentValidatorTests.cs" />
+    <Compile Include="Validation\ExpireStampValidatorTests.cs" />
+    <Compile Include="Validation\GetSharedContentValidatorTests.cs" />
+    <Compile Include="Validation\ReadSharedContentPredicateTests.cs" />
+    <Compile Include="Validation\SharedContentCreateStampValidatorTests.cs" />
+    <Compile Include="Validation\SharedContentExpireStampValidatorTests.cs" />
+    <Compile Include="Validation\SharedContentServiceValidatorTests.cs" />
+    <Compile Include="Validation\UpdateSharedContentValidatorTests.cs" />
+    <Compile Include="Validation\WriteSharedContentPredicateTests.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BamApps.Excido.Data.Model\BamApps.Excido.Data.Model.csproj">
+      <Project>{ca9c930a-405b-42e6-84f7-c2f2fd734616}</Project>
+      <Name>BamApps.Excido.Data.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BamApps.Excido.Interface\BamApps.Excido.Interface.csproj">
+      <Project>{23a2ddbe-8a4e-4424-a586-4dfd35b189f7}</Project>
+      <Name>BamApps.Excido.Interface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BamApps.Excido.Service\BamApps.Excido.Service.csproj">
+      <Project>{32c40257-3db8-451c-b3fe-ff57779b5cbc}</Project>
+      <Name>BamApps.Excido.Service</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Choose>
+    <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.CodedUITestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="Microsoft.VisualStudio.TestTools.UITest.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="Microsoft.VisualStudio.TestTools.UITest.Extension, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="Microsoft.VisualStudio.TestTools.UITesting, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+      </ItemGroup>
+    </When>
+  </Choose>
+  <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
