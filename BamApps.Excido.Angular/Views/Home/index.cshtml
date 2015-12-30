@@ -118,7 +118,7 @@
                                                 <div ng-show="(unit.Content == null || unit.Content == '') && !unit.isEditingContent" ng-click="unit.editContent()" class="pull-left">
                                                     <span class="placeholder">Content</span>
                                                 </div>
-                                                <span ng-hide="unit.isEditingContent" ng-click="unit.editContent()">{{unit.Content}}</span>
+                                                <span ng-hide="unit.isEditingContent" ng-click="unit.editContent()">{{unit.Content | collapse}}</span>
                                                 <input ng-show="unit.isEditingContent"
                                                        ng-model="unit.Content"
                                                        sync-focus-with="unit.isEditingContent"

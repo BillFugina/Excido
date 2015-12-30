@@ -44,6 +44,7 @@ namespace BamApps.Excido.Angular.App_Start {
                 .Include("~/app/BamApps/BamApps.Utils.js")
                 .Include("~/app/BamApps/BamApps.Logger.js")
 
+                .Include("~/app/BamApps/BamApps.Filter.js")
                 .Include("~/app/BamApps/BamApps.Interface.js")
                 .Include("~/app/BamApps/BamApps.Model.js")
                 .Include("~/app/BamApps/BamApps.Service.js")

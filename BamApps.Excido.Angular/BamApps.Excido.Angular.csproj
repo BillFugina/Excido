@@ -921,6 +921,7 @@
     <TypeScriptCompile Include="app\BamApps.Excido\BamApps.Excido.Model.ts" />
     <TypeScriptCompile Include="app\BamApps.Excido\BamApps.Excido.ts" />
     <TypeScriptCompile Include="app\BamApps\BamApps.Directive.ts" />
+    <TypeScriptCompile Include="app\BamApps\BamApps.Filter.ts" />
     <TypeScriptCompile Include="app\BamApps\BamApps.Logger.ts" />
     <TypeScriptCompile Include="app\BamApps\BamApps.Model.ts" />
     <TypeScriptCompile Include="app\BamApps\BamApps.Service.ts" />
