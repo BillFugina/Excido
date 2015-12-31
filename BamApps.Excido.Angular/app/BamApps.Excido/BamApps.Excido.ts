@@ -9,7 +9,7 @@
         app.directive("clipboard", ["$timeout", "$rootScope", BamApps.Directive.ClipboardDirective]);
         app.factory("entityManagerFactory", ["$q", BamApps.Service.breezeEntityManagerFactory]);
         app.factory("sharedContentUnitServiceFactory", ["$q", "entityManagerFactory", Excido.Service.SharedContentUnitServiceFactory]);
-        app.controller("shared-units", ["$q", "sharedContentUnitServiceFactory", Excido.Controller.SharedUnitsController]);
+        app.controller("shared-units", ["$rootScope", "$q", "sharedContentUnitServiceFactory", Excido.Controller.SharedUnitsController]);
         app.filter("collapse", Filter.CollapseFilter);
     }
 }

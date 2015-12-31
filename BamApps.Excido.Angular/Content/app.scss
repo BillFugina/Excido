@@ -139,7 +139,7 @@ button.btn {
         outline: none;
         border: none;
         box-shadow: none;
-        resize:none;
+        resize: none;
     }
 }
 
@@ -338,6 +338,14 @@ input[uib-datepicker-popup] {
         background: none;
         filter: none;
     }
+    
+    .pop-edit {
+        position: absolute;
+        z-index: 99999;
+        background-color: white;
+        width: 95%;
+    }
+
 }
 
 /*Large*/
@@ -349,6 +357,13 @@ input[uib-datepicker-popup] {
     .jumbotron {
         padding-left: 20px;
         padding-right: 20px;
+    }
+
+    .pop-edit {
+        position: absolute;
+        z-index: 99999;
+        background-color: white;
+        width: 95%;
     }
 }
 

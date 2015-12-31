@@ -3,7 +3,7 @@
         export module Controller {
 
             export class SharedUnitsController extends BamApps.Model.BamAppsBase {
-                static $inject: string[] = ["$q", "sharedContentUnitServiceFactory"];
+                static $inject: string[] = ["$rootScope", "$q", "sharedContentUnitServiceFactory"];
 
                 units: Interface.Model.ISharedContentUnit[];
 
@@ -13,7 +13,7 @@
 
                 public ready: boolean = false;
 
-                constructor(private $q: ng.IQService, private _sharedContentUnitServiceFactory: BamApps.Excido.Interface.ISharedContentUnitServiceFactory) {
+                constructor(private $rootScope : ng.IRootScopeService, $q: ng.IQService, private _sharedContentUnitServiceFactory: BamApps.Excido.Interface.ISharedContentUnitServiceFactory) {
                     super();
                     this.title = "BamApps.Excido.Controller.SharedUnitsController";
                     var self = this;
@@ -77,6 +77,14 @@
                     this.units.push(newUnit);
                     this._editingSharedContentUnit = newUnit;
                     newUnit.isEditingName = true;
+                }
+
+                public editContent(unit: Interface.Model.ISharedContentUnit) {
+                    unit.editContent();
+                    setTimeout(() => {
+                        this.$rootScope.$broadcast('elastic:adjust');
+                    });
+                    
                 }
 
                 public isEditing(unit: Interface.Model.ISharedContentUnit): boolean {
