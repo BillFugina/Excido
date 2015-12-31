@@ -252,7 +252,12 @@ input[uib-datepicker-popup] {
     border-bottom-style: none;
     border-bottom-width: 0;
     background: none;
-    filter: none; } }
+    filter: none; }
+  .pop-edit {
+    position: absolute;
+    z-index: 99999;
+    background-color: white;
+    width: 95%; } }
 
 /*Large*/
 @media (min-width: 1200px) {
@@ -260,5 +265,10 @@ input[uib-datepicker-popup] {
     background-position: left; }
   .jumbotron {
     padding-left: 20px;
-    padding-right: 20px; } }
+    padding-right: 20px; }
+  .pop-edit {
+    position: absolute;
+    z-index: 99999;
+    background-color: white;
+    width: 95%; } }
 
