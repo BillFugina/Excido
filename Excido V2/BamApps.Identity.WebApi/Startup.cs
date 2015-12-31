@@ -25,46 +25,42 @@ namespace BamApps.Identity.WebApi {
 
         public void Configuration(IAppBuilder app) {
             HttpConfiguration httpConfig = new HttpConfiguration();
+            app.UseForcedHttps(44300);
 
-            //ConfigureOAuth(app);
+            ConfigureUserAndRoleManagers(app);
+            //ConfigureOAuthTokenConsumption(app);
 
-            ConfigureOAuthTokenGeneration(app);
-
-            ConfigureOAuthTokenConsumption(app);
-
+            ConfigureOAuth(app);
             ConfigureSocialOAuth(app);
 
             ConfigureWebApi(httpConfig);
 
             app.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
-
             app.UseWebApi(httpConfig);
 
         }
 
 
         public void ConfigureOAuth(IAppBuilder app) {
+            //use a cookie to temporarily store information about a user logging in with a third party login provider
+            app.UseExternalSignInCookie(Microsoft.AspNet.Identity.DefaultAuthenticationTypes.ExternalCookie);
+            OAuthBearerOptions = new OAuthBearerAuthenticationOptions();
+
             OAuthAuthorizationServerOptions OAuthServerOptions = new OAuthAuthorizationServerOptions() {
                 AllowInsecureHttp = true,
                 TokenEndpointPath = new PathString("/token"),
                 AccessTokenExpireTimeSpan = TimeSpan.FromMinutes(30),
                 Provider = new SimpleAuthorizationServerProvider(),
-                RefreshTokenProvider = new SimpleRefreshTokenProvider()
+                //RefreshTokenProvider = new SimpleRefreshTokenProvider()
             };
 
             // Token Generation
             app.UseOAuthAuthorizationServer(OAuthServerOptions);
-            app.UseOAuthBearerAuthentication(new OAuthBearerAuthenticationOptions());
-
+            app.UseOAuthBearerAuthentication(OAuthBearerOptions);
         }
 
 
         private void ConfigureSocialOAuth(IAppBuilder app) {
-
-            //use a cookie to temporarily store information about a user logging in with a third party login provider
-            app.UseExternalSignInCookie(Microsoft.AspNet.Identity.DefaultAuthenticationTypes.ExternalCookie);
-            OAuthBearerOptions = new OAuthBearerAuthenticationOptions();
-
             //Configure Google External Login
             googleAuthOptions = new GoogleOAuth2AuthenticationOptions() {
                 ClientId = "775348847368-d6h37j3bu9bun5m4msl85229mqc6mvjf.apps.googleusercontent.com",
@@ -75,25 +71,11 @@ namespace BamApps.Identity.WebApi {
             app.UseGoogleAuthentication(googleAuthOptions);
         }
 
-        private void ConfigureOAuthTokenGeneration(IAppBuilder app) {
+        private void ConfigureUserAndRoleManagers(IAppBuilder app) {
             // Configure the db context and user manager to use a single instance per request
             app.CreatePerOwinContext(ApplicationDbContext.Create);
             app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
             app.CreatePerOwinContext<ApplicationRoleManager>(ApplicationRoleManager.Create);
-            app.UseForcedHttps(44300);
-
-            OAuthAuthorizationServerOptions OAuthServerOptions = new OAuthAuthorizationServerOptions() {
-                //For Dev enviroment only (on production should be AllowInsecureHttp = false)
-                AllowInsecureHttp = true,
-                TokenEndpointPath = new PathString("/oauth/token"),
-                AccessTokenExpireTimeSpan = TimeSpan.FromDays(1),
-                Provider = new CustomOAuthProvider(),
-                AccessTokenFormat = new CustomJwtFormat("http://localhost:55185")
-            };
-
-            // OAuth 2.0 Bearer Access Token Generation
-            app.UseOAuthAuthorizationServer(OAuthServerOptions);
-
         }
 
         private void ConfigureOAuthTokenConsumption(IAppBuilder app) {
@@ -113,6 +95,7 @@ namespace BamApps.Identity.WebApi {
                     }
                 });
         }
+
         private void ConfigureWebApi(HttpConfiguration config) {
             config.MapHttpAttributeRoutes();
 

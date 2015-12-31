@@ -131,6 +131,7 @@
     <Content Include="Scripts\breeze.min.js" />
     <Content Include="Scripts\clipboard.js" />
     <Content Include="Scripts\clipboard.min.js" />
+    <Content Include="Scripts\elastic.js" />
     <Content Include="Scripts\i18n\angular-locale_aa-dj.js" />
     <Content Include="Scripts\i18n\angular-locale_aa-er.js" />
     <Content Include="Scripts\i18n\angular-locale_aa-et.js" />
@@ -925,6 +926,7 @@
     <TypeScriptCompile Include="app\BamApps.Excido\BamApps.Excido.Model.ts" />
     <TypeScriptCompile Include="app\BamApps.Excido\BamApps.Excido.ts" />
     <TypeScriptCompile Include="app\BamApps\BamApps.Directive.ts" />
+    <TypeScriptCompile Include="app\BamApps\BamApps.Filter.ts" />
     <TypeScriptCompile Include="app\BamApps\BamApps.Logger.ts" />
     <TypeScriptCompile Include="app\BamApps\BamApps.Model.ts" />
     <TypeScriptCompile Include="app\BamApps\BamApps.Service.ts" />

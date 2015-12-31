@@ -18,6 +18,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
+using System.Web.Http.Results;
 
 namespace BamApps.Identity.WebApi.Controllers {
     [RoutePrefix("api/accounts")]
@@ -28,6 +29,19 @@ namespace BamApps.Identity.WebApi.Controllers {
             authRepository = new AuthRepository();
         }
 
+
+        [HttpGet]
+        [Route("hello")]
+        public string Hello() {
+            return "Hello World";
+        }
+
+        [HttpGet]
+        [Route("hellouser")]
+        [Authorize]
+        public string HelloUser() {
+            return "Hello User";
+        }
 
 
         [Authorize(Roles = "Admin")]
@@ -224,25 +238,18 @@ namespace BamApps.Identity.WebApi.Controllers {
                 return InternalServerError();
             }
 
-            if (externalLogin.LoginProvider != provider) {
+            if (externalLogin.Provider != provider) {
                 Authentication.SignOut(DefaultAuthenticationTypes.ExternalCookie);
                 return new ChallengeResult(provider, this);
             }
 
 
-            ApplicationUser user = await AppUserManager.FindAsync(new UserLoginInfo(externalLogin.LoginProvider, externalLogin.ProviderKey));
+            ApplicationUser user = await AppUserManager.FindAsync(new UserLoginInfo(externalLogin.Provider, externalLogin.ProviderKey));
 
-            bool hasRegistered = user != null;
-
-            redirectUri = string.Format("{0}#external_access_token={1}&provider={2}&haslocalaccount={3}&external_user_name={4}",
-                                            redirectUri,
-                                            externalLogin.ExternalAccessToken,
-                                            externalLogin.LoginProvider,
-                                            hasRegistered.ToString(),
-                                            externalLogin.UserName);
-
-            return Redirect(redirectUri);
-
+            ExternalLoginResponse externalLoginResponse = externalLogin.GenerateResponse(isRegistered: user != null);
+            HttpResponseMessage httpResponseMessage = Request.CreateResponse(externalLoginResponse);
+            ResponseMessageResult result = base.ResponseMessage(httpResponseMessage);
+            return result;
         }
 
         private string ValidateClientAndRedirectUri(HttpRequestMessage request, ref string redirectUriOutput) {
@@ -289,43 +296,12 @@ namespace BamApps.Identity.WebApi.Controllers {
 
             if (queryStrings == null) return null;
 
-            var match = queryStrings.FirstOrDefault(keyValue => string.Compare(keyValue.Key, key, true) == 0);
+            var match = queryStrings.FirstOrDefault(keyValue => string.Compare(keyValue.Key, key, StringComparison.CurrentCultureIgnoreCase) == 0);
 
             if (string.IsNullOrEmpty(match.Value)) return null;
 
             return match.Value;
         }
-
-        private class ExternalLoginData {
-            public string LoginProvider { get; set; }
-            public string ProviderKey { get; set; }
-            public string UserName { get; set; }
-            public string ExternalAccessToken { get; set; }
-
-            public static ExternalLoginData FromIdentity(ClaimsIdentity identity) {
-                if (identity == null) {
-                    return null;
-                }
-
-                Claim providerKeyClaim = identity.FindFirst(ClaimTypes.NameIdentifier);
-
-                if (providerKeyClaim == null || String.IsNullOrEmpty(providerKeyClaim.Issuer) || String.IsNullOrEmpty(providerKeyClaim.Value)) {
-                    return null;
-                }
-
-                if (providerKeyClaim.Issuer == ClaimsIdentity.DefaultIssuer) {
-                    return null;
-                }
-
-                return new ExternalLoginData {
-                    LoginProvider = providerKeyClaim.Issuer,
-                    ProviderKey = providerKeyClaim.Value,
-                    UserName = identity.FindFirstValue(ClaimTypes.Name),
-                    ExternalAccessToken = identity.FindFirstValue("ExternalAccessToken"),
-                };
-            }
-        }
-
 
         private async Task<ParsedExternalAccessToken> VerifyExternalAccessToken(string provider, string accessToken) {
             ParsedExternalAccessToken parsedToken = null;
@@ -412,53 +388,56 @@ namespace BamApps.Identity.WebApi.Controllers {
         // POST api/Account/RegisterExternal
         [AllowAnonymous]
         [Route("RegisterExternal")]
-        public async Task<IHttpActionResult> RegisterExternal(RegisterExternalBindingModel model) {
+        [HttpPost]
+        public async Task<IHttpActionResult> RegisterExternal(RegisterExternalBindingModel externalBindingModel) {
 
             if (!ModelState.IsValid) {
                 return BadRequest(ModelState);
             }
 
-            var verifiedAccessToken = await VerifyExternalAccessToken(model.Provider, model.ExternalAccessToken);
+            var verifiedAccessToken = await VerifyExternalAccessToken(externalBindingModel.Provider, externalBindingModel.ExternalAccessToken);
             if (verifiedAccessToken == null) {
                 return BadRequest("Invalid Provider or External Access Token");
             }
 
-            //IdentityUser user = await _repo.FindAsync(new UserLoginInfo(model.Provider, verifiedAccessToken.user_id));
-            ApplicationUser user = await AppUserManager.FindAsync(new UserLoginInfo(model.Provider, verifiedAccessToken.user_id));
+            var userName = externalBindingModel.Email;
 
+            ApplicationUser user = await AppUserManager.FindAsync(new UserLoginInfo(externalBindingModel.Provider, verifiedAccessToken.user_id));
 
             bool hasRegistered = user != null;
-
             if (hasRegistered) {
                 return BadRequest("External user is already registered");
             }
 
+            user = AppUserManager.FindByEmail(externalBindingModel.Email) ?? AppUserManager.FindByName(userName);
+            if (user == null) {
+                user = new ApplicationUser() {
+                    UserName = userName,
+                    JoinDate = DateTime.Now.Date,
+                    Email = externalBindingModel.Email,
+                    FirstName = externalBindingModel.FirstName,
+                    LastName = externalBindingModel.LastName
+                };
 
-            user = new ApplicationUser() {
-                UserName = model.UserName,
-                JoinDate = DateTime.Now.Date,
-            };
+                IdentityResult identityResult = await this.AppUserManager.CreateAsync(user);
 
-            IdentityResult result = await this.AppUserManager.CreateAsync(user);
-
-
-
-            if (!result.Succeeded) {
-                return GetErrorResult(result);
+                if (!identityResult.Succeeded) {
+                    return GetErrorResult(identityResult);
+                }
             }
 
-            var info = new ExternalLoginInfo() {
-                DefaultUserName = model.UserName,
-                Login = new UserLoginInfo(model.Provider, verifiedAccessToken.user_id)
+            var externalLoginInfo = new ExternalLoginInfo() {
+                DefaultUserName = userName,
+                Login = new UserLoginInfo(externalBindingModel.Provider, verifiedAccessToken.user_id)
             };
 
-            result = await AppUserManager.AddLoginAsync(user.Id, info.Login);
+            IdentityResult result = await AppUserManager.AddLoginAsync(user.Id, externalLoginInfo.Login);
             if (!result.Succeeded) {
                 return GetErrorResult(result);
             }
 
             //generate access token response
-            var accessTokenResponse = GenerateLocalAccessTokenResponse(model.UserName);
+            var accessTokenResponse = GenerateLocalAccessTokenResponse(userName);
 
             return Ok(accessTokenResponse);
         }
@@ -491,25 +470,5 @@ namespace BamApps.Identity.WebApi.Controllers {
             return Ok(accessTokenResponse);
 
         }
-
-        private string FetchUsersEmail(string googleAccessToken) {
-            var emailRequest = @"https://www.googleapis.com/userinfo/email?alt=json&access_token=" + googleAccessToken;
-            string jsonString;
-            var request = WebRequest.Create(emailRequest);
-
-            using (var response = (HttpWebResponse)request.GetResponse()) {
-                using (var dataStream = response.GetResponseStream()) {
-                    using (var reader = new StreamReader(dataStream)) {
-                        jsonString = reader.ReadToEnd();
-                    }
-                }
-            }
-
-            var json = JToken.Parse(jsonString);
-            var currentGoogleEmail = json["data"]["email"].Value<string>();
-
-            return currentGoogleEmail;
-        }
-
     }
 }

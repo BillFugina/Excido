@@ -183,6 +183,7 @@
   <ItemGroup>
     <Content Include="index.html" />
     <Content Include="packages.config" />
+    <Content Include="Testing OAuth.json.postman_collection" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -211,6 +212,7 @@
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\ApplicationTypes.cs" />
     <Compile Include="Models\ExternalLoginModels.cs" />
+    <Compile Include="Models\IExternalLoginInfo.cs" />
     <Compile Include="Models\ModelFactory.cs" />
     <Compile Include="Infrastructure\ApplicationDbContext.cs" />
     <Compile Include="Infrastructure\ApplicationUser.cs" />

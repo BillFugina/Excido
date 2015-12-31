@@ -11,6 +11,11 @@ using Microsoft.Owin.Security.OAuth;
 namespace BamApps.Identity.WebApi.Providers {
 
     public class SimpleAuthorizationServerProvider : OAuthAuthorizationServerProvider {
+
+        public override async Task ValidateClientAuthentication(OAuthValidateClientAuthenticationContext context) {
+            context.Validated();
+        }
+
         public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context) {
 
             var allowedOrigin = context.OwinContext.Get<string>("as:clientAllowedOrigin");
