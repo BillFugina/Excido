@@ -62,16 +62,16 @@
                         <div class="row relative">
                             <div class="col-xs-10 col-sm-11 col-md-10">
                                 <div class="row">
-                                    <div class="col-xs12 col-sm6 col-md-3">
+                                    <div class="col-xs12 col-md-3">
                                         <strong>Name</strong>
                                     </div>
-                                    <div class="col-xs12 col-sm6 col-md-3">
+                                    <div class="col-xs12 col-md-3">
                                         <strong>Content</strong>
                                     </div>
-                                    <div class="col-xs12 col-sm6 col-md-3">
+                                    <div class="col-xs12 col-md-3">
                                         <strong>Short Link</strong>
                                     </div>
-                                    <div class="col-xs12 col-sm6 col-md-3">
+                                    <div class="col-xs12 col-md-3">
                                         <strong>Expiration</strong>
                                     </div>
                                 </div>
@@ -84,8 +84,8 @@
                         <div class="row relative">
                             <div class="col-xs-10 col-sm-11 col-md-10">
                                 <div class="row">
-                                    <div class="col-xs-12 col-sm-6 col-md-3 bottom-line">
-                                        <div class="row label-head hidden-md hidden-lg">
+                                    <div class="col-xs-12 col-md-3 bottom-line">
+                                        <div class="row lab-five hidden-md hidden-lg">
                                             <div class="col-xs-12">
                                                 <span class="small light">Name</span>
                                             </div>
@@ -102,35 +102,36 @@
                                                        on-enter-key="unit.stopEditingName()"
                                                        on-tab-key="unit.editContent()"
                                                        ng-blur="unit.stopEditingName()" />
-                                                <i class="fa fa-pencil fa-2x placeholder pull-right"></i>
+                                                <i ng-hide="unit.isEditingName" class="fa fa-pencil fa-2x placeholder pull-right"></i>
                                             </div>
                                         </div>
 
                                     </div>
-                                    <div class="col-xs-12 col-sm-6 col-md-3 bottom-line">
-                                        <div class="row label-head hidden-md hidden-lg">
+                                    <div class="col-xs-12 col-md-3 bottom-line">
+                                        <div class="row lab-five hidden-md hidden-lg">
                                             <div class="col-xs-12">
                                                 <span class="small light">Content</span>
                                             </div>
                                         </div>
-                                        <div class="row click-to-edit" ng-click="unit.editContent()" ng-class="{'is-editing': unit.isEditingContent}">
+                                        <div class="row click-to-edit" ng-click="sharedunits.editContent(unit)" ng-class="{'is-editing': unit.isEditingContent, 'pop-edit' : unit.isEditingContent}">
                                             <div class="col-xs-12">
                                                 <div ng-show="(unit.Content == null || unit.Content == '') && !unit.isEditingContent" ng-click="unit.editContent()" class="pull-left">
                                                     <span class="placeholder">Content</span>
                                                 </div>
-                                                <span ng-hide="unit.isEditingContent" ng-click="unit.editContent()">{{unit.Content}}</span>
-                                                <input ng-show="unit.isEditingContent"
-                                                       ng-model="unit.Content"
-                                                       sync-focus-with="unit.isEditingContent"
-                                                       on-enter-key="unit.stopEditingContent()"
-                                                       on-tab-key="unit.editSlug()"
-                                                       ng-blur="unit.stopEditingContent()" />
-                                                <i class="fa fa-pencil fa-2x placeholder pull-right"></i>
+                                                <span ng-hide="unit.isEditingContent" ng-click="unit.editContent()">{{unit.Content | collapse}}</span>
+                                                <textarea msd-elastic rows="1"
+                                                          ng-show="unit.isEditingContent"
+                                                          ng-model="unit.Content"
+                                                          sync-focus-with="unit.isEditingContent"
+                                                          on-enter-key="unit.stopEditingContent()"
+                                                          on-tab-key="unit.editSlug()"
+                                                          ng-blur="unit.stopEditingContent()"></textarea>
+                                                <i ng-hide="unit.isEditingContent" class="fa fa-pencil fa-2x placeholder pull-right"></i>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-xs-12 col-sm-6 col-md-3 bottom-line">
-                                        <div class="row label-head hidden-md hidden-lg">
+                                    <div class="col-xs-12 col-md-3 bottom-line">
+                                        <div class="row lab-five hidden-md hidden-lg">
                                             <div class="col-xs-12">
                                                 <span class="small light">Slug</span>
                                             </div>
@@ -147,12 +148,12 @@
                                                        sync-focus-with="unit.isEditingSlug"
                                                        on-enter-key="unit.stopEditingSlug()"
                                                        ng-blur="unit.stopEditingSlug()" />
-                                                <i class="fa fa-pencil fa-2x placeholder pull-right"></i>
+                                                <i ng-hide="unit.isEditingSlug" class="fa fa-pencil fa-2x placeholder pull-right"></i>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-xs-12 col-sm-6 col-md-3 bottom-line">
-                                        <div class="row label-head hidden-md hidden-lg">
+                                    <div class="col-xs-12 col-md-3 bottom-line">
+                                        <div class="row lab-five hidden-md hidden-lg">
                                             <div class="col-xs-12">
                                                 <span class="small light">Expiration</span>
                                             </div>
@@ -165,10 +166,10 @@
                                                        is-open="unit.isPickingExpireDate"
                                                        datepicker-append-to-body="true"
                                                        ng-blur="unit.stopPickingExpireDate()"
-                                                       ng-model=" unit.ExpireDate"
+                                                       ng-model="unit.ExpireDate"
                                                        ng-model-options="{ updateOn: 'blur' }"
                                                        on-enter-key="unit.stopEditingExpireDate()" />
-                                                <i ng-click="unit.pickExpireDate($event)" class="fa fa-calendar fa-2x placeholder pull-right"></i>
+                                                <i ng-hide="unit.isPickingExpireDate" ng-click="unit.pickExpireDate($event)" class="fa fa-calendar fa-2x placeholder pull-right"></i>
                                             </div>
                                         </div>
                                     </div>
