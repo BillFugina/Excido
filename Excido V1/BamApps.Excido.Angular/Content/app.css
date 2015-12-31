@@ -101,6 +101,12 @@ button.btn i.fa {
     outline: none;
     border: none;
     box-shadow: none; }
+  .click-to-edit textarea {
+    width: 100%;
+    outline: none;
+    border: none;
+    box-shadow: none;
+    resize: none; }
 
 .click-to-edit:hover {
   border: 1px solid lightgray;
@@ -122,6 +128,8 @@ div.is-editing {
 
 .vertical-align {
   display: flex;
+  -ms-flex-direction: row;
+  -webkit-flex-direction: row;
   flex-direction: row; }
 
 .vertical-align > [class^="col-"],
@@ -167,7 +175,7 @@ ul.list-group {
 .clickable:hover {
   text-shadow: 1px 1px 5px #000000; }
 
-.row.label-head {
+.row.labl-five {
   margin-bottom: -5px;
   margin-top: 5px; }
 
@@ -175,9 +183,9 @@ div.bottom-line {
   border-bottom-color: #efefef;
   border-bottom-style: solid;
   border-bottom-width: 1px;
-  background: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0) 0%, rgba(240, 240, 240, 0) 93%, rgba(239, 239, 239, 0.65) 100%);
-  background: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0) 0%, rgba(240, 240, 240, 0) 93%, rgba(239, 239, 239, 0.65) 100%);
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0) 0%, rgba(240, 240, 240, 0) 93%, rgba(239, 239, 239, 0.65) 100%);
+  background: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0) 0, rgba(240, 240, 240, 0) 93%, rgba(239, 239, 239, 0.65) 100%);
+  background: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0) 0, rgba(240, 240, 240, 0) 93%, rgba(239, 239, 239, 0.65) 100%);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0) 0, rgba(240, 240, 240, 0) 93%, rgba(239, 239, 239, 0.65) 100%);
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#a6efefef',GradientType=1 ); }
 
 input[uib-datepicker-popup] {
