@@ -13,6 +13,7 @@ namespace BamApps.Identity.WebApi.Providers {
     public class SimpleAuthorizationServerProvider : OAuthAuthorizationServerProvider {
 
         public override async Task ValidateClientAuthentication(OAuthValidateClientAuthenticationContext context) {
+            await base.ValidateClientAuthentication(context);
             context.Validated();
         }
 
