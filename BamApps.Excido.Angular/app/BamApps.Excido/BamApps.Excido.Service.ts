@@ -8,7 +8,7 @@
 
                 function newSharedContentUnitService(): ng.IPromise<Interface.ISharedContentUnitService> {
                     var deferred = $q.defer<Interface.ISharedContentUnitService>();
-                    var settings = Config.Settings();
+                    var settings = Configuration.Settings;
                     //entityManagerFactory.newEntityManager('excidowebapi.azurewebsites.net', 'breeze/ExcidoBreeze')
                     entityManagerFactory.newEntityManager(settings.ApiServer, settings.ApiServicePath)
                         .then(em => {

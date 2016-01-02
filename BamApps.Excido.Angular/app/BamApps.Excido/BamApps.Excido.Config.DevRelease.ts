@@ -19,6 +19,19 @@
                     get SlugPrefix() {
                         return this._SlugPrefix;
                     }
+
+
+                    RouteProvider($routeProvider: angular.route.IRouteProvider) {
+                        $routeProvider.when('/shared-units', {
+                            templateUrl: 'app/BamApps.Excido.View/shared-units.html',
+                            controller: 'shared-units',
+                            controllerAs: 'sharedunits'
+                        })
+
+                        $routeProvider.otherwise({
+                            redirectTo: '/shared-units'
+                        })
+                    }
                 }
             }
         }
