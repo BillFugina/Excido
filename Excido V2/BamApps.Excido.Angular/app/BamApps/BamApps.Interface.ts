@@ -6,7 +6,7 @@
         }
 
         export interface IBreezeEntityManagerFactory {
-            newEntityManager: (hostName : string, servicePath : string) => ng.IPromise<breeze.EntityManager>;
+            getEntityManager: (hostName : string, servicePath : string) => ng.IPromise<breeze.EntityManager>;
         }
 
         export interface IReadRepository<T> {
