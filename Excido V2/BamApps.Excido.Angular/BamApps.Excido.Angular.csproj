@@ -44,6 +44,7 @@
     <Content Include="apple-touch-icon-76x76.png" />
     <Content Include="apple-touch-icon-precomposed.png" />
     <Content Include="apple-touch-icon.png" />
+    <Content Include="app\BamApps.Excido.View\shared-units.html" />
     <Content Include="browserconfig.xml" />
     <Content Include="Content\app.css">
       <DependentUpon>app.scss</DependentUpon>
@@ -920,6 +921,7 @@
     <TypeScriptCompile Include="app\BamApps.Excido\BamApps.Excido.Config.Debug.ts" />
     <TypeScriptCompile Include="app\BamApps.Excido\BamApps.Excido.Config.DevRelease.ts" />
     <TypeScriptCompile Include="app\BamApps.Excido\BamApps.Excido.Config.Release.ts" />
+    <TypeScriptCompile Include="app\BamApps.Excido\BamApps.Excido.Configuration.ts" />
     <TypeScriptCompile Include="app\BamApps.Excido\BamApps.Excido.Controller.ts" />
     <TypeScriptCompile Include="app\BamApps.Excido\BamApps.Excido.Interface.ts" />
     <TypeScriptCompile Include="app\BamApps.Excido\BamApps.Excido.Service.ts" />
@@ -1104,6 +1106,7 @@
   <PropertyGroup Condition="'$(Configuration)' == 'Release'">
     <TypeScriptRemoveComments>true</TypeScriptRemoveComments>
     <TypeScriptSourceMap>false</TypeScriptSourceMap>
+    <DefineConstants>RELEASE</DefineConstants>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
 </Project>

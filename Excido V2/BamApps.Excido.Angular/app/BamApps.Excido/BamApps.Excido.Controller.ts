@@ -100,21 +100,21 @@
                 }
 
                 public get slugPrefix() {
-                    return Config.Settings().SlugPrefix;
+                    return Configuration.Settings.SlugPrefix;
                 }
 
                 public getLinkUrl(unit: Interface.Model.ISharedContentUnit) {
-                    var url = Config.Settings().SlugPrefix + unit.Slug;
+                    var url = Configuration.Settings.SlugPrefix + unit.Slug;
                     return url;
                 }
 
                 public clipboardSuccess(unit: Interface.Model.ISharedContentUnit) {
-                    var url = Config.Settings().SlugPrefix + unit.Slug;
+                    var url = Configuration.Settings.SlugPrefix + unit.Slug;
                     Logger.log(url, this, url, toastr.success, "Copied to Clipboard");
                 }
 
                 public clipboardError(unit: Interface.Model.ISharedContentUnit) {
-                    var url = Config.Settings().SlugPrefix + unit.Slug;
+                    var url = Configuration.Settings.SlugPrefix + unit.Slug;
                     Logger.log(url, this, url, toastr.error, "Could not copy to Clipboard");
                 }
 

@@ -6,6 +6,8 @@
                 ApiServer: string;
                 ApiServicePath: string;
                 SlugPrefix: string;
+
+                RouteProvider: ($routeProvider: angular.route.IRouteProvider) => void;
             }
 
 

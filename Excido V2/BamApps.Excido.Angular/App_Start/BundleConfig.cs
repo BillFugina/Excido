@@ -31,6 +31,7 @@ namespace BamApps.Excido.Angular.App_Start {
 
             bundles.Add(new ScriptBundle("~/bundles/angular")
                 .Include("~/Scripts/angular.js")
+                .Include("~/Scripts/angular-route.js")
                 .Include("~/Scripts/elastic.js")
                 .Include("~/Scripts/angular-ui/ui-bootstrap-tpls.js")
                 );
@@ -44,8 +45,12 @@ namespace BamApps.Excido.Angular.App_Start {
 #if DEV
                 .Include("~/app/BamApps.Excido/BamApps.Excido.Config.DevRelease.js")
 #endif
-                .Include("~/app/BamApps.Excido/BamApps.Excido.Config.Release.js")
 
+#if RELEASE
+                .Include("~/app/BamApps.Excido/BamApps.Excido.Config.Release.js")
+#endif
+
+                .Include("~/app/BamApps.Excido/BamApps.Excido.Configuration.js")
                 .Include("~/app/BamApps/BamApps.Utils.js")
                 .Include("~/app/BamApps/BamApps.Logger.js")
 
