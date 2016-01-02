@@ -12,7 +12,7 @@
 
 
             export interface ISharedContentUnitServiceFactory {
-                newSharedContentUnitService: () => ng.IPromise<ISharedContentUnitService>;
+                getSharedContentUnitService: () => ng.IPromise<ISharedContentUnitService>;
             }
 
             export interface ISharedContentUnitService extends BamApps.Interface.IRepository<Model.ISharedContentUnit> {

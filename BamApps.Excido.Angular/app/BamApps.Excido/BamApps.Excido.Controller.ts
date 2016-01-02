@@ -18,15 +18,15 @@
                     this.title = "BamApps.Excido.Controller.SharedUnitsController";
                     var self = this;
 
-                    _sharedContentUnitServiceFactory.newSharedContentUnitService()
+                    _sharedContentUnitServiceFactory.getSharedContentUnitService()
                         .then((service) => {
-                            Logger.log("Successfully created SharedContentUnitService", self, service);
+                            Logger.log("Successfully accessed SharedContentUnitService", self, service);
                             self._sharedContentUnitService = service;
 
                             self.loadSharedContentUnits();
                         })
                         .catch((reason) => {
-                            Logger.error("Failed to create SharedContentUnitService", self, reason);
+                            Logger.error("Failed to access SharedContentUnitService", self, reason);
                         });
 
                 }
