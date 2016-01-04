@@ -2,9 +2,13 @@
     "use strict"
     export module Excido {
         Logger.verbosity(Logger.Level.Log);
-        export var app = angular.module('excido', ['ngRoute', 'breeze.angular', 'ui.bootstrap', 'monospaced.elastic']);
+        export var app = angular.module('excido', ['ngRoute', 'breeze.angular', 'ui.bootstrap', 'monospaced.elastic', 'LocalStorageModule']);
+
+        app.value('authenticationServiceBaseUrl', Configuration.Settings.AuthenticationServiceBaseUrl);
+
 
         app.controller("shared-units", ["$rootScope", "$q", "sharedContentUnitServiceFactory", Excido.Controller.SharedUnitsController]);
+        app.controller("signupController", ['$scope', '$location', '$timeout', 'authenticationServiceFactory', Excido.Controller.SignupController]);
 
         app.directive("syncFocusWith", ["$timeout", "$rootScope", "$parse", BamApps.Directive.SyncFocusDirective]);
         app.directive("onEnterKey", ["$timeout", "$rootScope", BamApps.Directive.OnEnterKeyDirective]);
@@ -13,6 +17,7 @@
 
         app.factory("entityManagerFactory", ["$q", BamApps.Service.breezeEntityManagerFactory]);
         app.factory("sharedContentUnitServiceFactory", ["$q", "entityManagerFactory", Excido.Service.SharedContentUnitServiceFactory]);
+        app.factory("authenticationServiceFactory", ['$http', '$q', 'localStorageService', 'authenticationServiceBaseUrl', BamApps.Service.authenticationServiceFactory]);
 
         app.filter("collapse", Filter.CollapseFilter);
 

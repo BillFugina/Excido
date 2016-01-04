@@ -13,7 +13,7 @@
 
                 public ready: boolean = false;
 
-                constructor(private $rootScope : ng.IRootScopeService, $q: ng.IQService, private _sharedContentUnitServiceFactory: BamApps.Excido.Interface.ISharedContentUnitServiceFactory) {
+                constructor(private $rootScope: ng.IRootScopeService, $q: ng.IQService, private _sharedContentUnitServiceFactory: BamApps.Excido.Interface.ISharedContentUnitServiceFactory) {
                     super();
                     this.title = "BamApps.Excido.Controller.SharedUnitsController";
                     var self = this;
@@ -84,7 +84,7 @@
                     setTimeout(() => {
                         this.$rootScope.$broadcast('elastic:adjust');
                     });
-                    
+
                 }
 
                 public isEditing(unit: Interface.Model.ISharedContentUnit): boolean {

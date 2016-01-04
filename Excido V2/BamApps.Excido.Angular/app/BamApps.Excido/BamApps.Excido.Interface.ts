@@ -6,6 +6,7 @@
                 ApiServer: string;
                 ApiServicePath: string;
                 SlugPrefix: string;
+                AuthenticationServiceBaseUrl: string;
 
                 RouteProvider: ($routeProvider: angular.route.IRouteProvider) => void;
             }

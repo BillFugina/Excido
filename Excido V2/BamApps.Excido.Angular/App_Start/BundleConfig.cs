@@ -31,6 +31,7 @@ namespace BamApps.Excido.Angular.App_Start {
 
             bundles.Add(new ScriptBundle("~/bundles/angular")
                 .Include("~/Scripts/angular.js")
+                .Include("~/Scripts/angular-local-storage.js")
                 .Include("~/Scripts/angular-route.js")
                 .Include("~/Scripts/elastic.js")
                 .Include("~/Scripts/angular-ui/ui-bootstrap-tpls.js")
@@ -64,7 +65,11 @@ namespace BamApps.Excido.Angular.App_Start {
                 .Include("~/app/BamApps.Excido/BamApps.Excido.Model.js")
                 .Include("~/app/BamApps.Excido/BamApps.Excido.Service.js")
                 .Include("~/app/BamApps.Excido/BamApps.Excido.Directive.js")
-                .Include("~/app/BamApps.Excido/BamApps.Excido.Controller.js")
+
+
+                .Include("~/app/BamApps.Excido.Controller/SignupController.js")
+                .Include("~/app/BamApps.Excido.Controller/SharedUnitsController.js")
+
 
                 .Include("~/app/BamApps.Excido/BamApps.Excido.js")
                 );

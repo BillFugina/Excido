@@ -66,5 +66,36 @@
             clipboardSuccess: string;
             clipboardError: string;
         }
+
+
+        export interface ILoginData {
+            userName: string;
+            password: string;
+        }
+
+        export interface IAuthenticationData {
+            isAuth: boolean;
+            userName: string;
+        }
+
+        export interface ILoginResponse {
+            access_token: string;
+        }
+
+        export interface IAuthenticationService {
+            saveRegistration(registration): ng.IPromise<any>
+            login(loginData: ILoginData): ng.IPromise<ILoginResponse>;
+            logout(): void;
+        }
+
+        export interface IAuthenticationServiceFactory {
+            getAuthenticationService(): IAuthenticationService;
+        }
+
+        export interface IRegistrationInfo {
+            userName: string;
+            password: string;
+            confirmPassword: string;
+        }
     }
 }
