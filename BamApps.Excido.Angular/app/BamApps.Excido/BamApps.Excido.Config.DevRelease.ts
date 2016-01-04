@@ -7,6 +7,7 @@
                     _ApiServer: string = 'api.dev.excido.net';
                     _ApiServicePath: string = 'breeze/ExcidoBreeze';
                     _SlugPrefix: string = 'http://exci.do/';
+                    _AuthenticationServiceBaseUrl: string = 'https://localhost:44300/';
 
                     get ApiServer() {
                         return this._ApiServer;
@@ -20,6 +21,9 @@
                         return this._SlugPrefix;
                     }
 
+                    get AuthenticationServiceBaseUrl() {
+                        return this._AuthenticationServiceBaseUrl;
+                    }
 
                     RouteProvider($routeProvider: angular.route.IRouteProvider) {
                         $routeProvider.when('/shared-units', {

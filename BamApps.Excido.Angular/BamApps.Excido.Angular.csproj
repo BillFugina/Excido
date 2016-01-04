@@ -45,6 +45,7 @@
     <Content Include="apple-touch-icon-precomposed.png" />
     <Content Include="apple-touch-icon.png" />
     <Content Include="app\BamApps.Excido.View\shared-units.html" />
+    <Content Include="app\BamApps.Excido.View\signup.html" />
     <Content Include="browserconfig.xml" />
     <Content Include="Content\app.css">
       <DependentUpon>app.scss</DependentUpon>
@@ -98,6 +99,8 @@
     <Content Include="Scripts\angular-csp.css" />
     <Content Include="Scripts\angular-loader.js" />
     <Content Include="Scripts\angular-loader.min.js" />
+    <Content Include="Scripts\angular-local-storage.js" />
+    <Content Include="Scripts\angular-local-storage.min.js" />
     <Content Include="Scripts\angular-message-format.js" />
     <Content Include="Scripts\angular-message-format.min.js" />
     <Content Include="Scripts\angular-messages.js" />
@@ -918,11 +921,12 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="app\BamApps.Excido.Controller\SignupController.ts" />
+    <TypeScriptCompile Include="app\BamApps.Excido.Controller\SharedUnitsController.ts" />
     <TypeScriptCompile Include="app\BamApps.Excido\BamApps.Excido.Config.Debug.ts" />
     <TypeScriptCompile Include="app\BamApps.Excido\BamApps.Excido.Config.DevRelease.ts" />
     <TypeScriptCompile Include="app\BamApps.Excido\BamApps.Excido.Config.Release.ts" />
     <TypeScriptCompile Include="app\BamApps.Excido\BamApps.Excido.Configuration.ts" />
-    <TypeScriptCompile Include="app\BamApps.Excido\BamApps.Excido.Controller.ts" />
     <TypeScriptCompile Include="app\BamApps.Excido\BamApps.Excido.Interface.ts" />
     <TypeScriptCompile Include="app\BamApps.Excido\BamApps.Excido.Service.ts" />
     <TypeScriptCompile Include="app\BamApps.Excido\BamApps.Excido.Model.ts" />
@@ -934,6 +938,7 @@
     <TypeScriptCompile Include="app\BamApps\BamApps.Service.ts" />
     <TypeScriptCompile Include="app\BamApps\BamApps.Interface.ts" />
     <TypeScriptCompile Include="app\BamApps\BamApps.Utils.ts" />
+    <TypeScriptCompile Include="Scripts\typings\angular-local-storage\angular-local-storage.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\angularjs\angular-animate.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\angularjs\angular-cookies.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\angularjs\angular-mocks.d.ts" />
