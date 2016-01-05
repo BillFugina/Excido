@@ -23,7 +23,7 @@ namespace BamApps.Identity.WebApi.Providers {
 
             if (allowedOrigin == null) allowedOrigin = "*";
 
-            context.OwinContext.Response.Headers.Add("Access-Control-Allow-Origin", new[] { allowedOrigin });
+            //context.OwinContext.Response.Headers.Add("Access-Control-Allow-Origin", new[] { allowedOrigin });
 
             using (AuthRepository _repo = new AuthRepository()) {
                 IdentityUser user = await _repo.FindUser(context.UserName, context.Password);

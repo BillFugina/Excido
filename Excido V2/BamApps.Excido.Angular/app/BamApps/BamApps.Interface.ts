@@ -68,11 +68,6 @@
         }
 
 
-        export interface ILoginData {
-            userName: string;
-            password: string;
-        }
-
         export interface IAuthenticationData {
             isAuth: boolean;
             userName: string;
@@ -84,7 +79,7 @@
 
         export interface IAuthenticationService {
             saveRegistration(registration): ng.IPromise<any>
-            login(loginData: ILoginData): ng.IPromise<ILoginResponse>;
+            login(loginData: ILoginInfo): ng.IPromise<ILoginResponse>;
             logout(): void;
         }
 
@@ -92,10 +87,20 @@
             getAuthenticationService(): IAuthenticationService;
         }
 
-        export interface IRegistrationInfo {
+
+        export interface ILoginInfo {
             userName: string;
             password: string;
+        }
+
+        export interface IRegistrationInfo extends ILoginInfo {
             confirmPassword: string;
         }
+
+        export interface ILoginController {
+            Login(): void;
+        }
+
+
     }
 }

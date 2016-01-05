@@ -13,15 +13,15 @@ namespace BamApps.Identity.WebApi.Repository {
     public class AuthRepository : IDisposable {
         private ApplicationDbContext _ctx;
 
-        private UserManager<IdentityUser> _userManager;
+        private UserManager<ApplicationUser> _userManager;
 
         public AuthRepository() {
             _ctx = new ApplicationDbContext();
-            _userManager = new UserManager<IdentityUser>(new UserStore<IdentityUser>(_ctx));
+            _userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(_ctx));
         }
 
         public async Task<IdentityResult> RegisterUser(CreateUserBindingModel userModel) {
-            IdentityUser user = new IdentityUser {
+            ApplicationUser user = new ApplicationUser {
                 UserName = userModel.Username
             };
 
@@ -30,8 +30,8 @@ namespace BamApps.Identity.WebApi.Repository {
             return result;
         }
 
-        public async Task<IdentityUser> FindUser(string userName, string password) {
-            IdentityUser user = await _userManager.FindAsync(userName, password);
+        public async Task<ApplicationUser> FindUser(string userName, string password) {
+            ApplicationUser user = await _userManager.FindAsync(userName, password);
 
             return user;
         }
