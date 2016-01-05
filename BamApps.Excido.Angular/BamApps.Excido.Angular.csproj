@@ -44,6 +44,7 @@
     <Content Include="apple-touch-icon-76x76.png" />
     <Content Include="apple-touch-icon-precomposed.png" />
     <Content Include="apple-touch-icon.png" />
+    <Content Include="app\BamApps.Excido.View\login.html" />
     <Content Include="app\BamApps.Excido.View\shared-units.html" />
     <Content Include="app\BamApps.Excido.View\signup.html" />
     <Content Include="browserconfig.xml" />
@@ -921,6 +922,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="app\BamApps.Excido.Controller\LoginController.ts" />
     <TypeScriptCompile Include="app\BamApps.Excido.Controller\SignupController.ts" />
     <TypeScriptCompile Include="app\BamApps.Excido.Controller\SharedUnitsController.ts" />
     <TypeScriptCompile Include="app\BamApps.Excido\BamApps.Excido.Config.Debug.ts" />

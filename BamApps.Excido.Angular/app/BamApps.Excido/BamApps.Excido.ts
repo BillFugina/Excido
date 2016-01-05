@@ -7,6 +7,7 @@
         app.value('authenticationServiceBaseUrl', Configuration.Settings.AuthenticationServiceBaseUrl);
 
 
+        app.controller("loginController", ['$scope', '$location', 'authenticationServiceFactory', Excido.Controller.LoginController]);
         app.controller("shared-units", ["$rootScope", "$q", "sharedContentUnitServiceFactory", Excido.Controller.SharedUnitsController]);
         app.controller("signupController", ['$scope', '$location', '$timeout', 'authenticationServiceFactory', Excido.Controller.SignupController]);
 

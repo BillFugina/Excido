@@ -31,7 +31,7 @@
 
 
 
-            login(loginData: Interface.ILoginData) : ng.IPromise<Interface.ILoginResponse> {
+            login(loginData: Interface.ILoginInfo) : ng.IPromise<Interface.ILoginResponse> {
                 var data = "grant_type=password&username=" + loginData.userName + "&password=" + loginData.password;
 
                 var deferred = this.$q.defer<Interface.ILoginResponse>();

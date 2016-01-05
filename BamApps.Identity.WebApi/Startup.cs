@@ -24,7 +24,8 @@ namespace BamApps.Identity.WebApi {
         public static FacebookAuthenticationOptions facebookAuthOptions { get; private set; }
 
         public void Configuration(IAppBuilder app) {
-            HttpConfiguration httpConfig = new HttpConfiguration();
+
+            app.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
             app.UseForcedHttps(44300);
 
             ConfigureUserAndRoleManagers(app);
@@ -33,11 +34,9 @@ namespace BamApps.Identity.WebApi {
             ConfigureOAuth(app);
             ConfigureSocialOAuth(app);
 
+            HttpConfiguration httpConfig = new HttpConfiguration();
             ConfigureWebApi(httpConfig);
-
-            app.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
             app.UseWebApi(httpConfig);
-
         }
 
 
