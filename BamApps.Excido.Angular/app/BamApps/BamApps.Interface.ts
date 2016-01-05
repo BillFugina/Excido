@@ -101,6 +101,14 @@
             Login(): void;
         }
 
+        export interface IAuthenticationToken {
+            userName: string;
+            token: string;
+        }
 
+        export interface IAuthenticationInterceptorService {
+            _request(config: ng.IRequestConfig): ng.IRequestConfig;
+            _responseError(rejection: ng.IHttpPromiseCallbackArg<any>): ng.IPromise<any>;
+        }
     }
 }

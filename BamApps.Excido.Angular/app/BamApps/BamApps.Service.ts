@@ -1,7 +1,40 @@
 ﻿module BamApps {
     export module Service {
 
+        getAuthenticationInteceptorService.$inject = ['$q', '$location', 'localStorageService'];
+        export function getAuthenticationInteceptorService($q: ng.IQService, $location: ng.ILocationService, localStorageService: angular.local.storage.ILocalStorageService): ng.IHttpInterceptor {
+            return new AuthenticationInterceptorService($q, $location, localStorageService);
+        }
 
+        export class AuthenticationInterceptorService extends BamApps.Model.BamAppsBase implements ng.IHttpInterceptor {
+            static $inject: string[] = ['$q', '$location', 'localStorageService'];
+            constructor(
+                private $q: ng.IQService,
+                private $location: ng.ILocationService,
+                private localStorageService: angular.local.storage.ILocalStorageService
+            ) {
+                super();
+            }
+
+            request = (config: ng.IRequestConfig) => {
+                config.headers = config.headers || {};
+
+                var authData = this.localStorageService.get<Interface.IAuthenticationToken>('authorizationData');
+                if (authData) {
+                    config.headers['Authorization'] = 'Bearer ' + authData.token;
+                }
+
+                return config;
+            }
+
+            responseError = (rejection: ng.IHttpPromiseCallbackArg<any>) => {
+                if (rejection.status === 401) {
+                    this.$location.path('/login');
+                }
+
+                return this.$q.reject(rejection);
+            }
+        }
 
         export class AuthenticationService extends BamApps.Model.BamAppsBase implements Interface.IAuthenticationService {
             static $inject: string[] = ['$http', '$q', 'localStorageService', 'authenticationServiceBaseUrl'];
@@ -38,8 +71,9 @@
 
                 this.$http.post(this.authenticationServiceBaseUrl + 'token', data, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } })
                     .success((response: Interface.ILoginResponse) => {
-
-                        this.localStorageService.set('authorizationData', { token: response.access_token, userName: loginData.userName });
+                        debugger;
+                        var token: Interface.IAuthenticationToken = { token: response.access_token, userName: loginData.userName };
+                        this.localStorageService.set('authorizationData', token);
 
                         this._authentication.isAuth = true;
                         this._authentication.userName = loginData.userName;
@@ -107,10 +141,11 @@
 
         var _entityManagerDictionary = {};
 
-        export function breezeEntityManagerFactory($q: ng.IQService): Interface.IBreezeEntityManagerFactory {
+        export function breezeEntityManagerFactory($q: ng.IQService, breezeService ): Interface.IBreezeEntityManagerFactory {
             var title = "BamApps.Service.breezeEntityManagerFactory";
 
             function getEntityManager(hostName: string, servicePath: string): ng.IPromise<breeze.EntityManager> {
+                debugger;
                 var deferred = $q.defer<breeze.EntityManager>();
 
                 var key = hostName + servicePath;
@@ -123,7 +158,8 @@
                     Logger.info("Creating new entity manager.", title, value);
                     var serviceRoot = window.location.protocol + '//' + hostName + '/';
                     var serviceName = serviceRoot + servicePath;
-                    var entityManager = new breeze.EntityManager(serviceName);
+                    var entityManager = new breezeService.EntityManager(serviceName);
+                    
                     _entityManagerDictionary[key] = entityManager;
 
                     entityManager.fetchMetadata()
