@@ -34,6 +34,7 @@ namespace BamApps.Excido.Angular.App_Start {
                 .Include("~/Scripts/angular-local-storage.js")
                 .Include("~/Scripts/angular-route.js")
                 .Include("~/Scripts/elastic.js")
+                .Include("~/Scripts/loading-bar.js")
                 .Include("~/Scripts/angular-ui/ui-bootstrap-tpls.js")
                 );
 

@@ -21,7 +21,7 @@ namespace BamApps.Identity.WebApi.Controllers {
             return Ok(_repo.GetAllRefreshTokens());
         }
 
-        //[Authorize(Users = "Admin")]
+        [Authorize(Users = "Admin")]
         [AllowAnonymous]
         [Route("")]
         public async Task<IHttpActionResult> Delete(string tokenId) {
