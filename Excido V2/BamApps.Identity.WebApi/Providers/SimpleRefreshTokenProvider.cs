@@ -53,7 +53,7 @@ namespace BamApps.Identity.WebApi.Providers {
         public async Task ReceiveAsync(AuthenticationTokenReceiveContext context) {
 
             var allowedOrigin = context.OwinContext.Get<string>("as:clientAllowedOrigin");
-            context.OwinContext.Response.Headers.Add("Access-Control-Allow-Origin", new[] { allowedOrigin });
+            context.OwinContext.Response.Headers.AddOrChangeHeader("Access-Control-Allow-Origin", allowedOrigin);
 
             string hashedTokenId = Helper.GetHash(context.Token);
 

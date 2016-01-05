@@ -2,7 +2,7 @@
     "use strict"
     export module Excido {
         Logger.verbosity(Logger.Level.Log);
-        export var app = angular.module('excido', ['ngRoute', 'breeze.angular', 'ui.bootstrap', 'monospaced.elastic', 'LocalStorageModule']);
+        export var app = angular.module('excido', ['ngRoute', 'breeze.angular', 'ui.bootstrap', 'angular-loading-bar', 'monospaced.elastic', 'LocalStorageModule']);
 
         app.value('authenticationServiceBaseUrl', Configuration.Settings.AuthenticationServiceBaseUrl);
 

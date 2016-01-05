@@ -50,7 +50,7 @@ namespace BamApps.Identity.WebApi {
                 TokenEndpointPath = new PathString("/token"),
                 AccessTokenExpireTimeSpan = TimeSpan.FromMinutes(30),
                 Provider = new SimpleAuthorizationServerProvider(),
-                //RefreshTokenProvider = new SimpleRefreshTokenProvider()
+                RefreshTokenProvider = new SimpleRefreshTokenProvider()
             };
 
             // Token Generation
