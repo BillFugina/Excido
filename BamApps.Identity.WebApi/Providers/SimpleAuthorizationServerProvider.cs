@@ -27,7 +27,7 @@ namespace BamApps.Identity.WebApi.Providers {
             }
 
             if (context.ClientId == null) {
-                context.SetError(InvalidClientIdError, "ClientId should be sent.");
+                context.SetError(InvalidClientIdError, "Id should be sent.");
                 return Task.FromResult<object>(null);
             }
 

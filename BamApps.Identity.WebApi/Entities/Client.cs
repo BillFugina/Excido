@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -19,5 +20,11 @@ namespace BamApps.Identity.WebApi.Entities {
         public int RefreshTokenLifeTime { get; set; }
         [MaxLength(100)]
         public string AllowedOrigin { get; set; }
+
+        [ForeignKey("Audience")]
+        public string AudienceId { get; set; }
+
+        public virtual Audience Audience { get; set; }
+
     }
 }
