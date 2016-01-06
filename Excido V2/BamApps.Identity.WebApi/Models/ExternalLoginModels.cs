@@ -26,6 +26,9 @@ namespace BamApps.Identity.WebApi.Models {
 
         [Required]
         public string LastName { get; set; }
+
+        [Required]
+        public string ClientId { get; set; }
     }
 
     public abstract class ExternalLoginBase : IExternalLoginInfo {

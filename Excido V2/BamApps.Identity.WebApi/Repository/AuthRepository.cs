@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
+using System.Data.Entity;
 
 namespace BamApps.Identity.WebApi.Repository {
     public class AuthRepository : IDisposable {
@@ -38,9 +39,13 @@ namespace BamApps.Identity.WebApi.Repository {
 
 
         public Client FindClient(string clientId) {
-            var client = _ctx.Clients.Find(clientId);
-
+            var client = _ctx.Clients.Include(x => x.Audience).Where(x => x.Id == clientId).Single();
             return client;
+        }
+
+        public Audience FindAudience(string audienceId) {
+            var audience = _ctx.Audiences.Find(audienceId);
+            return audience;
         }
 
         public async Task<bool> AddRefreshToken(RefreshToken token) {

@@ -46,6 +46,11 @@ namespace BamApps.Identity.WebApi.Migrations {
                 context.Clients.AddRange(BuildClientsList());
                 context.SaveChanges();
             }
+
+            if (context.Audiences.Count() == 0) {
+                context.Audiences.AddRange(BuildAudienceList());
+                context.SaveChanges();
+            }
         }
 
 
@@ -77,6 +82,24 @@ namespace BamApps.Identity.WebApi.Migrations {
 
             return ClientsList;
         }
+
+        public static List<Audience> BuildAudienceList() {
+            List<Audience> result = new List<Audience> {
+                new Audience {
+                    Id = Helper.CreateStringId(),
+                    Secret = Helper.CreateNewSecret(),
+                    Name = "Authorization Server"
+                },
+                new Audience {
+                    Id = Helper.CreateStringId(),
+                    Secret = Helper.CreateNewSecret(),
+                    Name = "Excido Api Server"
+                }
+
+            };
+            return result;
+        }
+
 
     }
 

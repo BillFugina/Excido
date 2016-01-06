@@ -1,4 +1,6 @@
-﻿using Microsoft.Owin.Security;
+﻿using BamApps.Identity.WebApi.Entities;
+using BamApps.Identity.WebApi.Repository;
+using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.DataHandler.Encoder;
 using System;
 using System.Collections.Generic;
@@ -7,6 +9,7 @@ using System.IdentityModel.Tokens;
 using System.Linq;
 using System.Web;
 using Thinktecture.IdentityModel.Tokens;
+using System.Diagnostics;
 
 namespace BamApps.Identity.WebApi.Providers {
     public class CustomJwtFormat : ISecureDataFormat<AuthenticationTicket> {
@@ -22,11 +25,19 @@ namespace BamApps.Identity.WebApi.Providers {
                 throw new ArgumentNullException(nameof(data));
             }
 
-            string audienceId = ConfigurationManager.AppSettings["as:AudienceId"];
+            Client client;
+            string clientId = data.Properties.Dictionary["as:client_id"];
 
-            string symmetricKeyAsBase64 = ConfigurationManager.AppSettings["as:AudienceSecret"];
+            using (AuthRepository _repo = new AuthRepository()) {
+                client = _repo.FindClient(clientId);
+                Debug.Assert(client != null, "client is null.");
+            }
 
-            var keyByteArray = TextEncodings.Base64Url.Decode(symmetricKeyAsBase64);
+
+            string audienceId = client.Audience.Id;
+            string audienceSecret = client.Audience.Secret;
+
+            var keyByteArray = TextEncodings.Base64Url.Decode(audienceSecret);
 
             var signingKey = new HmacSigningCredentials(keyByteArray);
 

@@ -145,7 +145,6 @@
             var title = "BamApps.Service.breezeEntityManagerFactory";
 
             function getEntityManager(hostName: string, servicePath: string): ng.IPromise<breeze.EntityManager> {
-                debugger;
                 var deferred = $q.defer<breeze.EntityManager>();
 
                 var key = hostName + servicePath;

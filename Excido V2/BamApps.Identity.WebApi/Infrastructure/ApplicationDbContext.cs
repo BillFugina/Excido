@@ -11,6 +11,8 @@ namespace BamApps.Identity.WebApi.Infrastructure {
         public DbSet<Client> Clients { get; set; }
         public DbSet<RefreshToken> RefreshTokens { get; set; }
 
+        public DbSet<Audience> Audiences { get; set; }
+
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false) {
             Configuration.ProxyCreationEnabled = false;

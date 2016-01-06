@@ -356,7 +356,7 @@ namespace BamApps.Identity.WebApi.Controllers {
             return parsedToken;
         }
 
-        private JObject GenerateLocalAccessTokenResponse(string userName) {
+        private JObject GenerateLocalAccessTokenResponse(string userName, string client_id) {
 
             var tokenExpiration = TimeSpan.FromDays(1);
 
@@ -369,10 +369,11 @@ namespace BamApps.Identity.WebApi.Controllers {
                 IssuedUtc = DateTime.UtcNow,
                 ExpiresUtc = DateTime.UtcNow.Add(tokenExpiration),
             };
-
+            props.Dictionary.Add("as:client_id", client_id);
             var ticket = new AuthenticationTicket(identity, props);
 
-            var accessToken = Startup.OAuthBearerOptions.AccessTokenFormat.Protect(ticket);
+            //var accessToken = Startup.OAuthBearerOptions.AccessTokenFormat.Protect(ticket);
+            var accessToken = Startup.OAuthServerOptions.AccessTokenFormat.Protect(ticket);
 
             JObject tokenResponse = new JObject(
                                         new JProperty("userName", userName),
@@ -437,7 +438,7 @@ namespace BamApps.Identity.WebApi.Controllers {
             }
 
             //generate access token response
-            var accessTokenResponse = GenerateLocalAccessTokenResponse(userName);
+            var accessTokenResponse = GenerateLocalAccessTokenResponse(userName, externalBindingModel.ClientId);
 
             return Ok(accessTokenResponse);
         }
@@ -445,7 +446,7 @@ namespace BamApps.Identity.WebApi.Controllers {
         [AllowAnonymous]
         [HttpGet]
         [Route("ObtainLocalAccessToken")]
-        public async Task<IHttpActionResult> ObtainLocalAccessToken(string provider, string externalAccessToken) {
+        public async Task<IHttpActionResult> ObtainLocalAccessToken(string provider, string client_id, string externalAccessToken) {
 
             if (string.IsNullOrWhiteSpace(provider) || string.IsNullOrWhiteSpace(externalAccessToken)) {
                 return BadRequest("Provider or external access token is not sent");
@@ -465,7 +466,7 @@ namespace BamApps.Identity.WebApi.Controllers {
             }
 
             //generate access token response
-            var accessTokenResponse = GenerateLocalAccessTokenResponse(user.UserName);
+            var accessTokenResponse = GenerateLocalAccessTokenResponse(user.UserName, client_id);
 
             return Ok(accessTokenResponse);
 
