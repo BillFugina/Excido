@@ -76,6 +76,17 @@ namespace BamApps.Identity.WebApi {
             };
 
             app.UseGoogleAuthentication(googleAuthOptions);
+
+            facebookAuthOptions = new FacebookAuthenticationOptions() {
+                AppId = "440728846085613",
+                AppSecret = "83ceb76df9b73c8f274acc031008c2f7",
+                Provider = new FacebookAuthProvider()
+            };
+
+            facebookAuthOptions.Scope.Add("public_profile");
+            facebookAuthOptions.Scope.Add("email");
+
+            app.UseFacebookAuthentication(facebookAuthOptions);
         }
 
 
