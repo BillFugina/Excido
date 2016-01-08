@@ -12,7 +12,7 @@ namespace BamApps.Excido.WebApi
     {
         public void Configuration(IAppBuilder app)
         {
-            ConfigureAuth(app);
+            ConfigureOAuthTokenConsumption(app);
         }
     }
 }
