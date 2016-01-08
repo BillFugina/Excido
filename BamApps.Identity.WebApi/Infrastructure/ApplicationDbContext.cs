@@ -14,7 +14,7 @@ namespace BamApps.Identity.WebApi.Infrastructure {
         public DbSet<Audience> Audiences { get; set; }
 
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false) {
+            : base("IdentityConnection", throwIfV1Schema: false) {
             Configuration.ProxyCreationEnabled = false;
             Configuration.LazyLoadingEnabled = false;
         }

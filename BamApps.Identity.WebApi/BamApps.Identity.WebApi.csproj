@@ -184,7 +184,11 @@
     <Content Include="index.html" />
     <Content Include="packages.config" />
     <Content Include="Testing OAuth.json.postman_collection" />
+    <None Include="Properties\PublishProfiles\IdentityWebApi - Release.pubxml" />
     <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Dev Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
     <None Include="Web.Release.config">
