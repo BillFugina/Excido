@@ -10,6 +10,7 @@ namespace BamApps.Identity.WebApi.Migrations {
     using System.Linq;
 
     internal sealed class Configuration : DbMigrationsConfiguration<BamApps.Identity.WebApi.Infrastructure.ApplicationDbContext> {
+
         public Configuration() {
             AutomaticMigrationsEnabled = false;
         }
