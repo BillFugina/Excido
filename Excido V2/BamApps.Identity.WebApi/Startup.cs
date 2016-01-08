@@ -92,7 +92,7 @@ namespace BamApps.Identity.WebApi {
 
         private void ConfigureOAuthTokenConsumption(IAppBuilder app) {
 
-            var issuer = "https://localhost:44300/";
+            var issuer = ConfigurationManager.AppSettings["as:Issuer"];
             string audienceId = ConfigurationManager.AppSettings["as:AudienceId"];
             Audience audience = null;
 

@@ -87,13 +87,13 @@ namespace BamApps.Identity.WebApi.Migrations {
         public static List<Audience> BuildAudienceList() {
             List<Audience> result = new List<Audience> {
                 new Audience {
-                    Id = Helper.CreateStringId(),
-                    Secret = Helper.CreateNewSecret(),
+                    Id = "a27215eb7ff84c309e2133385cb763b9",
+                    Secret = "3QuPCRb3cw_TuvYpQyhMuHSehpy8gfbZPx0DO42BRKA",
                     Name = "Authorization Server"
                 },
                 new Audience {
-                    Id = Helper.CreateStringId(),
-                    Secret = Helper.CreateNewSecret(),
+                    Id = "7b014035bdb144d59e9ea988cf6360ce",
+                    Secret = "VOy1d7yqfBgYwNTORumrngVE54YWFBt8hVQHNCnOPVs",
                     Name = "Excido Api Server"
                 }
 
