@@ -246,10 +246,25 @@ namespace BamApps.Identity.WebApi.Controllers {
 
             ApplicationUser user = await AppUserManager.FindAsync(new UserLoginInfo(externalLogin.Provider, externalLogin.ProviderKey));
 
-            ExternalLoginResponse externalLoginResponse = externalLogin.GenerateResponse(isRegistered: user != null);
-            HttpResponseMessage httpResponseMessage = Request.CreateResponse(externalLoginResponse);
-            ResponseMessageResult result = base.ResponseMessage(httpResponseMessage);
-            return result;
+            //ExternalLoginResponse externalLoginResponse = externalLogin.GenerateResponse(isRegistered: user != null);
+            //HttpResponseMessage httpResponseMessage = Request.CreateResponse(externalLoginResponse);
+            //ResponseMessageResult result = base.ResponseMessage(httpResponseMessage);
+            //return result;
+
+            bool hasRegistered = user != null;
+
+            var ndx = redirectUri.LastIndexOf('/');
+            if (ndx >= 0) {
+                redirectUri = redirectUri.Substring(0, ndx) + '#' + redirectUri.Substring(ndx + 1);
+            }
+            redirectUri = string.Format("{0}?external_access_token={1}&provider={2}&haslocalaccount={3}&external_user_name={4}",
+                                            redirectUri,
+                                            externalLogin.ExternalAccessToken,
+                                            externalLogin.Provider,
+                                            hasRegistered.ToString(),
+                                            externalLogin.UserName);
+
+            return Redirect(redirectUri);
         }
 
         private string ValidateClientAndRedirectUri(HttpRequestMessage request, ref string redirectUriOutput) {

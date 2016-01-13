@@ -30,7 +30,7 @@ namespace BamApps.Excido.WebApi
 
         private void ConfigureOAuthTokenConsumption(IAppBuilder app) {
 
-            var issuer = "https://localhost:44300/";
+            var issuer = ConfigurationManager.AppSettings["as:Issuer"]; ;
             string audienceId = ConfigurationManager.AppSettings["as:AudienceId"];
             var audienceSecret = ConfigurationManager.AppSettings["as:AudienceSecret"];
 
