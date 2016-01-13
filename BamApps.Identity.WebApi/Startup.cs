@@ -51,12 +51,14 @@ namespace BamApps.Identity.WebApi {
         }
 
         public void ConfigureOAuthTokenGeneration(IAppBuilder app) {
+            var issuer = ConfigurationManager.AppSettings["as:Issuer"];
+
             OAuthServerOptions = new OAuthAuthorizationServerOptions() {
                 AllowInsecureHttp = false,
                 TokenEndpointPath = new PathString("/token"),
                 AccessTokenExpireTimeSpan = TimeSpan.FromMinutes(30),
                 Provider = new SimpleAuthorizationServerProvider(),
-                AccessTokenFormat = new CustomJwtFormat("https://localhost:44300/"),
+                AccessTokenFormat = new CustomJwtFormat(issuer),
                 RefreshTokenProvider = new SimpleRefreshTokenProvider()
             };
 
@@ -72,7 +74,8 @@ namespace BamApps.Identity.WebApi {
             googleAuthOptions = new GoogleOAuth2AuthenticationOptions() {
                 ClientId = "775348847368-d6h37j3bu9bun5m4msl85229mqc6mvjf.apps.googleusercontent.com",
                 ClientSecret = "Mca7VhaN-26iPcgM2WDZZ26M",
-                Provider = new GoogleAuthProvider()
+                Provider = new GoogleAuthProvider(),
+                //CallbackPath = new PathString("/FooBar")
             };
 
             app.UseGoogleAuthentication(googleAuthOptions);

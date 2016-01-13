@@ -31,6 +31,18 @@
                             controllerAs: 'sharedunits'
                         })
 
+                        $routeProvider.when('/signup', {
+                            templateUrl: 'app/BamApps.Excido.View/signup.html',
+                            controller: 'signupController',
+                            controllerAs: 'signupController'
+                        })
+
+                        $routeProvider.when('/login', {
+                            templateUrl: 'app/BamApps.Excido.View/login.html',
+                            controller: 'loginController',
+                            controllerAs: 'loginController'
+                        })
+
                         $routeProvider.otherwise({
                             redirectTo: '/shared-units'
                         })
