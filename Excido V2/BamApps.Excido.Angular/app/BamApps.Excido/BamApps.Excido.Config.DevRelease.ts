@@ -48,6 +48,17 @@
                             redirectTo: '/shared-units'
                         })
                     }
+
+                    uiRouteConfiguration = ($stateProvider: angular.ui.IStateProvider, $urlRouterProvider: angular.ui.IUrlRouterProvider) => {
+                        $urlRouterProvider.otherwise('/home');
+                        $stateProvider
+                            .state('home', {
+                                url: '/home',
+                                templateUrl: '/app/BamApps.Excido.View/partial-home.html'
+                            })
+                            .state('about', {
+                            });
+                    };
                 }
             }
         }

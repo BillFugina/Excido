@@ -32,10 +32,10 @@ namespace BamApps.Excido.Angular.App_Start {
             bundles.Add(new ScriptBundle("~/bundles/angular")
                 .Include("~/Scripts/angular.js")
                 .Include("~/Scripts/angular-local-storage.js")
-                .Include("~/Scripts/angular-route.js")
                 .Include("~/Scripts/elastic.js")
                 .Include("~/Scripts/loading-bar.js")
                 .Include("~/Scripts/angular-ui/ui-bootstrap-tpls.js")
+                .Include("~/Scripts/angular-ui-router.js")
                 );
 
             bundles.Add(new ScriptBundle("~/bundles/app")

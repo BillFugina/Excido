@@ -9,6 +9,11 @@
                 AuthenticationServiceBaseUrl: string;
 
                 RouteProvider: ($routeProvider: angular.route.IRouteProvider) => void;
+                uiRouteConfiguration: ($stateProvider: angular.ui.IStateProvider, $urlRouterProvider: angular.ui.IUrlRouterProvider) => void;
+            }
+
+            export interface ISettingsService {
+                Settings : BamApps.Excido.Interface.ISettings;
             }
 
 

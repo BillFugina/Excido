@@ -2,10 +2,11 @@
     "use strict"
     export module Excido {
         Logger.verbosity(Logger.Level.Log);
-        export var app = angular.module('excido', ['ngRoute', 'breeze.angular', 'ui.bootstrap', 'angular-loading-bar', 'monospaced.elastic', 'LocalStorageModule']);
+        export var app = angular.module('excido', ['ui.router', 'breeze.angular', 'ui.bootstrap', 'angular-loading-bar', 'monospaced.elastic', 'LocalStorageModule']);
 
         app.value('authenticationServiceBaseUrl', Configuration.Settings.AuthenticationServiceBaseUrl);
 
+        app.provider('settingsService', BamApps.Excido.Service.SettingsServiceProvider);
 
         app.controller("loginController", ['$scope', '$location', 'authenticationServiceFactory', Excido.Controller.LoginController]);
         app.controller("shared-units", ["$rootScope", "$q", "sharedContentUnitServiceFactory", Excido.Controller.SharedUnitsController]);
@@ -25,7 +26,8 @@
 
         app.filter("collapse", Filter.CollapseFilter);
 
-        app.config(['$routeProvider', Configuration.Settings.RouteProvider]);
+        app.config(['$stateProvider', '$urlRouterProvider', Configuration.Settings.uiRouteConfiguration]);
+
         app.config(($httpProvider: ng.IHttpProvider) => {
             $httpProvider.interceptors.push('authenticationInterceptorServiceFactory');
         });
