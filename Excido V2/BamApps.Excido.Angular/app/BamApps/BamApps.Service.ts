@@ -71,7 +71,6 @@
 
                 this.$http.post(this.authenticationServiceBaseUrl + 'token', data, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } })
                     .success((response: Interface.ILoginResponse) => {
-                        debugger;
                         var token: Interface.IAuthenticationToken = { token: response.access_token, userName: loginData.userName };
                         this.localStorageService.set('authorizationData', token);
 

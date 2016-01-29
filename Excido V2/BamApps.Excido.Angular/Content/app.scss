@@ -50,7 +50,7 @@ button.btn {
         padding-right: 0;
     }
 
-    i.fa {
+    i.fa, i.glyphicon {
         padding-right: 10px;
     }
 }
@@ -249,7 +249,7 @@ div.bottom-line {
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#a6efefef',GradientType=1 );
 }
 
-input[uib-datepicker-popup] {
+input[uib-datepicker-popup].seventy-five-percent {
     width: 75%;
 }
 
@@ -259,6 +259,10 @@ input[uib-datepicker-popup] {
 
 .left-margin-neg-25 {
     margin-left: -25px;
+}
+
+textarea.no-resize{
+    resize: none;
 }
 
 /*Extra Small*/

@@ -44,6 +44,12 @@
                 }
             }
 
+            export module Controller {
+                export interface IMainAppController {
+                    NameSpace : string;
+                }
+            }
+
         }
     }
 }
