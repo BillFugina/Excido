@@ -26,6 +26,9 @@ module BamApps {
             export class SettingsServiceProvider implements ng.IServiceProvider {
                 private _service: BamApps.Excido.Interface.ISettingsService;
 
+                constructor() {
+                }
+
                 public $get(): BamApps.Excido.Interface.ISettingsService {
                     if (this._service == null) {
                         this._service = new SettingsService();
