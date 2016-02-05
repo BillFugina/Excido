@@ -36,6 +36,12 @@ button.btn i.fa.fa-btn {
 button.btn i.fa, button.btn i.glyphicon {
   padding-right: 10px; }
 
+.input-group button.btn i.fa, .input-group button.btn i.glyphicon {
+  padding-right: 0; }
+
+.input-group button.btn-lg i.fa, .input-group button.btn-lg i.glyphicon {
+  top: -1px; }
+
 .placeholder {
   color: lightgray; }
 

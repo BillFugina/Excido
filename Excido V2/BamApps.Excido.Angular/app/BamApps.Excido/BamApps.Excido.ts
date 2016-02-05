@@ -12,6 +12,7 @@
         app.controller("shared-units", ["$rootScope", "$q", "sharedContentUnitServiceFactory", Excido.Controller.SharedUnitsController]);
         app.controller("signupController", ['$scope', '$location', '$timeout', 'authenticationServiceFactory', Excido.Controller.SignupController]);
         app.controller("mainAppController", ['$scope', 'settingsService', Excido.Controller.MainAppController]);
+        app.controller("homeController", ['$scope', Excido.Controller.HomeController]);
 
         app.directive("syncFocusWith", ["$timeout", "$rootScope", "$parse", BamApps.Directive.SyncFocusDirective]);
         app.directive("onEnterKey", ["$timeout", "$rootScope", BamApps.Directive.OnEnterKeyDirective]);

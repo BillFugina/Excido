@@ -55,6 +55,21 @@ button.btn {
     }
 }
 
+.input-group {
+    button.btn {
+        i.fa, i.glyphicon {
+            padding-right: 0;
+        }
+    }
+
+    button.btn-lg {
+        i.fa, i.glyphicon {
+            top: -1px;
+        }
+    }
+}
+
+
 .placeholder {
     color: lightgray;
 }
@@ -261,7 +276,7 @@ input[uib-datepicker-popup].seventy-five-percent {
     margin-left: -25px;
 }
 
-textarea.no-resize{
+textarea.no-resize {
     resize: none;
 }
 
@@ -342,14 +357,13 @@ textarea.no-resize{
         background: none;
         filter: none;
     }
-    
+
     .pop-edit {
         position: absolute;
         z-index: 99999;
         background-color: white;
         width: 95%;
     }
-
 }
 
 /*Large*/

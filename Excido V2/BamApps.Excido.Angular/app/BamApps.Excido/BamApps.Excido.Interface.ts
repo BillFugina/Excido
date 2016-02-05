@@ -48,6 +48,9 @@
                 export interface IMainAppController {
                     NameSpace : string;
                 }
+
+                export interface IHomeController {
+                }
             }
 
         }
