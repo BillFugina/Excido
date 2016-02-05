@@ -28,34 +28,52 @@
                 At the moment, it is simply a short-link service.
                 You may create a short link in the {{main.NameSpace}} namespace that redirects to any other valid link.
             </p>
-            <p>
-                Your short link must end in a unique slug and must form a valid HTML URL.
-                There is currently no error checking, so invalid URLs will probably crash the software.
-                Use at your own risk.
-            </p>
             <!--<p><a class="btn btn-primary btn-lg" target="_blank" href="http://www.bamapps.com" role="button">Learn more</a></p>-->
         </div>
     </div>
 </div>
-<form class="form-horizontal">
-            <div class="form-group form-group-lg">
-                <!--<label class="col-xs-2 control-label text-right" for="longLinkTextArea">Long Link</label>-->
-                <div class="col-xs-12 col-sm-6 col-md-7">
-                    <textarea id="longLinkTextArea" class="form-control no-resize" placeholder="Long Link" rows="1"></textarea>
-                </div>
-                <!--<label class="col-xs-1 control-label text-right" for="expirationEdit">Expiration</label>-->
-                <div class="col-xs-12 col-sm-3 col-md-3">
+<h3 class="text-center">Paste a long URL and an expiration date and Excido will generate a short link for you.</h3>
+<div class="top-pad-10">
+    <form class="form-horizontal">
+        <div class="form-group form-group-lg">
+            <!--<label class="col-xs-2 control-label text-right" for="longLinkTextArea">Long Link</label>-->
+            <div class="col-xs-12 col-sm-6 col-md-7" ng-class="{'has-error' : homeController.longLinkInvalid()}">
+                <textarea id="longLinkTextArea"
+                          class="form-control no-resize"
+                          placeholder="Long Link"
+                          rows="1"
+                          ng-model="homeController.longLink"></textarea>
+                <span class="text-danger" ng-show="homeController.longLinkInvalid()">Invalid URL</span>
+            </div>
+            <!--<label class="col-xs-1 control-label text-right" for="expirationEdit">Expiration</label>-->
+            <div class="col-xs-12 col-sm-3 col-md-3">
+                <div class="input-group">
                     <input id="expirationEdit"
                            type="text"
                            class="form-control"
                            placeholder="Expiration"
-                           datepicker-append-to-body="true" />
-                </div>
-                <div class="col-xs-12 col-sm-3 col-md-2 text-right">
-                    <button id="shrinkButton" class="btn btn-lg btn-info form-control"><i class="glyphicon glyphicon-resize-small"></i><span>Shrink</span></button>
+                           uib-datepicker-popup="MM/dd/yyyy"
+                           ng-model="homeController.expirationDate"
+                           datepicker-append-to-body="true"
+                           is-open="homeController.datePickerOpen" />
+                    <span class="input-group-btn">
+                        <button class="btn btn-lg btn-default" ng-click="homeController.dateResetBtnClick()" ng-disabled="homeController.expirationDate == null" type="button"><i class="glyphicon  fa fa-remove"></i></button>
+                        <button class="btn btn-lg btn-default" ng-click="homeController.dateBtnClick()" type="button"><i class="glyphicon  fa fa-calendar"></i></button>
+                    </span>
                 </div>
             </div>
+            <div class="col-xs-12 col-sm-3 col-md-2 text-right">
+                <button id="shrinkButton" class="btn btn-lg btn-info form-control" ng-disabled="homeController.shrinkDisabled()"><i class="glyphicon glyphicon-resize-small"></i><span>Shrink</span></button>
+            </div>
+        </div>
 
-
-
-</form>
+    </form>
+</div>
+<div class="top-pad-10">
+    <h3 class="text-center"><a class="btn btn-default"><strong>Login</strong></a> or <a class="btn btn-default"><strong>sign up</strong></a> for more features and to edit old links.</h3>
+</div>
+<div>
+    <p class="top-pad-10">
+        Create a free Excido account or use your account at Facebook or Google. Advanced features include editing old links, custom short link URLs, and expiration by click count. More advanced features coming soon.
+    </p>
+</div>

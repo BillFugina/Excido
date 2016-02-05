@@ -53,7 +53,9 @@
                         $stateProvider
                             .state('home', {
                                 url: '/home',
-                                templateUrl: '/app/BamApps.Excido.View/partial-home.html'
+                                templateUrl: '/app/BamApps.Excido.View/partial-home.html',
+                                controller: 'homeController',
+                                controllerAs: 'homeController'
                             })
                             .state('about', {
                             });

@@ -930,6 +930,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="app\BamApps.Excido.Controller\HomeController.ts" />
     <TypeScriptCompile Include="app\BamApps.Excido.Controller\LoginController.ts" />
     <TypeScriptCompile Include="app\BamApps.Excido.Controller\MainAppController.ts" />
     <TypeScriptCompile Include="app\BamApps.Excido.Controller\SignupController.ts" />
