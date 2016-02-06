@@ -24,38 +24,46 @@
                         return this._AuthenticationServiceBaseUrl;
                     }
 
-                    RouteProvider($routeProvider: angular.route.IRouteProvider) {
-                        $routeProvider.when('/shared-units', {
-                            templateUrl: 'app/BamApps.Excido.View/shared-units.html',
-                            controller: 'shared-units',
-                            controllerAs: 'sharedunits'
-                        })
+                    //RouteProvider($routeProvider: angular.route.IRouteProvider) {
+                    //    $routeProvider.when('/shared-units', {
+                    //        templateUrl: 'app/BamApps.Excido.View/shared-units.html',
+                    //        controller: 'shared-units',
+                    //        controllerAs: 'sharedunits'
+                    //    })
 
-                        $routeProvider.when('/signup', {
-                            templateUrl: 'app/BamApps.Excido.View/signup.html',
-                            controller: 'signupController',
-                            controllerAs: 'signupController'
-                        })
+                    //    $routeProvider.when('/signup', {
+                    //        templateUrl: 'app/BamApps.Excido.View/signup.html',
+                    //        controller: 'signupController',
+                    //        controllerAs: 'signupController'
+                    //    })
 
-                        $routeProvider.when('/login', {
-                            templateUrl: 'app/BamApps.Excido.View/login.html',
-                            controller: 'loginController',
-                            controllerAs: 'loginController'
-                        })
+                    //    $routeProvider.when('/login', {
+                    //        templateUrl: 'app/BamApps.Excido.View/login.html',
+                    //        controller: 'loginController',
+                    //        controllerAs: 'loginController'
+                    //    })
 
-                        $routeProvider.otherwise({
-                            redirectTo: '/shared-units'
-                        })
-                    };
+                    //    $routeProvider.otherwise({
+                    //        redirectTo: '/shared-units'
+                    //    })
+                    //};
 
                     uiRouteConfiguration = ($stateProvider: angular.ui.IStateProvider, $urlRouterProvider: angular.ui.IUrlRouterProvider) => {
-                        $urlRouterProvider.otherwise('/home');
+                        $urlRouterProvider
+                            .otherwise('/home');
+
                         $stateProvider
                             .state('home', {
                                 url: '/home',
                                 templateUrl: '/app/BamApps.Excido.View/partial-home.html',
                                 controller: 'homeController',
                                 controllerAs: 'homeController'
+                            })
+                            .state('login', {
+                                url: '/login',
+                                templateUrl: '/app/BamApps.Excido.View/login.html',
+                                controller: 'loginController',
+                                controllerAs: 'loginController'
                             })
                             .state('about', {
                             });
