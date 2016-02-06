@@ -280,6 +280,27 @@ textarea.no-resize {
     resize: none;
 }
 
+div.center {
+    float: none;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+div.login-panel {
+    div.panel {
+        div.panel-body {
+            input {
+                margin-bottom: 10px;
+            }
+            button{
+                margin-bottom: 10px;
+            }
+        }
+    }
+}
+
+
+
 /*Extra Small*/
 @media (max-width: $screen-xs-max) {
     body {
@@ -350,6 +371,10 @@ textarea.no-resize {
         background-position: left;
     }
 
+    .logo.center {
+        background-position: center;
+    }
+
     div.bottom-line {
         border-bottom-color: none;
         border-bottom-style: none;
@@ -370,6 +395,10 @@ textarea.no-resize {
 @media (min-width: $screen-lg-min) {
     .logo {
         background-position: left;
+    }
+
+    .logo.center {
+        background-position: center;
     }
 
     .jumbotron {

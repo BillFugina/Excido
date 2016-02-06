@@ -10,13 +10,17 @@ namespace BamApps.Excido.Angular.App_Start {
             bundles.UseCdn = true;
             bundles.Add(new StyleBundle("~/bundles/app-styles")
                 .Include("~/Content/bootstrap.css")
+                .Include("~/Content/bootstrap-theme.css")
                 .Include("~/Content/font-awesome.css")
                 .Include("~/Content/toastr.css")
-                .Include("~/Content/app.css"));
+                .Include("~/Content/app.css")
+                .Include("~/Content/bootstrap-social.css")
+                );
 
 
             bundles.Add(new ScriptBundle("~/bundles/jquery", "https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js")
-                .Include("~/Scripts/jquery-{version}.js"));
+                .Include("~/Scripts/jquery-{version}.js")
+                );
 
             bundles.Add(new ScriptBundle("~/bundles/base")
                 .Include("~/Scripts/bootstrap.js")
