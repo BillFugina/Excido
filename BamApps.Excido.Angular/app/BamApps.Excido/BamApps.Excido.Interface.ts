@@ -8,7 +8,7 @@
                 SlugPrefix: string;
                 AuthenticationServiceBaseUrl: string;
 
-                RouteProvider: ($routeProvider: angular.route.IRouteProvider) => void;
+                //RouteProvider: ($routeProvider: angular.route.IRouteProvider) => void;
                 uiRouteConfiguration: ($stateProvider: angular.ui.IStateProvider, $urlRouterProvider: angular.ui.IUrlRouterProvider) => void;
             }
 
