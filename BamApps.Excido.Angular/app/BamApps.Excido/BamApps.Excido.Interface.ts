@@ -5,6 +5,7 @@
             export interface ISettings {
                 ApiServer: string;
                 ApiServicePath: string;
+                ApiClientId: string;
                 SlugPrefix: string;
                 AuthenticationServiceBaseUrl: string;
 
@@ -55,4 +56,12 @@
 
         }
     }
+}
+
+declare module angular.ui {
+
+    interface IState {
+        protected?: boolean;
+    }
+
 }

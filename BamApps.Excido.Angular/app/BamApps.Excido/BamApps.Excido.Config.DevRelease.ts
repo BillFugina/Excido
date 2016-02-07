@@ -6,6 +6,7 @@
                 export class Settings implements Interface.ISettings {
                     _ApiServer: string = 'api.dev.excido.net';
                     _ApiServicePath: string = 'breeze/ExcidoBreeze';
+                    _ApiClientId: string = 'localAuth';
                     _SlugPrefix: string = 'http://exci.do/';
                     _AuthenticationServiceBaseUrl: string = 'https://localhost:44300/';
 
@@ -15,6 +16,10 @@
 
                     get ApiServicePath() {
                         return this._ApiServicePath;
+                    }
+
+                    get ApiClientId() {
+                        return this._ApiClientId;
                     }
 
                     get SlugPrefix() {

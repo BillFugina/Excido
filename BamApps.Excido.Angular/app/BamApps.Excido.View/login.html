@@ -17,11 +17,7 @@
                     <span>Excido Account</span>
                 </div>
                 <div class="panel-body">
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <input type="text" class="form-control input-sm" placeholder="Username" data-ng-model="loginController.loginInfo.userName" required autofocus>
-                        </div>
-                    </div>
+                    <input type="text" class="form-control" placeholder="Email Address" data-ng-model="loginController.loginInfo.userName" required autofocus>
                     <input type="password" class="form-control" placeholder="Password" data-ng-model="loginController.loginInfo.password" required>
                     <button class="btn btn-lg btn-info btn-block" type="submit" data-ng-click="loginController.Login()">Login</button>
                     <button class="btn btn-lg btn-success btn-block" type="submit" >Create a free account</button>

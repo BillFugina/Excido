@@ -8,7 +8,7 @@
 
         app.provider('settingsService', BamApps.Excido.Service.SettingsServiceProvider);
 
-        app.controller("loginController", ['$scope', '$location', 'authenticationServiceFactory', Excido.Controller.LoginController]);
+        app.controller("loginController", ['$scope', '$location', 'authenticationServiceFactory', 'settingsService', Excido.Controller.LoginController]);
         app.controller("shared-units", ["$rootScope", "$q", "sharedContentUnitServiceFactory", Excido.Controller.SharedUnitsController]);
         app.controller("signupController", ['$scope', '$location', '$timeout', 'authenticationServiceFactory', Excido.Controller.SignupController]);
         app.controller("mainAppController", ['$scope', 'settingsService', '$state', Excido.Controller.MainAppController]);
@@ -20,10 +20,8 @@
         app.directive("clipboard", ["$timeout", "$rootScope", BamApps.Directive.ClipboardDirective]);
 
         app.factory("entityManagerFactory", ["$q", "breeze", BamApps.Service.breezeEntityManagerFactory]);
-
         app.factory("sharedContentUnitServiceFactory", ["$q", "entityManagerFactory", Excido.Service.SharedContentUnitServiceFactory]);
-        app.factory("authenticationServiceFactory", ['$http', '$q', 'localStorageService', 'authenticationServiceBaseUrl', BamApps.Service.authenticationServiceFactory]);
-
+        app.factory("authenticationServiceFactory", ['$http', '$q', 'localStorageService', 'settingsService', BamApps.Service.authenticationServiceFactory]);
         app.factory("authenticationInterceptorServiceFactory", ['$q', '$location', 'localStorageService', BamApps.Service.getAuthenticationInteceptorService]);
 
         app.filter("collapse", Filter.CollapseFilter);
@@ -32,6 +30,10 @@
 
         app.config(($httpProvider: ng.IHttpProvider) => {
             $httpProvider.interceptors.push('authenticationInterceptorServiceFactory');
+        });
+
+        app.run(function ($rootScope: angular.IRootScopeService, $state: angular.ui.IStateService, $location: angular.ILocationService) {
+            $rootScope.$on('$stateChangeStart', BamApps.Excido.Service.stateChangeInspector);
         });
     }
 }

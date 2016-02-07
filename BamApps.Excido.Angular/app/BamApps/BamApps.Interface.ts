@@ -75,6 +75,11 @@
 
         export interface ILoginResponse {
             access_token: string;
+            fullName: string;
+            expires_in: number;
+            refresh_token: string;
+            ".issued" : Date;
+            ".expires" : Date;
         }
 
         export interface IAuthenticationService {
