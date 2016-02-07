@@ -9,6 +9,7 @@ using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.OAuth;
 using BamApps.Identity.WebApi.Entities;
 using Microsoft.Owin.Security.Provider;
+using BamApps.Identity.WebApi.Infrastructure;
 
 namespace BamApps.Identity.WebApi.Providers {
 
@@ -70,13 +71,17 @@ namespace BamApps.Identity.WebApi.Providers {
             var allowedOrigin = context.OwinContext.Get<string>("as:clientAllowedOrigin") ?? "*";
 
             context.OwinContext.Response.Headers.AddOrChangeHeader(AccessControlAllowOriginHeader, allowedOrigin);
-
+            string fullName = context.UserName;
             using (AuthRepository _repo = new AuthRepository()) {
-                IdentityUser user = await _repo.FindUser(context.UserName, context.Password);
+                ApplicationUser user = await _repo.FindUser(context.UserName, context.Password);
 
                 if (user == null) {
                     context.SetError("invalid_grant", "The user name or password is incorrect.");
                     return;
+                }
+
+                if (!string.IsNullOrEmpty(user.FirstName) || !string.IsNullOrEmpty(user.LastName)) {
+                    fullName = ($"{user.FirstName ?? ""} {user.LastName ?? ""}").Trim();
                 }
             }
 
@@ -92,6 +97,9 @@ namespace BamApps.Identity.WebApi.Providers {
                     },
                     {
                         "userName", context.UserName
+                    },
+                    {
+                        "fullName", fullName
                     }
                 });
 

@@ -1,6 +1,10 @@
 ﻿module BamApps {
     export module Excido {
         export module Service {
+
+            export function stateChangeInspector (event: angular.IAngularEvent, toState: angular.ui.IState, toStateParams, fromState: angular.ui.IState, fromParams, options: angular.ui.IStateOptions) {
+            }
+
             var _sharedContentUnitService: Interface.ISharedContentUnitService = null;
             
             SharedContentUnitServiceFactory.$inject = ["$q", "entityManagerFactory"];
