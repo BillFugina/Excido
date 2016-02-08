@@ -36,20 +36,38 @@
             $httpProvider.interceptors.push('authenticationInterceptorServiceFactory');
         });
 
-        app.run(['$rootScope', '$state', '$urlRouter', 'webApiService', function ($rootScope: angular.IRootScopeService, $state: angular.ui.IStateService, $urlRouter: angular.ui.IUrlRouterService, webApiService: BamApps.Excido.Interface.IWebApiService) {
-            var bypass = false;
+        app.run(['$rootScope', '$state', '$urlRouter', 'webApiService', 'authenticationService',
+            function (
+                $rootScope: angular.IRootScopeService,
+                $state: angular.ui.IStateService,
+                $urlRouter: angular.ui.IUrlRouterService,
+                webApiService: BamApps.Excido.Interface.IWebApiService,
+                authenticationService : BamApps.Interface.IAuthenticationService
+            ) {
+
+                var bypass = false;
             var waitingForAsync = false;
 
             $rootScope.$on('$stateChangeStart',
                 (event: angular.IAngularEvent, toState: angular.ui.IState, toStateParams, fromState: angular.ui.IState, fromParams, options: angular.ui.IStateOptions) => {
+
                     if (waitingForAsync) {
                         event.preventDefault();
                         return;
                     }
 
+                    var hasValidToken = authenticationService.hasValidToken();
+                    var doRedirectBecauseAuthenticated = (authenticationService.hasValidToken() && !toState.protected && !Utils.isNullOrEmpty(toState.redirectWhenAuthenticated));
+                    var notProtectedAndNotLoggedIn = (!toState.protected && !authenticationService.hasValidToken());
+                    var protectedButNotLoggedIn = (toState.protected && !authenticationService.hasValidToken());
+
                     var logObject = {
+                        hasValidToken: hasValidToken,
                         waitingForAsync: waitingForAsync,
                         bypass: bypass,
+                        doRedirectBecauseAuthenticated : doRedirectBecauseAuthenticated,
+                        notProtectedAndNotLoggedIn: notProtectedAndNotLoggedIn,
+                        protectedButNotLoggedIn: protectedButNotLoggedIn,
                         event: event,
                         toState: toState,
                         toStateParams: toStateParams,
@@ -59,22 +77,35 @@
                     }
                     BamApps.Logger.log('$stateChangeStart', 'StateChangeInspectorService', logObject);
 
-                    if (bypass || (Utils.isNullOrEmpty(toState.redirectWhenAuthenticated) && !toState.protected)) {
+                    if ((bypass || notProtectedAndNotLoggedIn) && !doRedirectBecauseAuthenticated) {
                         bypass = false;
                         return;
                     }
 
-                    var states = {
-                        toState: toState,
-                        fromState: fromState
+                    if (protectedButNotLoggedIn) {
+                        redirect();
                     }
+
+                    function redirect() {
+                        if (!toState.protected && !Utils.isNullOrEmpty(toState.name)) {
+                            $state.go(toState.name, toStateParams);
+                        }
+                        else if (!fromState.protected && !Utils.isNullOrEmpty(fromState.name)) {
+                            $state.go(fromState.name, fromParams);
+                        } else {
+                            $state.go('login');
+                        }
+                    }
+
+
+
 
                     event.preventDefault();
 
                     waitingForAsync = true;
                     webApiService.verify()
                         .then(result => {
-                            BamApps.Logger.toast(`WebApi Access Verification:"${result}"`, 'StateChangeInspectorService', states, toastr.success, 'WebApi Access Verification');
+                            BamApps.Logger.toast(`WebApi Access Verification:"${result}"`, 'StateChangeInspectorService', logObject, toastr.success, 'WebApi Access Verification');
                             if (!toState.protected && !Utils.isNullOrEmpty(toState.redirectWhenAuthenticated)) {
                                 bypass = true;
                                 waitingForAsync = false;
@@ -86,20 +117,10 @@
                             }
                         })
                         .catch(reason => {
-                            BamApps.Logger.error(reason.err.message, 'StateChangeInspectorService', states, toastr.error, 'WebApi Access Verification Failure');
+                            BamApps.Logger.error(reason.err.Message, 'StateChangeInspectorService', logObject, toastr.error, 'Access Denied');
                             waitingForAsync = false;
-                            if (!toState.protected && !Utils.isNullOrEmpty(toState.name)) {
-                                bypass = true;
-                                $state.go(toState.name, toStateParams);
-                            }
-                            else if (!fromState.protected && !Utils.isNullOrEmpty(fromState.name)) {
-                                bypass = true;
-                                $state.go(fromState.name, fromParams);
-                            } else {
-                                bypass = true;
-                                $state.go('login');
-                            }
-
+                            authenticationService.logout();
+                            redirect();
                         })
                         .finally(() => {
                             waitingForAsync = false;

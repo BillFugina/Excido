@@ -31,8 +31,9 @@ module BamApps {
                 }
 
                 Logout() {
+                    BamApps.Logger.log("You have been logged out.", this, null, toastr.warning, "Logout");
                     this.authenticationService.logout();
-                    return true;
+                    this.$state.go('home');
                 }
             }
 
