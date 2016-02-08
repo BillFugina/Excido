@@ -72,6 +72,26 @@
                 this._authentication.userName = "";
             }
 
+            hasToken() : boolean {
+                var token = this.localStorageService.get('authorizationData');
+                var result = token !== void 0;
+                return result;
+            }
+
+            hasValidToken(): boolean {
+                var result = false;
+                var token = this.localStorageService.get('authorizationData');
+                var expires = this.localStorageService.get('expires');
+                var expiresMoment = moment(expires);
+                var nowMoment = moment();
+                var tokenNotNull = token != null;
+
+                if (tokenNotNull && expiresMoment.isValid()) {
+                    result =expiresMoment.isAfter(nowMoment);
+                }
+                return result;
+            }
+
             verify(): ng.IPromise<boolean> {
                 var self = this;
                 var authenticationServiceBaseUrl = self.settingsService.Settings.AuthenticationServiceBaseUrl;
