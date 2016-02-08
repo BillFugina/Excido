@@ -7,7 +7,7 @@
                 public expirationDate: Date;
                 public longLink: string;
 
-                constructor(private $scope: ng.IScope) {
+                constructor(private $scope: ng.IScope, private helloWorldService) {
                     super();
                 }
 
@@ -34,7 +34,6 @@
                 }
 
                 public expirationInvalid() {
-                    debugger;
                     var result = false;
                     if (this.expirationDate != null) {
                         var x = this.expirationDate;
