@@ -4,17 +4,23 @@
             export module Debug {
                 export class Settings implements BamApps.Excido.Interface.ISettings {
                     _ApiServer: string = 'localhost:44302';
-                    _ApiServicePath: string = 'breeze/ExcidoBreeze';
+                    _ApiBreezeServicePath: string = 'breeze/ExcidoBreeze';
+                    _ApiExcidoServicePath: string = 'api/Excido';
                     _ApiClientId: string = 'localExcido';
                     _SlugPrefix: string = 'https://localhost:44302/';
+                    _ExcidoServiceBaseUrl: string = 'https://localhost:44302/';
                     _AuthenticationServiceBaseUrl: string = 'https://localhost:44300/';
 
                     get ApiServer() {
                         return this._ApiServer;
                     }
 
-                    get ApiServicePath() {
-                        return this._ApiServicePath;
+                    get ApiBreezeServicePath() {
+                        return this._ApiBreezeServicePath;
+                    }
+
+                    get ApiExcidoServicePath() {
+                        return this._ApiExcidoServicePath;
                     }
 
                     get ApiClientId() {
@@ -23,6 +29,10 @@
 
                     get SlugPrefix() {
                         return this._SlugPrefix;
+                    }
+
+                    get ExcidoServiceBaseUrl() {
+                        return this._ExcidoServiceBaseUrl;
                     }
 
                     get AuthenticationServiceBaseUrl() {
@@ -55,7 +65,10 @@
 
                     uiRouteConfiguration = ($stateProvider: angular.ui.IStateProvider, $urlRouterProvider: angular.ui.IUrlRouterProvider) => {
                         $urlRouterProvider
-                            .otherwise('/home');
+                            .otherwise(function ($injector, $location) {
+                                var $state = $injector.get("$state");
+                                $state.go('home');
+                            });
 
                         $stateProvider
                             .state('site', {
@@ -70,6 +83,7 @@
                                 controller: 'homeController',
                                 controllerAs: 'homeController',
                                 protected: false,
+                                redirectWhenAuthenticated: 'sharedUnits'
 
                             })
                             .state('login', {
@@ -78,10 +92,19 @@
                                 templateUrl: '/app/BamApps.Excido.View/login.html',
                                 controller: 'loginController',
                                 controllerAs: 'loginController',
+                                protected: false,
+                                redirectWhenAuthenticated: 'sharedUnits'
+                            })
+                            .state('logout', {
+                                parent: 'site',
+                                url: '/logout',
+                                templateUrl: '/app/BamApps.Excido.View/logout.html',
+                                controller: 'loginController',
+                                controllerAs: 'loginController',
                                 protected: false
                             })
                             .state('about', {
-                                parent: 'site',
+                                parent: 'site'
                             })
                             .state('sharedUnits', {
                                 parent: 'site',

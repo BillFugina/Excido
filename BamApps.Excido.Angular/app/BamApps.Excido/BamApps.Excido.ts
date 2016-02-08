@@ -1,5 +1,4 @@
 ﻿module BamApps {
-    "use strict"
     export module Excido {
         Logger.verbosity(Logger.Level.Log);
         export var app = angular.module('excido', ['ui.router', 'breeze.angular', 'ui.bootstrap', 'angular-loading-bar', 'monospaced.elastic', 'LocalStorageModule']);
@@ -8,9 +7,9 @@
 
         app.provider('settingsService', BamApps.Excido.Service.SettingsServiceProvider);
 
-        app.controller("loginController", ['$scope', '$location', 'authenticationServiceFactory', 'settingsService', Excido.Controller.LoginController]);
+        app.controller("loginController", ['$scope', '$state', 'authenticationService', 'settingsService', Excido.Controller.LoginController]);
         app.controller("shared-units", ["$rootScope", "$q", "sharedContentUnitServiceFactory", Excido.Controller.SharedUnitsController]);
-        app.controller("signupController", ['$scope', '$location', '$timeout', 'authenticationServiceFactory', Excido.Controller.SignupController]);
+        app.controller("signupController", ['$scope', '$location', '$timeout', 'authenticationService', Excido.Controller.SignupController]);
         app.controller("mainAppController", ['$scope', 'settingsService', '$state', Excido.Controller.MainAppController]);
         app.controller("homeController", ['$scope', 'helloWorldService', Excido.Controller.HomeController]);
 
@@ -21,7 +20,8 @@
 
         app.factory("entityManagerFactory", ["$q", "breeze", BamApps.Service.breezeEntityManagerFactory]);
         app.factory("sharedContentUnitServiceFactory", ["$q", "entityManagerFactory", Excido.Service.SharedContentUnitServiceFactory]);
-        app.factory("authenticationServiceFactory", ['$http', '$q', 'localStorageService', 'settingsService', BamApps.Service.authenticationServiceFactory]);
+        app.factory("authenticationService", ['$http', '$q', 'localStorageService', 'settingsService', BamApps.Service.authenticationServiceFactory]);
+        app.factory("webApiService", ['$http', '$q', 'localStorageService', 'settingsService', BamApps.Excido.Service.WebApiServiceFactory]);
         app.factory("authenticationInterceptorServiceFactory", ['$q', '$location', 'localStorageService', BamApps.Service.getAuthenticationInteceptorService]);
         app.factory("helloWorldService", ['$q', '$http', 'settingsService', BamApps.Service.HelloWorldServiceFactory]);
         //app.factory("stateChangeInspectorService", ['$rootScope', '$urlRouter', 'helloWorldService', BamApps.Service.StateChangeInspectorServiceFactory]);
@@ -36,26 +36,73 @@
             $httpProvider.interceptors.push('authenticationInterceptorServiceFactory');
         });
 
-        app.run(['$rootScope', '$state', '$urlRouter', 'helloWorldService', function ($rootScope : angular.IRootScopeService, $state: angular.ui.IStateService, $urlRouter: angular.ui.IUrlRouterService, helloWorldService: BamApps.Interface.IHelloWorldService) {
+        app.run(['$rootScope', '$state', '$urlRouter', 'webApiService', function ($rootScope: angular.IRootScopeService, $state: angular.ui.IStateService, $urlRouter: angular.ui.IUrlRouterService, webApiService: BamApps.Excido.Interface.IWebApiService) {
             var bypass = false;
+            var waitingForAsync = false;
 
             $rootScope.$on('$stateChangeStart',
                 (event: angular.IAngularEvent, toState: angular.ui.IState, toStateParams, fromState: angular.ui.IState, fromParams, options: angular.ui.IStateOptions) => {
-                    if (bypass) {
+                    if (waitingForAsync) {
+                        event.preventDefault();
+                        return;
+                    }
+
+                    var logObject = {
+                        waitingForAsync: waitingForAsync,
+                        bypass: bypass,
+                        event: event,
+                        toState: toState,
+                        toStateParams: toStateParams,
+                        fromState: fromState,
+                        fromStateParams: fromParams,
+                        options: options
+                    }
+                    BamApps.Logger.log('$stateChangeStart', 'StateChangeInspectorService', logObject);
+
+                    if (bypass || (Utils.isNullOrEmpty(toState.redirectWhenAuthenticated) && !toState.protected)) {
                         bypass = false;
                         return;
                     }
 
+                    var states = {
+                        toState: toState,
+                        fromState: fromState
+                    }
+
                     event.preventDefault();
 
-                    helloWorldService.SayHello()
+                    waitingForAsync = true;
+                    webApiService.verify()
                         .then(result => {
-                            BamApps.Logger.toast('helloWorldService says"' + result + '"', 'StateChangeInspectorService', result, toastr.success, 'Hello');
-                            bypass = true;
-                            $state.go(toState, toStateParams);
+                            BamApps.Logger.toast(`WebApi Access Verification:"${result}"`, 'StateChangeInspectorService', states, toastr.success, 'WebApi Access Verification');
+                            if (!toState.protected && !Utils.isNullOrEmpty(toState.redirectWhenAuthenticated)) {
+                                bypass = true;
+                                waitingForAsync = false;
+                                $state.go(toState.redirectWhenAuthenticated);
+                            } else {
+                                bypass = true;
+                                waitingForAsync = false;
+                                $state.go(toState, toStateParams);
+                            }
                         })
                         .catch(reason => {
-                            BamApps.Logger.error('helloWorldService says"' + reason + '"', 'StateChangeInspectorService', reason, toastr.error, "Error");
+                            BamApps.Logger.error(reason.err.message, 'StateChangeInspectorService', states, toastr.error, 'WebApi Access Verification Failure');
+                            waitingForAsync = false;
+                            if (!toState.protected && !Utils.isNullOrEmpty(toState.name)) {
+                                bypass = true;
+                                $state.go(toState.name, toStateParams);
+                            }
+                            else if (!fromState.protected && !Utils.isNullOrEmpty(fromState.name)) {
+                                bypass = true;
+                                $state.go(fromState.name, fromParams);
+                            } else {
+                                bypass = true;
+                                $state.go('login');
+                            }
+
+                        })
+                        .finally(() => {
+                            waitingForAsync = false;
                         });
 
                 });

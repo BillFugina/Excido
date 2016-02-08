@@ -2,11 +2,18 @@
     export module Excido {
         export module Interface {
 
+
+            export interface IWebApiService {
+                verify(): ng.IPromise<boolean>;
+            }
+
             export interface ISettings {
                 ApiServer: string;
-                ApiServicePath: string;
+                ApiBreezeServicePath: string;
+                ApiExcidoServicePath: string;
                 ApiClientId: string;
                 SlugPrefix: string;
+                ExcidoServiceBaseUrl: string;
                 AuthenticationServiceBaseUrl: string;
 
                 //RouteProvider: ($routeProvider: angular.route.IRouteProvider) => void;
@@ -62,6 +69,7 @@ declare module angular.ui {
 
     interface IState {
         protected?: boolean;
+        redirectWhenAuthenticated?: string;
     }
 
 }

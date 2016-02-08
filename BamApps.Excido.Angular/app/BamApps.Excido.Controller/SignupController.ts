@@ -2,7 +2,7 @@
     export module Excido {
         export module Controller {
             export class SignupController extends BamApps.Model.BamAppsBase {
-                static $inject: string[] = ['$scope', '$location', '$timeout', 'authenticationServiceFactory'];
+                static $inject: string[] = ['$scope', '$location', '$timeout', 'authenticationService'];
 
                 private _authenticationService: BamApps.Interface.IAuthenticationService;
 
@@ -14,10 +14,9 @@
                     private $scope: ng.IScope,
                     private $location: ng.ILocationService,
                     private $timeout: ng.ITimeoutService,
-                    private authenticationServiceFactory: BamApps.Interface.IAuthenticationServiceFactory
+                    private authenticationService: BamApps.Interface.IAuthenticationService
                 ) {
                     super();
-                    this._authenticationService = authenticationServiceFactory.getAuthenticationService();
                 }
 
                 Signup() {

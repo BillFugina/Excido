@@ -4,17 +4,23 @@
             export module Release {
                 export class Settings implements Interface.ISettings {
                     _ApiServer: string = 'api.excido.net';
-                    _ApiServicePath: string = 'breeze/ExcidoBreeze';
+                    _ApiBreezeServicePath: string = 'breeze/ExcidoBreeze';
+                    _ApiExcidoServicePath: string = 'api/Excido';
                     _ApiClientId: string = 'localAuth';
                     _SlugPrefix: string = 'http://exci.do/';
+                    _ExcidoServiceBaseUrl: string = 'https://localhost:44302/';
                     _AuthenticationServiceBaseUrl: string = 'https://localhost:44300/';
 
                     get ApiServer() {
                         return this._ApiServer;
                     }
 
-                    get ApiServicePath() {
-                        return this._ApiServicePath;
+                    get ApiBreezeServicePath() {
+                        return this._ApiBreezeServicePath;
+                    }
+
+                    get ApiExcidoServicePath() {
+                        return this._ApiExcidoServicePath;
                     }
 
                     get ApiClientId() {
@@ -23,6 +29,10 @@
 
                     get SlugPrefix() {
                         return this._SlugPrefix;
+                    }
+
+                    get ExcidoServiceBaseUrl() {
+                        return this._ExcidoServiceBaseUrl;
                     }
 
                     get AuthenticationServiceBaseUrl() {
