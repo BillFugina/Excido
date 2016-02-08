@@ -952,6 +952,9 @@
     <TypeScriptCompile Include="app\BamApps\BamApps.Service.ts" />
     <TypeScriptCompile Include="app\BamApps\BamApps.Interface.ts" />
     <TypeScriptCompile Include="app\BamApps\BamApps.Utils.ts" />
+    <TypeScriptCompile Include="app\BamApps\Service\HelloWorld.ts" />
+    <TypeScriptCompile Include="app\BamApps\Service\PrincipalService.ts" />
+    <TypeScriptCompile Include="app\BamApps\Service\StateChangeInspector.ts" />
     <TypeScriptCompile Include="Scripts\typings\angular-local-storage\angular-local-storage.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\angular-ui-router\angular-ui-router.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\angularjs\angular-animate.d.ts" />

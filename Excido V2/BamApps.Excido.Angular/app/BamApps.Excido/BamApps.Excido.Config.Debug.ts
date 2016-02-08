@@ -58,14 +58,22 @@
                             .otherwise('/home');
 
                         $stateProvider
+                            .state('site', {
+                                'abstract': true,
+                                template: '<ui-view/>'
+                            })
+                           
                             .state('home', {
+                                parent: 'site',
                                 url: '/home',
                                 templateUrl: '/app/BamApps.Excido.View/partial-home.html',
                                 controller: 'homeController',
                                 controllerAs: 'homeController',
-                                protected: false
+                                protected: false,
+
                             })
                             .state('login', {
+                                parent : 'site',
                                 url: '/login',
                                 templateUrl: '/app/BamApps.Excido.View/login.html',
                                 controller: 'loginController',
@@ -73,8 +81,10 @@
                                 protected: false
                             })
                             .state('about', {
+                                parent: 'site',
                             })
                             .state('sharedUnits', {
+                                parent: 'site',
                                 url: '/sharedUnits',
                                 templateUrl: '/app/BamApps.Excido.View/shared-units.html',
                                 controller: 'shared-units',

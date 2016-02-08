@@ -12,7 +12,7 @@
         app.controller("shared-units", ["$rootScope", "$q", "sharedContentUnitServiceFactory", Excido.Controller.SharedUnitsController]);
         app.controller("signupController", ['$scope', '$location', '$timeout', 'authenticationServiceFactory', Excido.Controller.SignupController]);
         app.controller("mainAppController", ['$scope', 'settingsService', '$state', Excido.Controller.MainAppController]);
-        app.controller("homeController", ['$scope', Excido.Controller.HomeController]);
+        app.controller("homeController", ['$scope', 'helloWorldService', Excido.Controller.HomeController]);
 
         app.directive("syncFocusWith", ["$timeout", "$rootScope", "$parse", BamApps.Directive.SyncFocusDirective]);
         app.directive("onEnterKey", ["$timeout", "$rootScope", BamApps.Directive.OnEnterKeyDirective]);
@@ -23,6 +23,10 @@
         app.factory("sharedContentUnitServiceFactory", ["$q", "entityManagerFactory", Excido.Service.SharedContentUnitServiceFactory]);
         app.factory("authenticationServiceFactory", ['$http', '$q', 'localStorageService', 'settingsService', BamApps.Service.authenticationServiceFactory]);
         app.factory("authenticationInterceptorServiceFactory", ['$q', '$location', 'localStorageService', BamApps.Service.getAuthenticationInteceptorService]);
+        app.factory("helloWorldService", ['$q', '$http', 'settingsService', BamApps.Service.HelloWorldServiceFactory]);
+        //app.factory("stateChangeInspectorService", ['$rootScope', '$urlRouter', 'helloWorldService', BamApps.Service.StateChangeInspectorServiceFactory]);
+
+        app.service("stateChangeInspectorService", ['$rootScope', '$urlRouter', 'helloWorldService', BamApps.Service.StateChangeInspectorService]);
 
         app.filter("collapse", Filter.CollapseFilter);
 
@@ -32,8 +36,30 @@
             $httpProvider.interceptors.push('authenticationInterceptorServiceFactory');
         });
 
-        app.run(function ($rootScope: angular.IRootScopeService, $state: angular.ui.IStateService, $location: angular.ILocationService) {
-            $rootScope.$on('$stateChangeStart', BamApps.Excido.Service.stateChangeInspector);
-        });
+        app.run(['$rootScope', '$state', '$urlRouter', 'helloWorldService', function ($rootScope : angular.IRootScopeService, $state: angular.ui.IStateService, $urlRouter: angular.ui.IUrlRouterService, helloWorldService: BamApps.Interface.IHelloWorldService) {
+            var bypass = false;
+
+            $rootScope.$on('$stateChangeStart',
+                (event: angular.IAngularEvent, toState: angular.ui.IState, toStateParams, fromState: angular.ui.IState, fromParams, options: angular.ui.IStateOptions) => {
+                    if (bypass) {
+                        bypass = false;
+                        return;
+                    }
+
+                    event.preventDefault();
+
+                    helloWorldService.SayHello()
+                        .then(result => {
+                            BamApps.Logger.toast('helloWorldService says"' + result + '"', 'StateChangeInspectorService', result, toastr.success, 'Hello');
+                            bypass = true;
+                            $state.go(toState, toStateParams);
+                        })
+                        .catch(reason => {
+                            BamApps.Logger.error('helloWorldService says"' + reason + '"', 'StateChangeInspectorService', reason, toastr.error, "Error");
+                        });
+
+                });
+        }]);
+
     }
 }

@@ -1,6 +1,18 @@
 ﻿module BamApps {
     export module Interface {
 
+        export interface IStateChangeInspectorService {
+            stateChangeInspector(event: angular.IAngularEvent, toState: angular.ui.IState, toStateParams, fromState: angular.ui.IState, fromParams, options: angular.ui.IStateOptions);
+        }
+
+        export interface IHelloWorldService {
+            SayHello(): angular.IPromise<string>;
+        }
+
+        export interface IIdentity {
+            roles: string[];
+        }
+
         export interface ITitle {
             title: string;
         }
