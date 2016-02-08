@@ -66,6 +66,7 @@ namespace BamApps.Excido.Angular.App_Start {
                 .Include("~/app/BamApps/BamApps.Service.js")
                 .Include("~/app/BamApps/BamApps.Directive.js")
 
+                .Include("~/app/BamApps/Service/Authentication.js")
                 .Include("~/app/BamApps/Service/HelloWorld.js")
                 .Include("~/app/BamApps/Service/StateChangeInspector.js")
 
@@ -76,6 +77,7 @@ namespace BamApps.Excido.Angular.App_Start {
                 .Include("~/app/BamApps.Excido/BamApps.Excido.Directive.js")
 
                 .Include("~/app/BamApps.Excido/Service/SettingsService.js")
+                .Include("~/app/BamApps.Excido/Service/WebApi.js")
 
                 .Include("~/app/BamApps.Excido.Controller/LoginController.js")
                 .Include("~/app/BamApps.Excido.Controller/SignupController.js")

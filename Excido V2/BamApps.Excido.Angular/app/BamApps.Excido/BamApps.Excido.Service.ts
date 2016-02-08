@@ -18,7 +18,7 @@
                         Logger.log("Create a new shared content unit service", title, _sharedContentUnitService);
 
                         var settings = Configuration.Settings;
-                        entityManagerFactory.getEntityManager(settings.ApiServer, settings.ApiServicePath)
+                        entityManagerFactory.getEntityManager(settings.ApiServer, settings.ApiBreezeServicePath)
                             .then(em => {
                                 Logger.log("Successfully accessed entity manager", title, em);
                                 var entityManager = em;

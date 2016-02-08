@@ -46,6 +46,7 @@
     <Content Include="apple-touch-icon.png" />
     <Content Include="app\BamApps.Excido.View\home.html" />
     <Content Include="app\BamApps.Excido.View\login.html" />
+    <Content Include="app\BamApps.Excido.View\logout.html" />
     <Content Include="app\BamApps.Excido.View\partial-home.html" />
     <Content Include="app\BamApps.Excido.View\shared-units.html" />
     <Content Include="app\BamApps.Excido.View\signup.html" />
@@ -952,9 +953,11 @@
     <TypeScriptCompile Include="app\BamApps\BamApps.Service.ts" />
     <TypeScriptCompile Include="app\BamApps\BamApps.Interface.ts" />
     <TypeScriptCompile Include="app\BamApps\BamApps.Utils.ts" />
+    <TypeScriptCompile Include="app\BamApps\Service\Authentication.ts" />
     <TypeScriptCompile Include="app\BamApps\Service\HelloWorld.ts" />
     <TypeScriptCompile Include="app\BamApps\Service\PrincipalService.ts" />
     <TypeScriptCompile Include="app\BamApps\Service\StateChangeInspector.ts" />
+    <TypeScriptCompile Include="app\BamApps.Excido\Service\WebApi.ts" />
     <TypeScriptCompile Include="Scripts\typings\angular-local-storage\angular-local-storage.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\angular-ui-router\angular-ui-router.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\angularjs\angular-animate.d.ts" />

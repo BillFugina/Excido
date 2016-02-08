@@ -43,6 +43,12 @@ namespace BamApps.Identity.WebApi.Controllers {
             return "Hello User";
         }
 
+        [HttpGet]
+        [Route("verify")]
+        [Authorize]
+        public bool Verify() {
+            return true;
+        }
 
         [Authorize(Roles = "Admin")]
         [Route("users")]

@@ -2,7 +2,7 @@ module BamApps {
     export module Excido {
         export module Controller {
             export class LoginController extends BamApps.Model.BamAppsBase implements BamApps.Interface.ILoginController {
-                static $inject: string[] = ['$scope', '$location', 'authenticationServiceFactory', 'settingsService'];
+                static $inject: string[] = ['$scope', '$state', 'authenticationService', 'settingsService'];
 
                 private _authenticationService: BamApps.Interface.IAuthenticationService;
 
@@ -11,23 +11,28 @@ module BamApps {
 
                 constructor(
                     private $scope: ng.IScope,
-                    private $location: ng.ILocationService,
-                    private authenticationServiceFactory: BamApps.Interface.IAuthenticationServiceFactory,
+                    private $state: ng.ui.IStateService,
+                    private authenticationService: BamApps.Interface.IAuthenticationService,
                     private settingsService: BamApps.Excido.Service.SettingsService
                 ) {
                     super();
-                    this._authenticationService = authenticationServiceFactory.getAuthenticationService();
                 }
 
                 Login(): void {
-                    this._authenticationService.login(this.loginInfo)
+                    this.authenticationService.login(this.loginInfo)
                         .then(response => {
-                            this.$location.path('/shared-units');
+                            BamApps.Logger.log("Login Successful", this, response, toastr.success, "Login Results");
+                            this.$state.go('sharedUnits');
                         })
                         .catch(err => {
                             this.message = err.error_description;
                             BamApps.Logger.error(this.message, this, err, true, "Login Failure!");
                         });
+                }
+
+                Logout() {
+                    this.authenticationService.logout();
+                    return true;
                 }
             }
 

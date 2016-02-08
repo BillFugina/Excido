@@ -98,6 +98,7 @@
             saveRegistration(registration): ng.IPromise<any>
             login(loginData: ILoginInfo): ng.IPromise<ILoginResponse>;
             logout(): void;
+            verify() : ng.IPromise<boolean>;
         }
 
         export interface IAuthenticationServiceFactory {
