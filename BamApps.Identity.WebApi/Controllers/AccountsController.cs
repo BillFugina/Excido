@@ -365,6 +365,7 @@ namespace BamApps.Identity.WebApi.Controllers {
                 else if (provider == "Google") {
                     parsedToken.user_id = jObj["user_id"];
                     parsedToken.app_id = jObj["audience"];
+                    parsedToken.email = jObj["email"];
 
                     if (!string.Equals(Startup.googleAuthOptions.ClientId, parsedToken.app_id, StringComparison.OrdinalIgnoreCase)) {
                         return null;

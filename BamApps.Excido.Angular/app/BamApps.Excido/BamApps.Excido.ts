@@ -7,7 +7,7 @@
 
         app.provider('settingsService', BamApps.Excido.Service.SettingsServiceProvider);
 
-        app.controller("loginController", ['$scope', '$state', 'authenticationService', 'settingsService', Excido.Controller.LoginController]);
+        app.controller("loginController", ['$scope', '$state', 'authenticationService', 'settingsService', '$stateParams', Excido.Controller.LoginController]);
         app.controller("shared-units", ["$rootScope", "$q", "sharedContentUnitServiceFactory", Excido.Controller.SharedUnitsController]);
         app.controller("signupController", ['$scope', '$location', '$timeout', 'authenticationService', Excido.Controller.SignupController]);
         app.controller("preLoginController", ['$scope', 'settingsService', '$state', Excido.Controller.PreLoginController]);
@@ -21,7 +21,7 @@
 
         app.factory("entityManagerFactory", ["$q", "breeze", BamApps.Service.breezeEntityManagerFactory]);
         app.factory("sharedContentUnitServiceFactory", ["$q", "entityManagerFactory", Excido.Service.SharedContentUnitServiceFactory]);
-        app.factory("authenticationService", ['$http', '$q', 'localStorageService', 'settingsService', BamApps.Service.authenticationServiceFactory]);
+        app.factory("authenticationService", ['$window', '$http', '$q', 'localStorageService', 'settingsService', BamApps.Service.authenticationServiceFactory]);
         app.factory("webApiService", ['$http', '$q', 'localStorageService', 'settingsService', BamApps.Excido.Service.WebApiServiceFactory]);
         app.factory("authenticationInterceptorServiceFactory", ['$q', '$location', 'localStorageService', BamApps.Service.getAuthenticationInteceptorService]);
         app.factory("helloWorldService", ['$q', '$http', 'settingsService', BamApps.Service.HelloWorldServiceFactory]);
