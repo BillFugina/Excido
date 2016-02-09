@@ -1,7 +1,8 @@
 ﻿module BamApps {
     export module Excido {
         export module Controller {
-            export class MainAppController extends BamApps.Model.BamAppsBase implements BamApps.Excido.Interface.Controller.IMainAppController {
+
+            export class PreLoginController extends BamApps.Model.BamAppsBase implements BamApps.Excido.Interface.Controller.IPreLoginController {
 
                 constructor(private $scope: ng.IScope,
                     private settingsService: BamApps.Excido.Interface.ISettingsService,

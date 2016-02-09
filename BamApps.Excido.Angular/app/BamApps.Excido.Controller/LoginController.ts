@@ -21,7 +21,8 @@ module BamApps {
                 Login(): void {
                     this.authenticationService.login(this.loginInfo)
                         .then(response => {
-                            BamApps.Logger.log("Login Successful", this, response, toastr.success, "Login Results");
+                            var fullName = this.authenticationService.userFullName;
+                            BamApps.Logger.log("Welcome " + fullName, this, response, toastr.success, "Login Successful");
                             this.$state.go('sharedUnits');
                         })
                         .catch(err => {

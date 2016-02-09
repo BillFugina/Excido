@@ -39,30 +39,6 @@
                         return this._AuthenticationServiceBaseUrl;
                     }
 
-                    //RouteProvider($routeProvider: angular.route.IRouteProvider) {
-                    //    $routeProvider.when('/shared-units', {
-                    //        templateUrl: 'app/BamApps.Excido.View/shared-units.html',
-                    //        controller: 'shared-units',
-                    //        controllerAs: 'sharedunits'
-                    //    })
-
-                    //    $routeProvider.when('/signup', {
-                    //        templateUrl: 'app/BamApps.Excido.View/signup.html',
-                    //        controller: 'signupController',
-                    //        controllerAs: 'signupController'
-                    //    })
-
-                    //    $routeProvider.when('/login', {
-                    //        templateUrl: 'app/BamApps.Excido.View/login.html',
-                    //        controller: 'loginController',
-                    //        controllerAs: 'loginController'
-                    //    })
-
-                    //    $routeProvider.otherwise({
-                    //        redirectTo: '/shared-units'
-                    //    })
-                    //};
-
                     uiRouteConfiguration = ($stateProvider: angular.ui.IStateProvider, $urlRouterProvider: angular.ui.IUrlRouterProvider) => {
                         $urlRouterProvider
                             .otherwise(function ($injector, $location) {
@@ -75,6 +51,13 @@
                                 'abstract': true,
                                 template: '<ui-view/>'
                             })
+                            .state('main', {
+                                'abstract': true,
+                                templateUrl: '/app/BamApps.Excido.View/main.html',
+                                controller: 'mainController',
+                                controllerAs: 'mainController'
+                            })
+                           
                            
                             .state('home', {
                                 parent: 'site',
@@ -107,7 +90,7 @@
                                 parent: 'site'
                             })
                             .state('sharedUnits', {
-                                parent: 'site',
+                                parent: 'main',
                                 url: '/sharedUnits',
                                 templateUrl: '/app/BamApps.Excido.View/shared-units.html',
                                 controller: 'shared-units',

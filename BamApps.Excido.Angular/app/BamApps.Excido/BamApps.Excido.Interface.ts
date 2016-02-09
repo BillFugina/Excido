@@ -2,6 +2,12 @@
     export module Excido {
         export module Interface {
 
+            export interface IMainController {
+                userFullName: string;
+
+                Logout();
+                UserSettings();
+            }
 
             export interface IWebApiService {
                 verify(): ng.IPromise<boolean>;
@@ -53,7 +59,7 @@
             }
 
             export module Controller {
-                export interface IMainAppController {
+                export interface IPreLoginController {
                     NameSpace : string;
                 }
 

@@ -47,6 +47,7 @@
     <Content Include="app\BamApps.Excido.View\home.html" />
     <Content Include="app\BamApps.Excido.View\login.html" />
     <Content Include="app\BamApps.Excido.View\logout.html" />
+    <Content Include="app\BamApps.Excido.View\main.html" />
     <Content Include="app\BamApps.Excido.View\partial-home.html" />
     <Content Include="app\BamApps.Excido.View\shared-units.html" />
     <Content Include="app\BamApps.Excido.View\signup.html" />
@@ -85,6 +86,8 @@
     <Content Include="Images\BAM-Apps-Logo-Rounded-Square-200x200.png" />
     <Content Include="Images\BAM-Apps-Logo-Rounded-Square-300x300.png" />
     <Content Include="Images\EX Logo 260 x 260.png" />
+    <Content Include="Images\Excido Logo 108 x 40.png" />
+    <Content Include="Images\Excido Logo 165 x 60.png" />
     <Content Include="Images\Excido Logo 180 x 180.png" />
     <Content Include="Images\Excido Logo 340 x 130.png" />
     <Content Include="Images\Excido Logo 340 x 340.png" />
@@ -934,7 +937,8 @@
   <ItemGroup>
     <TypeScriptCompile Include="app\BamApps.Excido.Controller\HomeController.ts" />
     <TypeScriptCompile Include="app\BamApps.Excido.Controller\LoginController.ts" />
-    <TypeScriptCompile Include="app\BamApps.Excido.Controller\MainAppController.ts" />
+    <TypeScriptCompile Include="app\BamApps.Excido.Controller\MainController.ts" />
+    <TypeScriptCompile Include="app\BamApps.Excido.Controller\PreLoginController.ts" />
     <TypeScriptCompile Include="app\BamApps.Excido.Controller\SignupController.ts" />
     <TypeScriptCompile Include="app\BamApps.Excido.Controller\SharedUnitsController.ts" />
     <TypeScriptCompile Include="app\BamApps.Excido\BamApps.Excido.Config.Debug.ts" />
