@@ -101,6 +101,7 @@
             verify(): ng.IPromise<boolean>;
             hasToken(): boolean;
             hasValidToken(): boolean;
+            userFullName: string;
         }
 
         export interface IAuthenticationServiceFactory {

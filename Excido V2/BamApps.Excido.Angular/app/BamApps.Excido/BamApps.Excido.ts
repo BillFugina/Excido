@@ -1,7 +1,7 @@
 ﻿module BamApps {
     export module Excido {
         Logger.verbosity(Logger.Level.Log);
-        export var app = angular.module('excido', ['ui.router', 'breeze.angular', 'ui.bootstrap', 'angular-loading-bar', 'monospaced.elastic', 'LocalStorageModule']);
+        export var app = angular.module('excido', ['ui.router', 'breeze.angular', 'ui.bootstrap', 'angular-loading-bar', 'ngAnimate', 'monospaced.elastic', 'LocalStorageModule']);
 
         app.value('authenticationServiceBaseUrl', Configuration.Settings.AuthenticationServiceBaseUrl);
 
@@ -10,8 +10,9 @@
         app.controller("loginController", ['$scope', '$state', 'authenticationService', 'settingsService', Excido.Controller.LoginController]);
         app.controller("shared-units", ["$rootScope", "$q", "sharedContentUnitServiceFactory", Excido.Controller.SharedUnitsController]);
         app.controller("signupController", ['$scope', '$location', '$timeout', 'authenticationService', Excido.Controller.SignupController]);
-        app.controller("mainAppController", ['$scope', 'settingsService', '$state', Excido.Controller.MainAppController]);
+        app.controller("preLoginController", ['$scope', 'settingsService', '$state', Excido.Controller.PreLoginController]);
         app.controller("homeController", ['$scope', 'helloWorldService', Excido.Controller.HomeController]);
+        app.controller("mainController", ['$state', '$q', '$timeout', 'settingsService', 'authenticationService', Excido.Controller.MainController]);
 
         app.directive("syncFocusWith", ["$timeout", "$rootScope", "$parse", BamApps.Directive.SyncFocusDirective]);
         app.directive("onEnterKey", ["$timeout", "$rootScope", BamApps.Directive.OnEnterKeyDirective]);
@@ -35,6 +36,10 @@
         app.config(($httpProvider: ng.IHttpProvider) => {
             $httpProvider.interceptors.push('authenticationInterceptorServiceFactory');
         });
+
+        app.config(['cfpLoadingBarProvider', function (cfpLoadingBarProvider) {
+            cfpLoadingBarProvider.latencyThreshold = 750;
+        }])
 
         app.run(['$rootScope', '$state', '$urlRouter', 'webApiService', 'authenticationService',
             function (
@@ -105,7 +110,7 @@
                     waitingForAsync = true;
                     webApiService.verify()
                         .then(result => {
-                            BamApps.Logger.toast(`WebApi Access Verification:"${result}"`, 'StateChangeInspectorService', logObject, toastr.success, 'WebApi Access Verification');
+                            BamApps.Logger.log(`WebApi Access Verification:"${result}"`, 'StateChangeInspectorService', logObject, false, 'WebApi Access Verification');
                             if (!toState.protected && !Utils.isNullOrEmpty(toState.redirectWhenAuthenticated)) {
                                 bypass = true;
                                 waitingForAsync = false;

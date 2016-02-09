@@ -15,6 +15,7 @@ namespace BamApps.Excido.Angular.App_Start {
                 .Include("~/Content/toastr.css")
                 .Include("~/Content/app.css")
                 .Include("~/Content/bootstrap-social.css")
+                .Include("~/Content/loading-bar.css")
                 );
 
 
@@ -35,6 +36,7 @@ namespace BamApps.Excido.Angular.App_Start {
 
             bundles.Add(new ScriptBundle("~/bundles/angular")
                 .Include("~/Scripts/angular.js")
+                .Include("~/Scripts/angular-animate.js")
                 .Include("~/Scripts/angular-local-storage.js")
                 .Include("~/Scripts/elastic.js")
                 .Include("~/Scripts/loading-bar.js")
@@ -82,7 +84,8 @@ namespace BamApps.Excido.Angular.App_Start {
                 .Include("~/app/BamApps.Excido.Controller/LoginController.js")
                 .Include("~/app/BamApps.Excido.Controller/SignupController.js")
                 .Include("~/app/BamApps.Excido.Controller/SharedUnitsController.js")
-                .Include("~/app/BamApps.Excido.Controller/MainAppController.js")
+                .Include("~/app/BamApps.Excido.Controller/PreLoginController.js")
+                .Include("~/app/BamApps.Excido.Controller/MainController.js")
                 .Include("~/app/BamApps.Excido.Controller/HomeController.js")
 
 

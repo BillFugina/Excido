@@ -116,6 +116,10 @@
                     this._authentication.userName = authData.userName;
                 }
             }
+
+            get userFullName(): string {
+                return this.localStorageService.get<string>('fullName');
+            }
         }
 
 
