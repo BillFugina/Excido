@@ -10,6 +10,7 @@
                     _SlugPrefix: string = 'https://localhost:44302/';
                     _ExcidoServiceBaseUrl: string = 'https://localhost:44302/';
                     _AuthenticationServiceBaseUrl: string = 'https://localhost:44300/';
+                    _LocalBaseUrl: string = 'https://localhost:44301/'
 
                     get ApiServer() {
                         return this._ApiServer;
@@ -37,6 +38,10 @@
 
                     get AuthenticationServiceBaseUrl() {
                         return this._AuthenticationServiceBaseUrl;
+                    }
+
+                    get LocalBaseUrl() {
+                        return this._LocalBaseUrl;
                     }
 
                     uiRouteConfiguration = ($stateProvider: angular.ui.IStateProvider, $urlRouterProvider: angular.ui.IUrlRouterProvider) => {
@@ -77,6 +82,15 @@
                                 controllerAs: 'loginController',
                                 protected: false,
                                 redirectWhenAuthenticated: 'sharedUnits'
+                            })
+                            .state('signin-google', {
+                                parent: 'site',
+                                url: '/signin-google?external_access_token&provider&haslocalaccount&external_user_name',
+                                templateUrl: '/app/BamApps.Excido.View/login.html',
+                                controller: 'loginController',
+                                controllerAs: 'loginController',
+                                protected: false,
+                                onEnter: ['authenticationService', '$stateParams', BamApps.Excido.Controller.LoginController.completeGoogleLogin]
                             })
                             .state('logout', {
                                 parent: 'site',

@@ -2,7 +2,7 @@
     export module Service {
 
         export class AuthenticationService extends BamApps.Model.BamAppsBase implements Interface.IAuthenticationService {
-            static $inject: string[] = ['$http', '$q', 'localStorageService', 'settingsService'];
+            static $inject: string[] = ['$window', '$http', '$q', 'localStorageService', 'settingsService'];
 
             private _authentication: Interface.IAuthenticationData = {
                 isAuth: false,
@@ -10,6 +10,7 @@
             }
 
             constructor(
+                private $window : ng.IWindowService,
                 private $http: ng.IHttpService,
                 private $q: ng.IQService,
                 private localStorageService: angular.local.storage.ILocalStorageService,
@@ -120,13 +121,48 @@
             get userFullName(): string {
                 return this.localStorageService.get<string>('fullName');
             }
+
+            googleLogin() {
+                var self = this;
+                var authenticationServiceBaseUrl = self.settingsService.Settings.AuthenticationServiceBaseUrl;
+                var clientId = self.settingsService.Settings.ApiClientId;
+                var localUrl = self.settingsService.Settings.LocalBaseUrl;
+
+                var data = authenticationServiceBaseUrl + "/api/accounts/ExternalLogin?provider=Google&response_type=token&client_id=" + clientId + "&redirect_uri=" + localUrl + "signin-google";
+                this.$window.location.href = data;
+            }
+
+            completeGoogleLogin(stateParams: Interface.IGoogleStateParams) {
+                if (Utils.truthy(stateParams.haslocalaccount)){
+                }
+                else {
+                }
+            }
+
+            obtainLocalAccessToken(provider: string, externalAccessToken: string) {
+                var self = this;
+                var authenticationServiceBaseUrl = self.settingsService.Settings.AuthenticationServiceBaseUrl;
+                var clientId = self.settingsService.Settings.ApiClientId;
+                var url = authenticationServiceBaseUrl + "/api/accounts/ObtainLocalAccessToken?provider=" + provider + "&externalAccessToken=" + externalAccessToken + "&client_id=" + clientId;
+                self.$http.get(url)
+                    .then(response => {
+                        debugger;
+                    })
+                    .catch(reason => {
+                        debugger;
+                    });
+            }
+
+            registerExternal() {
+            }
         }
 
 
 
         var _loginServiceDictionary = {};
-        authenticationServiceFactory.$inject = ['$http', '$q', 'localStorageService', 'settingsService'];
+        authenticationServiceFactory.$inject = ['$window', '$http', '$q', 'localStorageService', 'settingsService'];
         export function authenticationServiceFactory(
+            $window : ng.IWindowService,
             $http: ng.IHttpService,
             $q: ng.IQService,
             localStorageService: angular.local.storage.ILocalStorageService,
@@ -138,7 +174,7 @@
             var result: Interface.IAuthenticationService = _loginServiceDictionary[authenticationServiceBaseUrl];
 
             if (result == null) {
-                result = new AuthenticationService($http, $q, localStorageService, settingsService);
+                result = new AuthenticationService($window, $http, $q, localStorageService, settingsService);
                 _loginServiceDictionary[authenticationServiceBaseUrl] = result;
             }
 

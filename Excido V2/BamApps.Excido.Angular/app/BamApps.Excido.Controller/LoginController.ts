@@ -2,7 +2,7 @@ module BamApps {
     export module Excido {
         export module Controller {
             export class LoginController extends BamApps.Model.BamAppsBase implements BamApps.Interface.ILoginController {
-                static $inject: string[] = ['$scope', '$state', 'authenticationService', 'settingsService'];
+                static $inject: string[] = ['$scope', '$state', 'authenticationService', 'settingsService', '$stateParams'];
 
                 private _authenticationService: BamApps.Interface.IAuthenticationService;
 
@@ -13,7 +13,8 @@ module BamApps {
                     private $scope: ng.IScope,
                     private $state: ng.ui.IStateService,
                     private authenticationService: BamApps.Interface.IAuthenticationService,
-                    private settingsService: BamApps.Excido.Service.SettingsService
+                    private settingsService: BamApps.Excido.Service.SettingsService,
+                    private $stateParams: ng.ui.IStateParamsService
                 ) {
                     super();
                 }
@@ -35,6 +36,14 @@ module BamApps {
                     BamApps.Logger.log("You have been logged out.", this, null, toastr.warning, "Logout");
                     this.authenticationService.logout();
                     this.$state.go('home');
+                }
+
+                GoogleLogin() {
+                    this.authenticationService.googleLogin();
+                }
+
+                static completeGoogleLogin(authenticationService : BamApps.Interface.IAuthenticationService, $stateParams : BamApps.Interface.IGoogleStateParams) {
+                    authenticationService.completeGoogleLogin($stateParams);
                 }
             }
 

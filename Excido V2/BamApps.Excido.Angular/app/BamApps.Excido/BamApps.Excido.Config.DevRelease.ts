@@ -11,6 +11,7 @@
                     _SlugPrefix: string = 'http://exci.do/';
                     _ExcidoServiceBaseUrl: string = 'https://localhost:44302/';
                     _AuthenticationServiceBaseUrl: string = 'https://localhost:44300/';
+                    _LocalBaseUrl: string = 'https://localhost:44301/'
 
                     get ApiServer() {
                         return this._ApiServer;
@@ -38,6 +39,10 @@
 
                     get AuthenticationServiceBaseUrl() {
                         return this._AuthenticationServiceBaseUrl;
+                    }
+
+                    get LocalBaseUrl() {
+                        return this._LocalBaseUrl;
                     }
 
                     RouteProvider($routeProvider: angular.route.IRouteProvider) {

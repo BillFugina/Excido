@@ -1,6 +1,13 @@
 ﻿module BamApps {
     export module Interface {
 
+        export interface IGoogleStateParams {
+            external_access_token: string;
+            provider: string;
+            haslocalaccount: boolean;
+            external_user_name: string;
+        }
+
         export interface IStateChangeInspectorService {
             stateChangeInspector(event: angular.IAngularEvent, toState: angular.ui.IState, toStateParams, fromState: angular.ui.IState, fromParams, options: angular.ui.IStateOptions);
         }
@@ -95,13 +102,18 @@
         }
 
         export interface IAuthenticationService {
+            userFullName: string;
+
             saveRegistration(registration): ng.IPromise<any>
+
             login(loginData: ILoginInfo): ng.IPromise<ILoginResponse>;
             logout(): void;
             verify(): ng.IPromise<boolean>;
             hasToken(): boolean;
             hasValidToken(): boolean;
-            userFullName: string;
+
+            googleLogin();
+            completeGoogleLogin(stateParams: Interface.IGoogleStateParams);
         }
 
         export interface IAuthenticationServiceFactory {
@@ -120,6 +132,7 @@
 
         export interface ILoginController {
             Login(): void;
+            GoogleLogin(): void;
         }
 
         export interface IAuthenticationToken {
