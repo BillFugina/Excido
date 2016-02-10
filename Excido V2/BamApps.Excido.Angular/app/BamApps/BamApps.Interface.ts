@@ -107,7 +107,7 @@
             saveRegistration(registration): ng.IPromise<any>
 
             login(loginData: ILoginInfo): ng.IPromise<ILoginResponse>;
-            logout(): void;
+            logout(): ng.IPromise<any>;
             verify(): ng.IPromise<boolean>;
             hasToken(): boolean;
             hasValidToken(): boolean;
