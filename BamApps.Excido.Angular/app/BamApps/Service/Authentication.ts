@@ -62,7 +62,7 @@
                 return deferred.promise;
             }
 
-            logout() {
+            logout(): ng.IPromise<any> {
                 this.localStorageService.remove('authorizationData');
                 this.localStorageService.remove('fullName');
                 this.localStorageService.remove('expires_in');
@@ -71,6 +71,19 @@
                 this.localStorageService.remove('refresh_token');
                 this._authentication.isAuth = false;
                 this._authentication.userName = "";
+
+                var self = this;
+                var authenticationServiceBaseUrl = self.settingsService.Settings.AuthenticationServiceBaseUrl;
+                var clientId = self.settingsService.Settings.ApiClientId;
+
+                var deferred = self.$q.defer<Interface.ILoginResponse>();
+
+                var result = self
+                    .$http.get(authenticationServiceBaseUrl + 'api/accounts/logout')
+                    .then(() => {
+                    });
+
+                return result;
             }
 
             hasToken() : boolean {

@@ -493,5 +493,12 @@ namespace BamApps.Identity.WebApi.Controllers {
             return Ok(accessTokenResponse);
 
         }
+
+        [AllowAnonymous]
+        [HttpGet]
+        [Route("logout")]
+        public bool logout() {
+            return true;
+        }
     }
 }
