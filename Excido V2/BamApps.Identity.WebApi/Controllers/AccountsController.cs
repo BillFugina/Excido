@@ -324,6 +324,21 @@ namespace BamApps.Identity.WebApi.Controllers {
             return match.Value;
         }
 
+        private async Task<GoogleUserInfo> GetGoogleUserInfo(string accessToken) {
+            GoogleUserInfo result = null;
+            var url = $"https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token={accessToken}";
+            var client = new HttpClient();
+            var uri = new Uri(url);
+            var response = await client.GetAsync(uri);
+            if (response.IsSuccessStatusCode) {
+                var content = await response.Content.ReadAsStringAsync();
+                result = Newtonsoft.Json.JsonConvert.DeserializeObject<GoogleUserInfo>(content);
+            }
+
+            return result;
+        }
+
+
         private async Task<ParsedExternalAccessToken> VerifyExternalAccessToken(string provider, string accessToken) {
             ParsedExternalAccessToken parsedToken = null;
 
@@ -371,6 +386,7 @@ namespace BamApps.Identity.WebApi.Controllers {
                         return null;
                     }
 
+                    GoogleUserInfo googleUserInfo = await GetGoogleUserInfo(accessToken);
                 }
 
             }
